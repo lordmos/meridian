@@ -14,6 +14,10 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/lordmos/meridian/pulls)
 [![Docs](https://img.shields.io/badge/Docs-online-4a9eff?style=flat-square&logo=vitepress&logoColor=white)](https://lordmos.github.io/meridian/)
 
+<div align="center">
+  <img src=".github/assets/hero.svg" alt="Meridian" width="120" />
+</div>
+
 # Meridian
 
 A reusable open-source Agent project operations toolkit. Given any open-source Agent project, build a complete operations infrastructure in a single AI session.

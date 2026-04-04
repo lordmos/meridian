@@ -14,6 +14,10 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/lordmos/meridian/pulls)
 [![Docs](https://img.shields.io/badge/Docs-online-4a9eff?style=flat-square&logo=vitepress&logoColor=white)](https://lordmos.github.io/meridian/)
 
+<div align="center">
+  <img src=".github/assets/hero.svg" alt="Meridian" width="120" />
+</div>
+
 # Meridian
 
 再利用可能なオープンソース Agent プロジェクト運営ツールキット。任意のオープンソース Agent プロジェクトに対して、1 回の AI セッションで完全な運営基盤を構築できます。

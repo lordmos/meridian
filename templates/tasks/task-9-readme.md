@@ -42,6 +42,10 @@
 [![Docs](https://img.shields.io/badge/Docs-online-4a9eff?style=flat-square&logo=vitepress&logoColor=white)](https://OWNER.github.io/REPO/)
 [![Powered by Meridian](https://img.shields.io/badge/Powered%20by-Meridian-8b5cf6?style=flat-square)](https://github.com/lordmos/meridian)
 
+<div align="center">
+  <img src=".github/assets/hero.svg" alt="PROJECT_NAME" width="120" />
+</div>
+
 # PROJECT_NAME
 
 一句话描述项目核心价值。

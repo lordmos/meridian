@@ -14,6 +14,10 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/lordmos/meridian/pulls)
 [![Docs](https://img.shields.io/badge/Docs-online-4a9eff?style=flat-square&logo=vitepress&logoColor=white)](https://lordmos.github.io/meridian/)
 
+<div align="center">
+  <img src=".github/assets/hero.svg" alt="Meridian" width="120" />
+</div>
+
 # Meridian
 
 可複用的開源 Agent 專案運營工具包。給定任何一個開源 Agent 專案，在一次 AI 會話裡完成全套運營基礎設施搭建。
