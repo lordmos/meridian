@@ -4,8 +4,8 @@
 
 ## Quick Start
 
-一句话启动：
-> Meridian 的源码在 `/Users/zhonghui/Documents/Git/fire/meridian`。请读 QUICK_START.md，然后向我提问。没有问题就开始工作。
+给目标项目做运营配套（触发句）：
+> 请你阅读我的项目，项目目录在 `[目标项目路径]`，理解这个项目，给这个项目做一下运营配套。
 
 中断后恢复：
 > 请读 checkpoint.md，继续上次未完成的工作。
