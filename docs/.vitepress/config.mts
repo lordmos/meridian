@@ -2,6 +2,13 @@ import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   base: '/meridian/',
+  title: 'Meridian',
+  titleTemplate: ':title | Meridian',
+  description: '可复用的开源 Agent 项目运营工具包',
+
+  head: [
+    ['link', { rel: 'icon', href: '/meridian/hero.svg', type: 'image/svg+xml' }],
+  ],
 
   // 转义 {{变量名}} 避免 Vue 模板编译报错
   markdown: {

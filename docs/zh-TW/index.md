@@ -1,5 +1,6 @@
 ---
 layout: home
+titleTemplate: ':title'
 hero:
   name: "Meridian"
   text: "開源 Agent 專案運營工具包"

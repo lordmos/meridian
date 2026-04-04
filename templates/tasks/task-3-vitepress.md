@@ -24,6 +24,8 @@ docs/
 以 `templates/vitepress-config.mts` 为基础，替换占位符：
 
 - `{{REPO_NAME}}` → 仓库名（`base` 子路径，**必须设置**）
+- `{{PROJECT_NAME}}` → 项目名称（用于页面 `<title>`）
+- `{{PROJECT_DESCRIPTION}}` → 一句话描述（用于 meta description）
 - `{{GITHUB_OWNER}}` / `{{REPO_NAME}}` → 社交链接
 - 各语言 `nav` 和 `sidebar` → 按项目实际文档目录补全
 - `themeConfig.footer` → 加入 Powered by Meridian（见下方）
@@ -78,6 +80,7 @@ export default DefaultTheme
 ```yaml
 ---
 layout: home
+titleTemplate: ':title'   # 避免首页出现"项目名 | 项目名"重复
 hero:
   name: "PROJECT_NAME"
   text: "项目核心定位（一句话）"
@@ -98,6 +101,8 @@ features:
     details: ...
 ---
 ```
+
+**⚠️ 注意**：首页必须加 `titleTemplate: ':title'`，否则页面标题会出现"项目名 | 项目名"的重复。子页面（quick-start.md 等）无需此设置，会自动显示"页面标题 | 项目名"。
 
 ## Powered by Meridian（VitePress footer）
 

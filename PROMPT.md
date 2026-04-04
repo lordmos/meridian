@@ -237,6 +237,8 @@ QUICK_START.md 内容结构：
 - 三处关键配置勿删：`escape_vue_interpolation` / `preserveSymlinks` / `base`
 - `image.src` 写 `/hero.svg`，**不要**带仓库名前缀（`base` 已有，再加会造成双重路径 404）
 - 配色不要选 indigo 系（VitePress 默认即为 indigo，视觉上无变化）
+- 首页 `index.md` frontmatter 加 `titleTemplate: ':title'`，否则标题会出现"项目名 | 项目名"重复
+- `head` 中设置 favicon：`['link', { rel: 'icon', href: '/{{REPO_NAME}}/hero.svg', type: 'image/svg+xml' }]`
 - 构建出现错误必须修复后再继续
 
 **GitHub Pages**（任务 4）

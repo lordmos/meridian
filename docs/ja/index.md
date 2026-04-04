@@ -1,5 +1,6 @@
 ---
 layout: home
+titleTemplate: ':title'
 hero:
   name: "Meridian"
   text: "Agent プロジェクト運営ツールキット"

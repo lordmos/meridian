@@ -2,6 +2,13 @@ import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   base: '/{{REPO_NAME}}/',           // GitHub Pages 子路径，必须设置！
+  title: '{{PROJECT_NAME}}',
+  titleTemplate: ':title | {{PROJECT_NAME}}',
+  description: '{{PROJECT_DESCRIPTION}}',
+
+  head: [
+    ['link', { rel: 'icon', href: '/{{REPO_NAME}}/hero.svg', type: 'image/svg+xml' }],
+  ],
 
   // 转义 {{变量名}} 避免 Vue 模板编译报错
   markdown: {
