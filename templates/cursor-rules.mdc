@@ -1,0 +1,26 @@
+---
+description: Rules for {{PROJECT_NAME}}
+alwaysApply: true
+---
+
+# {{PROJECT_NAME}}
+
+{{DESCRIPTION}}
+
+## Quick Start
+
+一句话启动：
+> {{PROJECT_NAME}} 的源码在 {{LOCAL_REPO_PATH}}。请读 QUICK_START.md，然后向我提问。没有问题就开始工作。
+
+中断后恢复：
+> 请读 checkpoint.md，继续上次未完成的工作。
+
+## Key Files
+
+- `QUICK_START.md` — AI 编排入口
+- `checkpoint.md` — 进度追踪
+
+## Rules
+
+<!-- 填写该项目的工作规则 -->
+1. 每步骤完成后更新 checkpoint.md
