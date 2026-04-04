@@ -5,7 +5,7 @@ hero:
   text: "開源 Agent 專案運營工具包"
   tagline: "一次 AI 對話，搭建完整運營基礎設施"
   image:
-    src: /meridian/hero.svg
+    src: /hero.svg
     alt: Meridian
   actions:
     - theme: brand

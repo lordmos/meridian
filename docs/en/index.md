@@ -5,7 +5,7 @@ hero:
   text: "Agent Project Operations Toolkit"
   tagline: "One AI session to build a complete operations infrastructure"
   image:
-    src: /meridian/hero.svg
+    src: /hero.svg
     alt: Meridian
   actions:
     - theme: brand

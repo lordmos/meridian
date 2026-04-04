@@ -5,7 +5,7 @@ hero:
   text: "Agent プロジェクト運営ツールキット"
   tagline: "1回の AI セッションで完全な運営基盤を構築"
   image:
-    src: /meridian/hero.svg
+    src: /hero.svg
     alt: Meridian
   actions:
     - theme: brand
