@@ -98,133 +98,19 @@
 
 目标语言：**简体中文（原版）/ English / 日本語 / 繁體中文**
 
-文件结构：
-```
-i18n/
-  en/       ← 英文翻译
-    {{DOCS_TO_TRANSLATE}} 中的每个子目录
-  ja/       ← 日文翻译
-    ...
-  zh-TW/    ← 繁中翻译（可用 OpenCC 简繁转换辅助）
-    ...
-README.en.md
-README.ja.md
-README.zh-TW.md
-```
+→ **详细说明见** `templates/tasks/task-2-i18n.md`
 
-每个译文文件头部加翻译状态注释：
-```markdown
-<!--
-  Translation status:
-  Source file : 原文件路径
-  Source commit: 当前 git commit hash
-  Translated  : 翻译日期
-  Status      : up-to-date
--->
-```
-
-每个文件顶部加语言切换 blockquote：
-```markdown
-> **语言 / Language**: [简体中文](../../原文件) · **English** · [日本語](...) · [繁體中文](...)
-```
-
-翻译规则：
-- `{{变量名}}` 占位符**不翻译**，保持原样
-- 代码块、文件路径**不翻译**
-- HTML 注释**不翻译**
-- 日文翻译用自然的技术日语，不要机器翻译腔
-- 繁中可基于简中用 OpenCC 转换，再人工校对
+产出：`i18n/` 目录结构 + `README.en.md` / `README.ja.md` / `README.zh-TW.md`，每个译文文件头部含翻译状态注释和语言切换行。
 
 ---
 
 ### 任务 3：VitePress 文档站
 
-在 `docs/` 目录搭建 VitePress 多语言文档站。
+在 `docs/` 目录搭建 VitePress 多语言文档站，包含用户选定配色的自定义主题和 Powered by Meridian footer。
 
-**目录结构：**
-```
-docs/
-├── package.json               ← VitePress 依赖（vitepress: ^1.6.x）
-├── .vitepress/
-│   ├── config.mts             ← 多语言配置
-│   └── theme/
-│       ├── index.ts           ← 主题入口（引入自定义样式）
-│       └── style.css          ← 自定义配色（阶段 3 用户选择的方案）
-├── public/
-│   └── hero.svg               ← Logo（任务 5 产出）
-├── index.md                   ← 简中首页（layout: home，hero 格式）
-├── {原始文档目录}/              ← symlink → ../原始目录
-├── en/
-│   ├── index.md               ← 英文首页
-│   └── {文档目录}/            ← symlink → ../../i18n/en/{目录}
-├── ja/ ...
-└── zh-TW/ ...
-```
+→ **详细说明见** `templates/tasks/task-3-vitepress.md`
 
-**config.mts** → 以 `templates/vitepress-config.mts` 为基础，替换以下占位符：
-
-- `{{REPO_NAME}}` → 仓库名（用于 `base` 子路径，必须设置）
-- `{{GITHUB_OWNER}}` / `{{REPO_NAME}}` → 社交链接
-- 各语言的 `nav` 和 `sidebar` → 根据项目实际文档目录补全
-
-模板已包含以下关键配置（勿删除）：
-- `escape_vue_interpolation` rule — 防止 `{{变量名}}` 被 Vue 编译器报错
-- `ignoreDeadLinks: true` — 忽略跨语言相对链接检查
-- `vite.resolve.preserveSymlinks: true` — 修复 symlink 外 node_modules 解析
-
-**theme/index.ts**：
-```typescript
-import DefaultTheme from 'vitepress/theme'
-import './style.css'
-export default DefaultTheme
-```
-
-**theme/style.css** → 填入阶段 3 用户选择的配色：
-```css
-:root {
-  --vp-c-brand-1: [brand-1];
-  --vp-c-brand-2: [brand-2];
-  --vp-c-brand-3: [brand-3];
-  --vp-c-brand-soft: rgba([brand-1 rgb值], 0.14);
-}
-.dark {
-  --vp-c-brand-1: [亮色版 brand-1];
-  --vp-c-brand-2: [brand-1];
-  --vp-c-brand-3: [brand-2];
-  --vp-c-brand-soft: rgba([brand-1 rgb值], 0.16);
-}
-```
-
-**Sidebar**：为每种语言配置完整的 sidebar，覆盖所有文档目录（`templates/vitepress-config.mts` 中已有示例框架，按实际目录补全）。
-
-**首页（index.md）格式：**
-```yaml
----
-layout: home
-hero:
-  name: "{{PROJECT_NAME}}"
-  text: "项目核心定位（一句话）"
-  tagline: "更详细的说明"
-  image:
-    src: /hero.svg
-    alt: {{PROJECT_NAME}}
-  actions:
-    - theme: brand
-      text: 快速开始 →
-      link: /quick-start
-    - theme: alt
-      text: GitHub
-      link: https://github.com/{{GITHUB_OWNER}}/{{REPO_NAME}}
-features:
-  - icon: 🤖
-    title: 特性1
-    details: ...
----
-```
-
-**安装依赖**：在 `docs/` 目录执行 `npm install`，生成 `package-lock.json`。
-
-**验证**：执行 `npm run docs:build`，确保构建成功，再提交。
+产出：`docs/` 完整目录（config.mts + theme/ + 各语言 index.md + package.json），构建通过。
 
 ---
 
@@ -317,81 +203,9 @@ QUICK_START.md 内容结构：
 
 更新所有语言的 README（`.md` + `README.en.md` + `README.ja.md` + `README.zh-TW.md`）。
 
----
+→ **详细说明见** `templates/tasks/task-9-readme.md`
 
-#### README 编排模板
-
-按以下顺序组织 README。**固定节**必须出现；**可选节**根据项目实际情况决定是否保留。
-
-```
-[固定] 语言切换行
-[固定] 徽章组
-[固定] # 标题 + 一句话描述
-[固定] ## Quick Start（紧跟描述，第一个正文章节）
-[固定] ## 能做什么 / Features（功能概览）
-[可选] ## 背景 / Background
-[可选] ## 系统架构 / Architecture
-[可选] ## Agent 团队 / Agent Roster（仅多 Agent 项目）
-[可选] ## 工作流 / Workflow（仅有明确阶段的项目）
-[可选] ## 文件说明 / File Reference
-[可选] ## 贡献 / Contributing
-[可选] ## License
-```
-
-**规则**：
-- Quick Start **必须是正文第一节**，让用户立刻看到如何使用
-- 不要删减项目原有的技术内容，保留对用户有价值的说明
-- 各语言版本章节顺序必须一致
-- README 不要有裸露的 `{{变量名}}` 占位符
-
----
-
-#### 语言切换行 + 徽章组（固定格式）
-
-```markdown
-> **语言 / Language**: [简体中文](README.md) · **当前语言** · [日本語](...) · [繁體中文](...)
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Stars](https://img.shields.io/github/stars/OWNER/REPO?style=flat-square&color=gold)](https://github.com/OWNER/REPO/stargazers)
-[![Last Commit](https://img.shields.io/github/last-commit/OWNER/REPO?style=flat-square)](https://github.com/OWNER/REPO/commits/main)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/OWNER/REPO/pulls)
-[![Docs](https://img.shields.io/badge/Docs-online-4a9eff?style=flat-square&logo=vitepress&logoColor=white)](https://OWNER.github.io/REPO/)
-
-# PROJECT_NAME
-
-一句话描述项目核心价值。
-```
-
----
-
-#### Quick Start 节（固定内容格式）
-
-```markdown
-## Quick Start
-
-> 📖 完整文档 → [在线阅读](https://OWNER.github.io/REPO/quick-start)
-
-**Step 1** — 获取项目
-
-\`\`\`bash
-git clone https://github.com/OWNER/REPO.git
-cd REPO
-\`\`\`
-
-**Step 2** — 用 AI 工具打开目录，说这一句话：
-
-> [触发句，根据项目类型定制——对于 Meridian 类工具是那一句触发句；对于其他 Agent 项目是其 QUICK_START.md 中定义的启动句]
-
-AI 自主运行，完成后交付成果。你只需：① 回答初始问答 → ② 确认执行计划 → ③ 验收成果。
-
-**中断后恢复** → 告诉 AI：`请读 checkpoint.md，继续上次未完成的工作。`
-```
-
-**Quick Start 内容写作规则**：
-- 触发句/启动命令要**突出显示**（blockquote 或代码块）
-- 步骤要极简，3 步以内
-- 用户需要做的事不超过 3 件
-- 如果项目需要安装依赖，Step 1 里包含
+产出：遵循 README 编排模板，含语言切换行 + 徽章（含 Powered by Meridian 徽章）+ Quick Start 前置 + footer 归因行。
 
 ---
 
@@ -419,19 +233,23 @@ AI 自主运行，完成后交付成果。你只需：① 回答初始问答 →
 
 ### ⚠️ 注意事项
 
-**VitePress 构建**（任务 3）
-- `templates/vitepress-config.mts` 中有三处关键配置，**勿删**：
-  - `escape_vue_interpolation` — 防止 `{{变量名}}` 被 Vue 模板编译器当作插值表达式报错
-  - `vite.resolve.preserveSymlinks: true` — 修复 symlink 指向 `docs/` 外时 node_modules 无法解析
-  - `base: '/{{REPO_NAME}}/'` — 防止 GitHub Pages 子路径部署后静态资源全部 404
-- 构建出现错误**必须修复后再继续**，不能跳过
+**VitePress 构建**（任务 3，详见 `templates/tasks/task-3-vitepress.md`）
+- 三处关键配置勿删：`escape_vue_interpolation` / `preserveSymlinks` / `base`
+- `image.src` 写 `/hero.svg`，**不要**带仓库名前缀（`base` 已有，再加会造成双重路径 404）
+- 配色不要选 indigo 系（VitePress 默认即为 indigo，视觉上无变化）
+- 构建出现错误必须修复后再继续
 
 **GitHub Pages**（任务 4）
-- 首次推送后，需在 GitHub Settings → Pages → Source 手动选择 **"GitHub Actions"**
-- 然后重新触发 CI（推一个空 commit 或点 Re-run）
+- 首次推送后，手动在 GitHub Settings → Pages → Source 选 **GitHub Actions**
+- 然后重新触发 CI（推空 commit 或点 Re-run）
 
 **多语言同步**（任务 2/9）
-- 各语言版本必须同步更新，不能只改简中版本
+- 各语言版本必须同步更新，不能只改简中
+
+**Powered by Meridian 归因**（任务 3/9，必须）
+- VitePress footer 加入：`Built with <a href="https://github.com/lordmos/meridian">Meridian</a>`
+- 各语言 README 徽章行加入：`[![Powered by Meridian](https://img.shields.io/badge/Powered%20by-Meridian-8b5cf6?style=flat-square)](https://github.com/lordmos/meridian)`
+- README 最后一行加入：`<sub>Built with [Meridian](https://github.com/lordmos/meridian)</sub>`
 
 ---
 
@@ -454,4 +272,4 @@ AI 自主运行，完成后交付成果。你只需：① 回答初始问答 →
 
 ---
 
-*提示词版本：Meridian v3.0 · 2026-04-04*
+*提示词版本：Meridian v3.1 · 2026-04-04*

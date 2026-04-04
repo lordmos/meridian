@@ -12,6 +12,7 @@
 [![Stars](https://img.shields.io/github/stars/lordmos/meridian?style=flat-square&color=gold)](https://github.com/lordmos/meridian/stargazers)
 [![Last Commit](https://img.shields.io/github/last-commit/lordmos/meridian?style=flat-square)](https://github.com/lordmos/meridian/commits/main)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/lordmos/meridian/pulls)
+[![Docs](https://img.shields.io/badge/Docs-online-4a9eff?style=flat-square&logo=vitepress&logoColor=white)](https://lordmos.github.io/meridian/)
 
 # Meridian
 
@@ -69,3 +70,7 @@ Meridian は [Scriptorium](https://github.com/lordmos/tech-editorial)（マル�
 | `PROMPT.md` | 再利用可能な運営プロンプト（主要成果物、10項目のタスクを含む） |
 | `QUICK_START.md` | AI オーケストレーションエントリポイント、AI アシスタント向け |
 | `templates/` | プロンプトで参照するテンプレートファイル（VitePress 設定、GitHub Actions、ロゴ SVG、AI ツールファイル等） |
+
+---
+
+<sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit for Agent projects</sub>

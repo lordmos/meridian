@@ -115,5 +115,8 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/{{GITHUB_OWNER}}/{{REPO_NAME}}' },
     ],
     search: { provider: 'local' },
+    footer: {
+      message: 'Built with <a href="https://github.com/lordmos/meridian" target="_blank">Meridian</a>',
+    },
   },
 })

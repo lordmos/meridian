@@ -12,6 +12,7 @@
 [![Stars](https://img.shields.io/github/stars/lordmos/meridian?style=flat-square&color=gold)](https://github.com/lordmos/meridian/stargazers)
 [![Last Commit](https://img.shields.io/github/last-commit/lordmos/meridian?style=flat-square)](https://github.com/lordmos/meridian/commits/main)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/lordmos/meridian/pulls)
+[![Docs](https://img.shields.io/badge/Docs-online-4a9eff?style=flat-square&logo=vitepress&logoColor=white)](https://lordmos.github.io/meridian/)
 
 # Meridian
 
@@ -69,3 +70,7 @@ Meridian 從 [Scriptorium](https://github.com/lordmos/tech-editorial) 的運營�
 | `PROMPT.md` | 可複用的運營提示詞（核心產出物，包含 10 項任務） |
 | `QUICK_START.md` | AI 編排入口，寫給 AI 助手讀 |
 | `templates/` | 提示詞引用的模板文件（VitePress 設定、GitHub Actions、Logo SVG、AI 工具文件等） |
+
+---
+
+<sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit for Agent projects</sub>

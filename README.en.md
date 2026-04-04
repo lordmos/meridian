@@ -12,6 +12,7 @@
 [![Stars](https://img.shields.io/github/stars/lordmos/meridian?style=flat-square&color=gold)](https://github.com/lordmos/meridian/stargazers)
 [![Last Commit](https://img.shields.io/github/last-commit/lordmos/meridian?style=flat-square)](https://github.com/lordmos/meridian/commits/main)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/lordmos/meridian/pulls)
+[![Docs](https://img.shields.io/badge/Docs-online-4a9eff?style=flat-square&logo=vitepress&logoColor=white)](https://lordmos.github.io/meridian/)
 
 # Meridian
 
@@ -69,3 +70,7 @@ Meridian was distilled from the operations work done for [Scriptorium](https://g
 | `PROMPT.md` | Reusable operations prompt (the primary deliverable, contains 10 tasks) |
 | `QUICK_START.md` | AI orchestration entry, written for AI assistants to read |
 | `templates/` | Template files referenced by the prompt (VitePress config, GitHub Actions, Logo SVG, AI tool files, etc.) |
+
+---
+
+<sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit for Agent projects</sub>

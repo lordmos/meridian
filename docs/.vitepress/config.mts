@@ -120,5 +120,8 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/lordmos/meridian' },
     ],
     search: { provider: 'local' },
+    footer: {
+      message: 'Built with <a href="https://github.com/lordmos/meridian" target="_blank">Meridian</a> · open-source ops toolkit for Agent projects',
+    },
   },
 })
