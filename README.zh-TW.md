@@ -1,7 +1,7 @@
 <!--
   Translation status:
   Source file : README.md
-  Source commit: 4c9b514
+  Source commit: b05cb92
   Translated  : 2026-04-21
   Status      : up-to-date
 -->
