@@ -35,3 +35,11 @@ features:
     title: One-Line Launch
     details: QUICK_START.md lets AI autonomously complete all operations work
 ---
+
+<!--
+  Translation status:
+  Source file : docs/index.md
+  Source commit: 34750fd
+  Translated  : 2026-04-04
+  Status      : up-to-date
+-->

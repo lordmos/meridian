@@ -35,3 +35,11 @@ features:
     title: 一句話啟動
     details: QUICK_START.md 讓 AI 自主完成所有運營工作
 ---
+
+<!--
+  Translation status:
+  Source file : docs/index.md
+  Source commit: 34750fd
+  Translated  : 2026-04-04
+  Status      : up-to-date
+-->

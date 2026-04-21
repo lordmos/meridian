@@ -1,7 +1,7 @@
 <!--
   Translation status:
   Source file : README.md
-  Source commit: (uncommitted)
+  Source commit: 34750fd
   Translated  : 2026-04-04
   Status      : up-to-date
 -->

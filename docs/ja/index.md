@@ -35,3 +35,11 @@ features:
     title: ワンライン起動
     details: QUICK_START.md で AI が全ての運営作業を自律完了
 ---
+
+<!--
+  Translation status:
+  Source file : docs/index.md
+  Source commit: 34750fd
+  Translated  : 2026-04-04
+  Status      : up-to-date
+-->
