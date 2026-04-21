@@ -1,8 +1,8 @@
 <!--
   Translation status:
   Source file : README.md
-  Source commit: 34750fd
-  Translated  : 2026-04-04
+  Source commit: a72c384
+  Translated  : 2026-04-21
   Status      : up-to-date
 -->
 
@@ -20,7 +20,9 @@
 
 # Meridian
 
-再利用可能なオープンソース Agent プロジェクト運営ツールキット。任意のオープンソース Agent プロジェクトに対して、1 回の AI セッションで完全な運営基盤を構築できます。
+AI アシスタントに任せる OSS プロモーション ツールキット。Claude Code / Cursor / Windsurf にプロジェクトを示して「プロモーション一式を整えて」と一言伝えるだけ——AI が README・多言語化・ドキュメントサイト・ロゴ・AI ツールのコンテキスト・SEO + GEO 資産を自動生成します。
+
+[クイックスタート](#quick-start) · [ドキュメント](https://lordmos.github.io/meridian/ja/) · [FAQ](https://lordmos.github.io/meridian/ja/faq) · [GitHub](https://github.com/lordmos/meridian)
 
 ---
 
@@ -38,32 +40,85 @@ AI がプロジェクトを自律的に探索した後、3 つのカラースキ
 
 ---
 
-## Meridian でできること
+## スタイルライブラリ
 
-| 作業項目 | 成果物 |
-|----------|--------|
-| **ブランド命名** | 歴史・文化的背景を持つ英語プロジェクト名（命名理由付き） |
-| **i18n 多言語化** | 简体中文 / English / 日本語 / 繁體中文 の4言語ドキュメント |
-| **VitePress ドキュメントサイト** | 多言語 docs/ サイト + GitHub Pages 自動デプロイ |
-| **プロジェクトロゴ** | SVG グラデーション発光ロゴ（選択したカラースキームに対応） |
-| **AI ツール連携** | CLAUDE.md / AGENTS.md / .cursor/rules / .windsurf/rules |
-| **QUICK_START.md** | AI オーケストレーションエントリポイント：1文で起動、AI が全プロセスを自律実行 |
-| **クイックスタートガイド** | 4言語の人間向けドキュメント、3ステップでセットアップ |
-| **README 運営化** | バッジ + 言語切替 + Quick Start 優先配置 + ドキュメントサイトリンク |
+Meridian は 4 種類のプリセットビジュアルスタイルを用意しています。AI がプロジェクトタイプに応じて 1 つ推薦し、ユーザーは自由に選べます。下の各画像は実際の VitePress ホームページがそのスタイルで描画されたものです：
+
+<table>
+<tr>
+<td align="center" width="50%">
+<a href="templates/styles/minimalist/"><img src="templates/styles/minimalist/screenshot.png" alt="Minimalist VitePress ホーム"/></a><br/>
+<strong>Minimalist</strong> — モノクロ · 幾何 outline<br/>
+<sub>CLI / ライブラリ / docs-first</sub>
+</td>
+<td align="center" width="50%">
+<a href="templates/styles/enterprise/"><img src="templates/styles/enterprise/screenshot.png" alt="Enterprise VitePress ホーム"/></a><br/>
+<strong>Enterprise</strong> — ネイビーメダル · 剛性幾何<br/>
+<sub>B2B / プラットフォーム / コンプライアンス</sub>
+</td>
+</tr>
+<tr>
+<td align="center" width="50%">
+<a href="templates/styles/glow/"><img src="templates/styles/glow/screenshot.png" alt="Glow VitePress ホーム"/></a><br/>
+<strong>Glow</strong> — グラデーションオーラ · 深宇宙<br/>
+<sub>AI / Agent / 生成系</sub>
+</td>
+<td align="center" width="50%">
+<a href="templates/styles/dev-native/"><img src="templates/styles/dev-native/screenshot.png" alt="Dev-native VitePress ホーム"/></a><br/>
+<strong>Dev-native</strong> — ターミナル美学 · ネオンシアン<br/>
+<sub>shell / SDK / インフラ</sub>
+</td>
+</tr>
+</table>
+
+各スタイルは視覚言語一式——パレット、ロゴ、タイプスタック、VitePress テーマ変数、アイコンスタイル——を定義します（色だけではありません）。詳細は [`templates/styles/`](templates/styles/) 参照。
 
 ---
 
-## 背景
+## Meridian でできること
 
-Meridian は [Scriptorium](https://github.com/lordmos/tech-editorial)（マルチ Agent 技術書執筆フレームワーク）の運営作業から抽出されました。その作業には以下が含まれます：
+**ビジュアル**
+- プロジェクトロゴ：SVG グラデーショングロー、配色はユーザーが選んだパレットに追従
+- 統一テーマ：ロゴ / ドキュメントサイト / アイコンが 1 つの配色体系を共有
 
-1. プロジェクト名の命名（Scriptorium）
-2. 全ドキュメントの4言語翻訳（25個の Markdown ファイル × 4言語）
-3. VitePress ドキュメントサイト + GitHub Pages 自動デプロイの構築
-4. グラデーション発光 SVG ロゴの制作
-5. Claude Code / OpenCode / Amp / Cursor / Windsurf 向け AI ツールコンテキストファイルの作成
-6. `QUICK_START.md` の作成：「1文で起動、AI が全プロセスを実行」の AI オーケストレーション基盤
-7. README の整備（バッジ、言語切替、Quick Start 優先配置、ドキュメントサイトリンク）
+**コンテンツ**
+- ブランド命名：歴史・文化的背景のある英語プロジェクト名 + 命名理由
+- i18n 多言語化：简中 / en / ja / 繁中 の 4 言語 + 翻訳状況の追跡
+- README の運営化：バッジ + 言語切替 + Quick Start 優先配置 + ドキュメントサイトリンク
+
+**ドキュメントサイト**
+- VitePress 多言語サイト + GitHub Pages 自動デプロイ
+
+**AI 連携**
+- コンテキストファイル：CLAUDE.md / AGENTS.md / .cursor/rules / .windsurf/rules
+- オーケストレーションエントリ：QUICK_START.md（1 行で起動、AI が全プロセスを自律実行）
+
+**プロモーション (SEO + GEO)**
+- SEO：Open Graph / Twitter Card / JSON-LD SoftwareApplication / hreflang 付き sitemap.xml / robots.txt — Google / Bing にインデックス
+- GEO：[llms.txt](https://llmstxt.org) + llms-full.txt + 構造化 FAQ ページ — ChatGPT / Claude / Perplexity の回答で引用可能
+- スタイルごとに 1 枚 1200×630 の OG ソーシャルカード（Facebook / Twitter / LinkedIn のリンクプレビュー対応）
+
+<details>
+<summary>完全な 12 項目タスクリスト</summary>
+
+| # | タスク | 主な成果物 |
+|---|------|-----------|
+| 1 | ブランド命名 | プロジェクト英語名 + 命名理由 |
+| 2 | i18n 多言語化 | `i18n/glossary.md` + `i18n/{en,ja,zh-TW}/` + `README.*.md` |
+| 3 | VitePress ドキュメントサイト | `docs/`（選定スタイルからテーマ変数を派生）|
+| 4 | GitHub Pages デプロイ | `.github/workflows/docs.yml` |
+| 5 | プロジェクトロゴ | `docs/public/hero.svg` + `.github/assets/hero.svg` |
+| 6 | AI ツールのコンテキスト | `CLAUDE.md` / `AGENTS.md` / `.cursor/` / `.windsurf/` |
+| 7 | QUICK_START.md | ルートの `QUICK_START.md` |
+| 8 | Quick Start Guide | `docs/quick-start.md`（4 言語）|
+| 9 | README 運営化 | 全言語の README |
+| 10 | 整合性チェック | `.gitignore` + ビルド検証 + i18n ドリフトチェック |
+| 11 | Emoji → SVG 置換 | `docs/public/icons/` + 全 md ファイル置換 |
+| 12 | Discoverability (SEO + GEO) | `robots.txt` + `og.png` + `llms.txt` + `llms-full.txt` + FAQ |
+
+各タスクの操作詳細は [`PROMPT.md`](PROMPT.md)、分割説明は [`templates/tasks/`](templates/tasks/)。
+
+</details>
 
 ---
 
@@ -77,4 +132,6 @@ Meridian は [Scriptorium](https://github.com/lordmos/tech-editorial)（マル�
 
 ---
 
-<sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit for Agent projects</sub>
+**Meridian が自分で作った Meridian。** README、バッジ、言語切替、[ドキュメントサイト](https://lordmos.github.io/meridian/)、ロゴ、AI ツールのコンテキスト——ここに見えるすべてが、Meridian 自身の手で生成されたものです。
+
+<sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit</sub>

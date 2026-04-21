@@ -34,29 +34,28 @@
 
 ## 阶段 2：方案提案（向用户展示，等待选择）
 
-### 2a. 配色方案 — 随机生成 3 个
+### 2a. 风格选择 — 4 选 1（含推荐）
 
-每个方案：方案名（一词）+ 氛围描述 + 三个 hex 色块预览
+4 种预设风格（每种 = 完整视觉语言，定义在 `templates/styles/{id}/style.md`）：
 
-```
-方案 A「[名称]」— [氛围描述，适合的项目类型]
-■ #[brand-1]  ■ #[brand-2]  ■ #[brand-3]
+| id | 名称 | 默认适用 |
+|----|------|---------|
+| `glow` | Glow — 渐变光晕 | AI / Agent / 生成式 |
+| `minimalist` | Minimalist — 墨色几何 | CLI / 库 / docs-first |
+| `dev-native` | Dev-native — 终端霓虹 | shell / SDK / 基建 |
+| `enterprise` | Enterprise — 海军蓝医章 | B2B / 平台 / 合规 |
 
-方案 B「[名称]」— [氛围描述]
-■ #[brand-1]  ■ #[brand-2]  ■ #[brand-3]
+基于阶段 1 探索结果**推荐 1 个默认风格**，用户可接受 / 换一个 / 说「随机」。
 
-方案 C「[名称]」— [氛围描述]
-■ #[brand-1]  ■ #[brand-2]  ■ #[brand-3]
-```
+### 2b. 配色（从风格派生）
 
-生成时注意：三方案风格差异明显（冷/暖/中性），颜色对应 VitePress `--vp-c-brand-*` 变量体系。
+选定风格后，配色自动从风格的 `palette` 块派生。用户可**替换 accent 色**（给 hex 或说"默认"），bg/text 保持风格原貌。
 
-### 2b. Logo 设计建议
+### 2c. Logo
 
-- 推荐中心字母（默认取项目名首字母，大写）
-- 说明将使用 `templates/hero.svg` 的渐变光效风格
+从 `templates/styles/{id}/hero.svg` 复制，把 `{{PROJECT_INITIAL}}` 替换为项目名首字母。用户若换了 accent 色，同步改 SVG 里对应 hex。
 
-### 2c. README 现存问题
+### 2d. README 现存问题
 
 列出发现的问题，用 ❌ 缺失 / ✅ 已有良好 标注
 
@@ -65,9 +64,10 @@
 ## 阶段 3：确认（等用户回复后继续）
 
 等用户：
-1. 选择配色方案（或说「随机」/「重新生成三个」）
-2. 确认或修改 Logo 字母
-3. 对 README 问题给出处理意见
+1. 选择风格（接受推荐 / 换一个 / 随机）
+2. 可选：替换 accent 色（给 hex 或说"默认"）
+3. 确认或修改 Logo 字母
+4. 对 README 问题给出处理意见
 
 获得确认后，立即进入阶段 4。
 
@@ -87,21 +87,28 @@
 | # | 任务 | 主要产出 |
 |---|------|---------|
 | 1 | 品牌命名 | 项目英文名 + 命名说明 |
-| 2 | i18n 多语言化 | `i18n/` + `README.*.md` |
-| 3 | VitePress 文档站 | `docs/`（含用户选定配色的 theme/style.css） |
+| 2 | i18n 多语言化 | `i18n/glossary.md` + `i18n/{en,ja,zh-TW}/` + `README.*.md` |
+| 3 | VitePress 文档站 | `docs/`（主题变量来自用户选定风格的 `templates/styles/{id}/style.md`）|
 | 4 | GitHub Pages 部署 | `.github/workflows/docs.yml` |
 | 5 | 项目 Logo | `docs/public/hero.svg` + `.github/assets/hero.svg` |
 | 6 | AI 工具上下文文件 | `CLAUDE.md` `AGENTS.md` `.cursor/` `.windsurf/` |
 | 7 | QUICK_START.md | 根目录 `QUICK_START.md` |
 | 8 | Quick Start Guide | `docs/quick-start.md`（四语言） |
 | 9 | README 运营化 | 所有语言 README |
-| 10 | 收尾 | `.gitignore` + 最终构建验证 + commit & push |
+| 10 | 收尾一致性检查 | `.gitignore` + 构建验证 |
+| 11 | Emoji → SVG 替换 | `docs/public/icons/` + `.md-icon` 样式 + 全部 md 替换 |
+| 12 | Discoverability (SEO + GEO) | `robots.txt` + `og.png` + `llms.txt` + `llms-full.txt` + `docs/faq.md` + VitePress head 注入 |
 
 **使用 `templates/` 中的模板文件**（详见 `PROMPT.md` 各任务说明）：
+- `templates/styles/{id}/` → 阶段 2 风格选定后读取 `style.md` + `hero.svg` + `og.png`
+- `templates/glossary.md` → 任务 2 Step 0 先建 i18n/glossary.md
 - `templates/vitepress-config.mts` → 任务 3 config.mts 基础
 - `templates/docs-workflow.yml` → 任务 4 直接复制
-- `templates/hero.svg` → 任务 5 替换字母后复制
 - `templates/CLAUDE.md` → 任务 6 基础
+- `templates/icons/` → 任务 11 Lucide outline SVG 图标库
+- `templates/scripts/check-i18n-drift.py` → 任务 10 多语言漂移检测(复制到目标项目 `scripts/`)
+- `templates/seo/` → 任务 12 robots.txt + VitePress head 片段 + sitemap 文档
+- `templates/llms-txt/` → 任务 12 llms.txt 模板 + llms-full.txt 生成器
 
 ---
 

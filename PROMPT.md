@@ -37,33 +37,47 @@
 
 展示以下三项内容，等用户回复后继续：
 
-#### 2a. 配色方案（随机生成 3 个）
+#### 2a. 风格选择（4 选 1，含推荐）
 
-每个方案包含：方案名（一词）+ 氛围描述 + 三个主色 hex + 色块预览：
+Meridian 提供 4 种预设风格，每种风格包含**完整视觉语言**：配色、logo 变体、字体栈、VitePress 主题变量、图标风格。
 
-```
-方案 A「[名称]」— [氛围描述，适合的项目类型]
-■ #[brand-1]  ■ #[brand-2]  ■ #[brand-3]
+根据阶段 1 探索到的项目类型，**推荐 1 个默认风格**，同时列出其余 3 个作为备选：
 
-方案 B「[名称]」— [氛围描述]
-■ #[brand-1]  ■ #[brand-2]  ■ #[brand-3]
+| id | 名称 | 一句话 | 默认适用 |
+|----|------|-------|----------|
+| `glow` | **Glow** | 渐变光晕 + 深空背景 | AI / Agent / 生成式 |
+| `minimalist` | **Minimalist** | 墨色 + 几何 outline | CLI / 库 / docs-first |
+| `dev-native` | **Dev-native** | 终端美学，霓虹青 | shell / SDK / 基建 |
+| `enterprise` | **Enterprise** | 深海军蓝医章，几何刚硬 | B2B / 平台 / 合规 |
 
-方案 C「[名称]」— [氛围描述]
-■ #[brand-1]  ■ #[brand-2]  ■ #[brand-3]
-```
+每种风格的完整定义见 `templates/styles/{id}/style.md`（palette / typography / vitepress theme vars），hero 预览见 `templates/styles/{id}/hero.svg`，真实 VitePress 渲染见 `templates/styles/{id}/screenshot.png`。
 
-生成规则：
-- 三个方案风格差异明显（建议：冷调 / 暖调 / 中性）
-- 颜色满足 WCAG AA 对比度要求
-- 颜色对应 VitePress 的 `--vp-c-brand-1/2/3` 变量体系
+默认映射：
 
-#### 2b. Logo 设计建议
+| 项目信号 | 推荐风格 |
+|---------|---------|
+| AI / LLM / Agent / 生成式 | `glow` |
+| CLI / 库 / 开发者工具 | `minimalist` |
+| shell / 终端 / SDK / 构建系统 | `dev-native` |
+| B2B / 平台 / 合规 / 企业 SaaS | `enterprise` |
 
-根据项目类型推荐：
-- 中心字母（默认取项目名首字母，大写）
-- 说明将使用 `templates/hero.svg` 的渐变光效风格（深色背景 + 发光晕 + 渐变字母）
+用户可接受推荐、选其他风格、或说「随机」让 Meridian 自选。
 
-#### 2c. README 现存问题
+#### 2b. 配色（从风格派生，可替换 accent）
+
+选定风格后，配色自动从 `templates/styles/{id}/style.md` 的 `palette` 块派生。用户可以**替换 accent 色**（如 Minimalist 默认 `#6366f1`，用户可改为任意 brand 色），但 bg / text / surface 等底色保持风格一致。
+
+不想替换就用默认。不要生成额外的"冷调/暖调/中性"三方案——风格已经承担了该差异化角色。
+
+#### 2c. Logo
+
+Logo 从 `templates/styles/{id}/hero.svg` 复制。只需：
+- 把 `{{PROJECT_INITIAL}}` 替换为项目名首字母大写
+- 若用户替换了 accent 色，同步到 SVG 中（每种风格的 color bindings 详见其 `style.md`）
+
+**不要自作主张重设计 logo**——4 种预设覆盖了主要美学轴；需要新风格的话新增 preset，而不是在当前项目里一次性造新 logo。
+
+#### 2d. README 现存问题
 
 列出阶段 1 发现的问题（用 ❌ 缺失 / ✅ 已有良好 标注）
 
@@ -72,9 +86,10 @@
 ### 阶段 3：确认（等用户回复后继续）
 
 等用户：
-1. 选择一个配色方案（或说「随机」/「重新生成」）
-2. 确认或修改 Logo 字母
-3. 对 README 问题给出处理意见
+1. 选择风格（接受推荐、换一个、或"随机"）
+2. 可选：替换 accent 色（给一个 hex，或说"默认"）
+3. 确认或修改 Logo 字母
+4. 对 README 问题给出处理意见
 
 获得确认后，立即开始执行以下任务。
 
@@ -100,17 +115,28 @@
 
 → **详细说明见** `templates/tasks/task-2-i18n.md`
 
-产出：`i18n/` 目录结构 + `README.en.md` / `README.ja.md` / `README.zh-TW.md`，每个译文文件头部含翻译状态注释和语言切换行。
+**先建 glossary**（Step 0）：以 `templates/glossary.md` 为基础生成 `i18n/glossary.md`，作为翻译的唯一权威。所有译者先查表再翻，遇到未收录术语立即回写。
+
+产出：
+- `i18n/glossary.md`（五节：品牌名 / 技术术语 / 章节标题 / 惯用语 / 繁简转换）
+- `i18n/{en,ja,zh-TW}/` 目录结构
+- `README.en.md` / `README.ja.md` / `README.zh-TW.md`
+- 每个译文文件头部含翻译状态注释和语言切换行
 
 ---
 
 ### 任务 3：VitePress 文档站
 
-在 `docs/` 目录搭建 VitePress 多语言文档站，包含用户选定配色的自定义主题和 Powered by Meridian footer。
+在 `docs/` 目录搭建 VitePress 多语言文档站，应用用户选定风格的自定义主题和 Powered by Meridian footer。
 
 → **详细说明见** `templates/tasks/task-3-vitepress.md`
 
-产出：`docs/` 完整目录（config.mts + theme/ + 各语言 index.md + package.json），构建通过。
+**关键复制步骤**：
+- `templates/vitepress-config.mts` → `docs/.vitepress/config.mts`（作为基础）
+- `templates/styles/{id}/vitepress-theme.css` → `docs/.vitepress/theme/style.css`（选定风格的主题变量 + 深度 CSS override；**不要只复制 palette 块**，要完整复制，包括 feature card / button / hero 等规则，否则风格看起来只换了配色）
+- `templates/styles/{id}/style.md` 里的 `vitepress` 变量块可作为 fallback 参考
+
+产出：`docs/` 完整目录（config.mts + theme/index.ts + theme/style.css + 各语言 index.md + package.json），构建通过。
 
 ---
 
@@ -124,16 +150,18 @@
 
 ### 任务 5：项目 Logo（SVG）
 
-创建 `docs/public/hero.svg` 和 `.github/assets/hero.svg`（内容相同）。
+复制**阶段 2 用户选定风格**对应的 `templates/styles/{id}/hero.svg` 到 `docs/public/hero.svg` 和 `.github/assets/hero.svg`（内容相同）。把 `{{PROJECT_INITIAL}}` 替换为项目名首字母大写。
 
-设计风格（以 `templates/hero.svg` 为基础）：
+若用户在阶段 3 替换了 accent 色，同步修改 SVG 中的相应 hex（风格的颜色绑定详见 `templates/styles/{id}/style.md`）。
+
+设计风格说明（仅当用户选 `glow` 时沿用以下描述；其他风格直接看对应 `style.md`）：
 - **渐变光效**风格 — 现代 SaaS 美学，深色背景 + 发光核心 + 渐变字母
 - 深色圆形背景（暗紫→近黑径向渐变）
 - 中心发光晕（模糊径向渐变，营造 glow 效果）
 - 字母使用浅紫→蓝青渐变填充，叠加柔化发光滤镜（feGaussianBlur）
 - 外圈细环（半透明，收边）
 
-操作：将 `templates/hero.svg` 中的 `{{PROJECT_INITIAL}}` 替换为实际字母（大写），复制到上述两处。
+操作：将用户选定风格的 `templates/styles/{id}/hero.svg` 中的 `{{PROJECT_INITIAL}}` 替换为实际字母（大写），复制到上述两处。
 
 ---
 
@@ -225,9 +253,63 @@ QUICK_START.md 内容结构：
 
 3. 执行最终构建验证：`cd docs && npm run docs:build`
 
-4. 全部 commit & push
+4. **多语言漂移检测**：复制 `templates/scripts/check-i18n-drift.py` 到目标项目 `scripts/`，运行：
+   ```bash
+   python3 scripts/check-i18n-drift.py
+   ```
+   六项检查覆盖结构对齐 / 翻译头 / 切换行 / 源文件新鲜度 / glossary 术语一致性 / 占位符残留。**有 error 必须修复再继续**；warning 可根据项目情况容忍。
 
-5. 提醒用户：GitHub Settings → Pages → Source 选 **"GitHub Actions"**
+---
+
+### 任务 11：Emoji → SVG 替换（最终视觉统一）
+
+所有产出物的 emoji 替换为 Lucide outline 风格的 inline SVG。图标**双色**上色（主形状 + 装饰线），由 `--icon-stroke` / `--icon-accent` 两个 CSS 变量驱动，每种视觉风格 × light/dark 各自定义一对。
+
+→ **详细说明见** `templates/tasks/task-11-emoji-to-svg.md`
+
+操作概览：
+1. `cp -r templates/icons 目标项目/docs/public/icons`
+2. `cp templates/vitepress-inline-svg.ts 目标项目/docs/.vitepress/theme/inline-svg.ts` 并在 `theme/index.ts` 的 `enhanceApp` 里调用 `startInlineIconsWatcher()`（运行时把 `<img>` swap 为 inline `<svg>`——`<img>` 加载的 SVG 不继承 CSS）
+3. 确认用户选定风格的 `vitepress-theme.css` 已包含 `--icon-stroke` / `--icon-accent` 变量及 `.VPFeature svg.VPImage` / `svg.md-icon` 规则（4 种风格模板都已预置）
+4. 按映射表替换 README / docs / CLAUDE.md / AGENTS.md / QUICK_START.md / .cursor / .windsurf 中的 emoji
+5. 校验：`rg '[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}]'` 无残留 + 构建通过 + 目测 light/dark 切换时图标双色均跟随主题
+6. 更新 `checkpoint.md`
+
+**不替换**：徽章 URL 内的 emoji、代码块内的 emoji、`hero.svg` 本身、`checkpoint.md`。
+
+**绝对不要**走过的两条错路：
+- CSS `filter` 链（brightness+invert+sepia+hue-rotate）——硬编码色值，无法随主题变量切换
+- CSS `mask-image`——只支持单色，做不出双色区分
+
+两者共同问题：回避了 "`<img>` 加载的 SVG 不继承 CSS" 的根因，而不是解决它。正路是 inline SVG 注入。
+
+---
+
+### 任务 12：Discoverability（SEO + GEO）
+
+让站点被 Google / Bing 检索（SEO）且被 ChatGPT / Claude / Perplexity 引用（GEO）。
+
+→ **详细说明见** `templates/tasks/task-12-discoverability.md`
+
+操作概览：
+1. `cp templates/seo/robots.txt 目标项目/docs/public/robots.txt`（替换 `{{SITE_URL}}`）
+2. `docs/.vitepress/config.mts` 注入 OG / Twitter Card / Canonical / JSON-LD（参照 `templates/seo/vitepress-head.snippet.mts`）+ `sitemap.hostname` 配置
+3. 复制用户选定风格的 `templates/styles/{id}/og.png` 到 `docs/public/og.png`（1200×630 社交卡片）
+4. 生成 `llms.txt`（根目录 + `docs/public/`）：用 `templates/llms-txt/llms.txt.template`，AI 起草 5 条 FAQ（基于项目实际能力，不要模板化）
+5. 复制 `templates/llms-txt/generate-llms-full.py` 到目标项目 `scripts/`，运行生成 `llms-full.txt`（根目录 + `docs/public/`）
+6. 新建 `docs/faq.md` + 四语言版本（LLM 引用最友好的结构：H3 问题 + 自包含答案）
+7. 构建 + 校验 meta 注入：`cd docs && npm run docs:build` → 抓取 `dist/index.html` grep `og:title | twitter:card | application/ld+json`
+8. **Search Console 验证 + Sitemap 提交（引导用户手动）**——打印 GSC / Bing 验证步骤让用户去拿 meta content token，收到 token 后 AI 自动写入 `docs/.vitepress/verification-meta.mts`（从 `templates/seo/verification-meta.snippet.mts` 复制），commit + push 等部署完再让用户点 Verify + Submit sitemap。**不跳过**——这一步决定了产出的站能否被搜索引擎收录后台追踪。
+
+**GEO 写作规约**：每个 doc 的**第一段必须自包含**，LLM 摘录时能独立引用。避免"见上文 / 如前所述"。
+
+---
+
+### 收尾
+
+1. 全部 commit & push
+2. 提醒用户：GitHub Settings → Pages → Source 选 **"GitHub Actions"**
+3. 确认任务 12 Step 8 引导用户完成 Search Console 验证 + Sitemap 提交（见 `templates/tasks/task-12-discoverability.md`）
 
 ---
 
@@ -269,9 +351,12 @@ QUICK_START.md 内容结构：
 10. QUICK_START.md（任务 7）
 11. Quick Start Guide（任务 8）
 12. README 运营化（任务 9）
-13. 收尾（任务 10）
-14. 提醒用户开启 GitHub Pages
+13. 收尾一致性检查 + 构建验证（任务 10）
+14. Emoji → SVG 替换 + 最终构建（任务 11）
+15. Discoverability：SEO + GEO（任务 12）
+16. commit & push
+17. 提醒用户开启 GitHub Pages + 提交 sitemap
 
 ---
 
-*提示词版本：Meridian v3.1 · 2026-04-04*
+*提示词版本：Meridian v3.3 · 2026-04-21*

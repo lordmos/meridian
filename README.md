@@ -12,7 +12,9 @@
 
 # Meridian
 
-可复用的开源 Agent 项目运营工具包。给定任何一个开源 Agent 项目，在一次 AI 会话里完成全套运营基础设施搭建。
+给 AI 助手用的开源项目推广工具包。在 Claude Code / Cursor / Windsurf 里对着它说一句「给我的项目做推广配套」，AI 自动生成 README、多语言、文档站、Logo、AI 工具上下文、SEO + GEO 资产。
+
+[快速开始](#quick-start) · [文档站](https://lordmos.github.io/meridian/) · [FAQ](https://lordmos.github.io/meridian/faq) · [GitHub](https://github.com/lordmos/meridian)
 
 ---
 
@@ -30,32 +32,85 @@ AI 会先自主探索你的项目，再提案 3 个配色方案供你选择，�
 
 ---
 
-## Meridian 能做什么
+## 风格库
 
-| 工作项 | 产出物 |
-|--------|--------|
-| **品牌命名** | 有历史/文化内涵的英文项目名，附命名说明 |
-| **i18n 多语言化** | 简中/英/日/繁中 四语言文档，含翻译状态注释头 |
-| **VitePress 文档站** | 多语言 docs/ 站点 + GitHub Pages 自动部署 |
-| **项目 Logo** | SVG 渐变光效 logo，配色与用户选择的方案一致 |
-| **AI 工具适配** | CLAUDE.md / AGENTS.md / .cursor/rules / .windsurf/rules |
-| **QUICK_START.md** | AI 编排入口：一句话启动，AI 自主运行全程 |
-| **Quick Start Guide** | 四语言人类可读文档，三步上手 |
-| **README 运营化** | 徽章组 + 语言切换 + Quick Start 前置 + 文档站链接 |
+Meridian 提供 4 种预设视觉风格。AI 会根据你的项目类型推荐一种，你也可以自己挑。下面每张图是真实 VitePress 首页在该风格下的渲染：
+
+<table>
+<tr>
+<td align="center" width="50%">
+<a href="templates/styles/minimalist/"><img src="templates/styles/minimalist/screenshot.png" alt="Minimalist VitePress 首页截图"/></a><br/>
+<strong>Minimalist</strong> — 墨色 · 几何 outline<br/>
+<sub>CLI / 库 / docs-first</sub>
+</td>
+<td align="center" width="50%">
+<a href="templates/styles/enterprise/"><img src="templates/styles/enterprise/screenshot.png" alt="Enterprise VitePress 首页截图"/></a><br/>
+<strong>Enterprise</strong> — 海军蓝医章 · 几何刚硬<br/>
+<sub>B2B / 平台 / 合规</sub>
+</td>
+</tr>
+<tr>
+<td align="center" width="50%">
+<a href="templates/styles/glow/"><img src="templates/styles/glow/screenshot.png" alt="Glow VitePress 首页截图"/></a><br/>
+<strong>Glow</strong> — 渐变光晕 · 深空背景<br/>
+<sub>AI / Agent / 生成式</sub>
+</td>
+<td align="center" width="50%">
+<a href="templates/styles/dev-native/"><img src="templates/styles/dev-native/screenshot.png" alt="Dev-native VitePress 首页截图"/></a><br/>
+<strong>Dev-native</strong> — 终端美学 · 霓虹青<br/>
+<sub>shell / SDK / 基建</sub>
+</td>
+</tr>
+</table>
+
+每种风格定义一整套视觉语言——配色、logo、字体栈、VitePress 主题变量、图标风格，不只是颜色。详见 [`templates/styles/`](templates/styles/)。
 
 ---
 
-## 背景
+## Meridian 能做什么
 
-Meridian 从 [Scriptorium](https://github.com/lordmos/tech-editorial) 的运营工作中提炼而来。Scriptorium 是一个多 Agent 技术书籍编写框架，其运营工作涵盖：
+**视觉**
+- 项目 Logo：SVG 渐变光效，配色跟随用户选定方案
+- 统一主题：logo / 文档站 / 图标共用一套配色
 
-1. 给项目取名（Scriptorium）
-2. 翻译全部文档为 4 种语言（25 个 Markdown 文件 × 4 语言）
-3. 搭建 VitePress 文档站 + GitHub Pages 自动部署
-4. 设计渐变光效 SVG Logo
-5. 为 Claude Code / OpenCode / Amp / Cursor / Windsurf 创建 AI 工具上下文文件
-6. 创建 `QUICK_START.md`：AI 编排入口，实现"说一句话，AI 跑全程"的 UX
-7. 完善 README（徽章、语言切换、Quick Start 前置、文档站入口）
+**内容**
+- 品牌命名：有历史/文化内涵的英文名 + 命名说明
+- i18n 多语言化：简中/英/日/繁中 四语言 + 翻译状态追踪
+- README 运营化：徽章组 + 语言切换 + Quick Start 前置 + 文档站链接
+
+**文档站**
+- VitePress 多语言站 + GitHub Pages 自动部署
+
+**AI 适配**
+- 上下文文件：CLAUDE.md / AGENTS.md / .cursor/rules / .windsurf/rules
+- 编排入口：QUICK_START.md（一句话启动，AI 自主跑全程）
+
+**推广（SEO + GEO）**
+- SEO：Open Graph / Twitter Card / JSON-LD SoftwareApplication / sitemap.xml（含 hreflang）/ robots.txt — Google / Bing 检索友好
+- GEO：[llms.txt](https://llmstxt.org) + llms-full.txt + 结构化 FAQ 页 — ChatGPT / Claude / Perplexity 答案引用友好
+- 每风格一张 1200×630 OG 社交卡片（Facebook / Twitter / LinkedIn 链接预览）
+
+<details>
+<summary>完整 12 项任务清单</summary>
+
+| # | 任务 | 主要产出 |
+|---|------|---------|
+| 1 | 品牌命名 | 项目英文名 + 命名说明 |
+| 2 | i18n 多语言化 | `i18n/glossary.md` + `i18n/{en,ja,zh-TW}/` + `README.*.md` |
+| 3 | VitePress 文档站 | `docs/`（主题变量来自用户选定风格）|
+| 4 | GitHub Pages 部署 | `.github/workflows/docs.yml` |
+| 5 | 项目 Logo | `docs/public/hero.svg` + `.github/assets/hero.svg` |
+| 6 | AI 工具上下文 | `CLAUDE.md` / `AGENTS.md` / `.cursor/` / `.windsurf/` |
+| 7 | QUICK_START.md | 根目录 `QUICK_START.md` |
+| 8 | Quick Start Guide | `docs/quick-start.md`（四语言）|
+| 9 | README 运营化 | 所有语言 README |
+| 10 | 收尾一致性检查 | `.gitignore` + 构建验证 + i18n drift 检测 |
+| 11 | Emoji → SVG 替换 | `docs/public/icons/` + 全部 md 替换 |
+| 12 | Discoverability (SEO + GEO) | `robots.txt` + `og.png` + `llms.txt` + `llms-full.txt` + FAQ |
+
+每项任务的详细操作在 [`PROMPT.md`](PROMPT.md)，分片说明在 [`templates/tasks/`](templates/tasks/)。
+
+</details>
 
 ---
 
@@ -69,4 +124,6 @@ Meridian 从 [Scriptorium](https://github.com/lordmos/tech-editorial) 的运营�
 
 ---
 
-<sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit for Agent projects</sub>
+**Meridian 自己给自己做的 Meridian。** README、徽章、语言切换、[文档站](https://lordmos.github.io/meridian/)、Logo、AI 工具上下文——你看到的一切都是它自己生成的。
+
+<sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit</sub>
