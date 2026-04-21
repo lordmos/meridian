@@ -127,11 +127,16 @@ Logo 从 `templates/styles/{id}/hero.svg` 复制。只需：
 
 ### 任务 3：VitePress 文档站
 
-在 `docs/` 目录搭建 VitePress 多语言文档站，包含用户选定配色的自定义主题和 Powered by Meridian footer。
+在 `docs/` 目录搭建 VitePress 多语言文档站，应用用户选定风格的自定义主题和 Powered by Meridian footer。
 
 → **详细说明见** `templates/tasks/task-3-vitepress.md`
 
-产出：`docs/` 完整目录（config.mts + theme/ + 各语言 index.md + package.json），构建通过。
+**关键复制步骤**：
+- `templates/vitepress-config.mts` → `docs/.vitepress/config.mts`（作为基础）
+- `templates/styles/{id}/vitepress-theme.css` → `docs/.vitepress/theme/style.css`（选定风格的主题变量 + 深度 CSS override；**不要只复制 palette 块**，要完整复制，包括 feature card / button / hero 等规则，否则风格看起来只换了配色）
+- `templates/styles/{id}/style.md` 里的 `vitepress` 变量块可作为 fallback 参考
+
+产出：`docs/` 完整目录（config.mts + theme/index.ts + theme/style.css + 各语言 index.md + package.json），构建通过。
 
 ---
 
@@ -156,7 +161,7 @@ Logo 从 `templates/styles/{id}/hero.svg` 复制。只需：
 - 字母使用浅紫→蓝青渐变填充，叠加柔化发光滤镜（feGaussianBlur）
 - 外圈细环（半透明，收边）
 
-操作：将 `templates/hero.svg` 中的 `{{PROJECT_INITIAL}}` 替换为实际字母（大写），复制到上述两处。
+操作：将用户选定风格的 `templates/styles/{id}/hero.svg` 中的 `{{PROJECT_INITIAL}}` 替换为实际字母（大写），复制到上述两处。
 
 ---
 

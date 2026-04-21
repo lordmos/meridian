@@ -1,6 +1,6 @@
 # Meridian — Windsurf Rules
 
-可复用的开源 Agent 项目运营工具包。给定任何一个开源 Agent 项目，在一次 AI 会话里完成全套运营基础设施搭建。
+可复用的开源项目运营 + 推广工具包。给定任何一个开源项目，在一次 AI 会话里完成完整推广配套（README、多语言、文档站、Logo、AI 工具上下文、SEO/GEO 资产）。
 
 ## Quick Start
 
@@ -13,12 +13,15 @@
 ## Key Files
 
 - `QUICK_START.md` — AI 编排入口
-- `PROMPT.md` — 核心提示词（10 项运营任务）
-- `templates/` — 模板文件（含 `{{变量名}}` 占位符，勿替换）
-- `checkpoint.md` — 进度追踪
+- `PROMPT.md` — 核心提示词（v3.3 · 12 项运营任务）
+- `templates/` — 模板文件（含 `{{变量名}}` 占位符，勿替换；内含 `styles/ seo/ llms-txt/ icons/ tasks/` 等）
+- `scripts/` — 生成脚本（drift 检查 / 风格截图 / OG 图）
+- `checkpoint.md` — 进度追踪（执行过程中生成）
 
 ## Rules
 
 1. 产出写入**目标项目**，不写入 Meridian 本仓库
 2. `templates/` 文件是模板，保持占位符原样
 3. 每步完成后更新 checkpoint.md
+4. 遇到多语言翻译，先查 `i18n/glossary.md` 术语表
+5. 收尾必跑 `scripts/check-i18n-drift.py` 做多语言漂移检测

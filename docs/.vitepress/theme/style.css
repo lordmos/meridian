@@ -1,14 +1,76 @@
-/* Meridian brand colors — violet palette (matches logo glow) */
+/* Glow · VitePress theme override
+   Aesthetic: radial-gradient hero, gradient name, glowing cards, shadowed brand button */
+
 :root {
-  --vp-c-brand-1: #8b5cf6;
-  --vp-c-brand-2: #7c3aed;
-  --vp-c-brand-3: #6d28d9;
-  --vp-c-brand-soft: rgba(139, 92, 246, 0.14);
+  --vp-c-brand-1: #7c3aed;
+  --vp-c-brand-2: #6d28d9;
+  --vp-c-brand-3: #5b21b6;
+  --vp-c-brand-soft: rgba(124, 58, 237, 0.14);
+
+  --vp-c-bg: #080412;
+  --vp-c-bg-alt: #0f0820;
+  --vp-c-bg-elv: #16102a;
+  --vp-c-bg-soft: #1a1236;
+
+  --vp-c-text-1: #f5f3ff;
+  --vp-c-text-2: #c4b5fd;
+  --vp-c-text-3: #a78bfa;
+
+  --vp-c-divider: #2d1b69;
+  --vp-c-border: #3b2a78;
+
+  --vp-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
 }
 
-.dark {
-  --vp-c-brand-1: #a78bfa;
-  --vp-c-brand-2: #8b5cf6;
-  --vp-c-brand-3: #7c3aed;
-  --vp-c-brand-soft: rgba(167, 139, 250, 0.16);
+/* Dramatic gradient backdrop on the hero */
+.VPHero {
+  position: relative;
+  background:
+    radial-gradient(ellipse 60% 50% at 30% 20%, rgba(124, 58, 237, 0.35), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 75% 65%, rgba(103, 232, 249, 0.18), transparent 65%);
+}
+
+/* Gradient-filled hero name */
+.VPHero .name {
+  background: linear-gradient(135deg, #f5f3ff 0%, #c4b5fd 45%, #67e8f9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+}
+
+/* Feature cards with glow edge + subtle gradient */
+.VPFeature {
+  background: linear-gradient(180deg, rgba(124, 58, 237, 0.08), rgba(103, 232, 249, 0.02)) !important;
+  border: 1px solid rgba(124, 58, 237, 0.25) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 0 0 rgba(124, 58, 237, 0), 0 8px 32px rgba(8, 4, 18, 0.4) !important;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.VPFeature:hover {
+  border-color: rgba(124, 58, 237, 0.5) !important;
+  box-shadow: 0 0 24px rgba(124, 58, 237, 0.2), 0 8px 32px rgba(8, 4, 18, 0.4) !important;
+}
+.VPFeature .title {
+  color: var(--vp-c-text-1) !important;
+  font-weight: 600;
+}
+.VPFeature .details {
+  color: var(--vp-c-text-2);
+}
+
+/* Brand button has brand-color glow */
+.VPButton.brand {
+  border-radius: 8px !important;
+  background: var(--vp-c-brand-1) !important;
+  border: 1px solid var(--vp-c-brand-1) !important;
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.5), 0 4px 12px rgba(124, 58, 237, 0.25) !important;
+  font-weight: 500;
+}
+.VPButton.alt {
+  border-radius: 8px !important;
+  background: rgba(124, 58, 237, 0.1) !important;
+  border: 1px solid rgba(124, 58, 237, 0.3) !important;
+  color: var(--vp-c-text-1) !important;
 }

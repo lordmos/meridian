@@ -41,4 +41,4 @@ Lucide outline with `currentColor` — picks up the brand violet against dark su
 
 ## Notes
 
-This is the canonical Meridian home style. The root `templates/hero.svg` is a copy of this style's `hero.svg`.
+This is the canonical Meridian home style — Meridian's own site (`docs/.vitepress/theme/style.css` + `docs/public/hero.svg`) is rendered in this style.
