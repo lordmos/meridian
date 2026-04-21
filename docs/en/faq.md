@@ -1,7 +1,7 @@
 <!--
   Translation status:
   Source file : docs/faq.md
-  Source commit: (pending)
+  Source commit: 210a03d
   Translated  : 2026-04-21
   Status      : up-to-date
 -->
