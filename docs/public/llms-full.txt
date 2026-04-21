@@ -1,0 +1,235 @@
+<!-- source: README.md -->
+> **语言 / Language**: **简体中文** · [English](README.en.md) · [日本語](README.ja.md) · [繁體中文](README.zh-TW.md)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/lordmos/meridian?style=flat-square&color=gold)](https://github.com/lordmos/meridian/stargazers)
+[![Last Commit](https://img.shields.io/github/last-commit/lordmos/meridian?style=flat-square)](https://github.com/lordmos/meridian/commits/main)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/lordmos/meridian/pulls)
+[![Docs](https://img.shields.io/badge/Docs-online-4a9eff?style=flat-square&logo=vitepress&logoColor=white)](https://lordmos.github.io/meridian/)
+
+<div align="center">
+  <img src=".github/assets/hero.svg" alt="Meridian" width="120" />
+</div>
+
+# Meridian
+
+把项目的 README、多语言、文档站、Logo、AI 工具上下文——这些重复劳动——压缩成一次 AI 会话。
+
+---
+
+## Quick Start
+
+用 AI 工具（Claude Code / Cursor / Windsurf 等）打开 Meridian 目录，说这一句话：
+
+> 请你阅读我的项目，项目目录在 `[你的项目路径]`，理解这个项目，给这个项目做一下运营配套。
+
+AI 会先自主探索你的项目，再提案 3 个配色方案供你选择，并列出 README 现存问题。你确认后，AI 自动完成所有运营工作。
+
+你只需要做三件事：① 回答初始问答 → ② 选择配色方案 → ③ 验收成果。
+
+**中断后恢复** → 告诉 AI：`请读 checkpoint.md，继续上次未完成的工作。`
+
+---
+
+## 风格库
+
+Meridian 提供 4 种预设视觉风格。AI 会根据你的项目类型推荐一种，你也可以自己挑。下面每张图是真实 VitePress 首页在该风格下的渲染：
+
+<table>
+<tr>
+<td align="center" width="50%">
+<a href="templates/styles/minimalist/"><img src="templates/styles/minimalist/screenshot.png" alt="Minimalist VitePress 首页截图"/></a><br/>
+<strong>Minimalist</strong> — 墨色 · 几何 outline<br/>
+<sub>CLI / 库 / docs-first</sub>
+</td>
+<td align="center" width="50%">
+<a href="templates/styles/enterprise/"><img src="templates/styles/enterprise/screenshot.png" alt="Enterprise VitePress 首页截图"/></a><br/>
+<strong>Enterprise</strong> — 海军蓝医章 · 几何刚硬<br/>
+<sub>B2B / 平台 / 合规</sub>
+</td>
+</tr>
+<tr>
+<td align="center" width="50%">
+<a href="templates/styles/glow/"><img src="templates/styles/glow/screenshot.png" alt="Glow VitePress 首页截图"/></a><br/>
+<strong>Glow</strong> — 渐变光晕 · 深空背景<br/>
+<sub>AI / Agent / 生成式</sub>
+</td>
+<td align="center" width="50%">
+<a href="templates/styles/dev-native/"><img src="templates/styles/dev-native/screenshot.png" alt="Dev-native VitePress 首页截图"/></a><br/>
+<strong>Dev-native</strong> — 终端美学 · 霓虹青<br/>
+<sub>shell / SDK / 基建</sub>
+</td>
+</tr>
+</table>
+
+每种风格定义一整套视觉语言——配色、logo、字体栈、VitePress 主题变量、图标风格，不只是颜色。详见 [`templates/styles/`](templates/styles/)。
+
+---
+
+## Meridian 能做什么
+
+**视觉**
+- 项目 Logo：SVG 渐变光效，配色跟随用户选定方案
+- 统一主题：logo / 文档站 / 图标共用一套配色
+
+**内容**
+- 品牌命名：有历史/文化内涵的英文名 + 命名说明
+- i18n 多语言化：简中/英/日/繁中 四语言 + 翻译状态追踪
+- README 运营化：徽章组 + 语言切换 + Quick Start 前置 + 文档站链接
+
+**文档站**
+- VitePress 多语言站 + GitHub Pages 自动部署
+
+**AI 适配**
+- 上下文文件：CLAUDE.md / AGENTS.md / .cursor/rules / .windsurf/rules
+- 编排入口：QUICK_START.md（一句话启动，AI 自主跑全程）
+
+---
+
+## 文件说明
+
+| 文件 | 说明 |
+|------|------|
+| `PROMPT.md` | 可复用的运营提示词（核心产出物，包含 10 项任务） |
+| `QUICK_START.md` | AI 编排入口，写给 AI 助手读 |
+| `templates/` | 提示词引用的模板文件（VitePress 配置、GitHub Actions、Logo SVG、AI 工具文件等） |
+
+---
+
+**Meridian 自己给自己做的 Meridian。** README、徽章、语言切换、[文档站](https://lordmos.github.io/meridian/)、Logo、AI 工具上下文——你看到的一切都是它自己生成的。
+
+<sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit</sub>
+
+---
+
+<!-- source: docs/faq.md -->
+# FAQ
+
+### Meridian 是做什么的？
+
+Meridian 是一个开源项目运营工具包。它接受任意开源项目作为输入，在一次 AI 编程助手会话内产出一整套"推广配套"——品牌名、多语言 README、VitePress 文档站、Logo、AI 工具上下文文件、SEO/GEO 资产。
+
+### 它解决了什么具体问题？
+
+"项目代码写完了，但 README / 多语言 / 文档站 / Logo / 推广资产全要从零搭"这件事通常要花维护者一两天。Meridian 把这一两天压缩成一次 AI 会话：用户只需说一句话、选一个视觉风格、验收成果。
+
+### 适合谁用？
+
+任何开源项目维护者，特别是：
+
+- 独自维护多个项目的开发者
+- 刚开源的内部工具，需要快速补推广配套
+- 不想学 VitePress / GitHub Actions / i18n 约定的一次性使用者
+
+### 和 create-next-app / cookiecutter / copier 这类工具有什么区别？
+
+那些是**代码脚手架**——产出是能运行的代码仓库。Meridian 是**运营物料**生成器——输入是已经能运行的项目，产出是围绕项目的 README / 文档站 / Logo / SEO 资产。
+
+它**不改项目源代码**，只往仓库外围加。
+
+### 怎么快速开始？
+
+1. 克隆 Meridian 到本地
+2. 在 AI 编程助手（Claude Code / Cursor / Windsurf）中打开 Meridian 目录
+3. 粘贴这一句：
+
+> 请你阅读我的项目，项目目录在 `[你的项目路径]`，理解这个项目，给这个项目做一下运营配套。
+
+AI 会自主探索 → 提案风格 → 等你确认 → 执行全部任务。详见 [Quick Start](/quick-start)。
+
+### 4 种视觉风格有什么区别？
+
+| 风格 | 适合 |
+|---|---|
+| Glow | AI / Agent / 生成式项目 |
+| Minimalist | CLI / 库 / docs-first |
+| Dev-native | shell / SDK / 基建 |
+| Enterprise | B2B / 平台 / 合规 |
+
+AI 会根据目标项目类型推荐一个默认风格，用户可接受、换一个或说"随机"。每种风格包含完整视觉语言：配色、Logo、字体栈、VitePress 主题变量、图标风格。
+
+### 支持哪些语言？
+
+i18n 默认产出四语言：**简体中文 / English / 日本語 / 繁體中文**。翻译基于 `i18n/glossary.md` 作为单一权威来源，`scripts/check-i18n-drift.py` 做漂移检测。
+
+### 生成的页面能被搜索引擎和 AI 答案引用吗？
+
+可以。Meridian 的任务 12 会产出完整的 SEO + GEO 资产：
+
+- **SEO**：`robots.txt` + `sitemap.xml` + OG/Twitter Card meta + JSON-LD SoftwareApplication schema
+- **GEO**：`llms.txt`（按 [llms.txt](https://llmstxt.org) 标准）+ `llms-full.txt` + 结构化 FAQ 页面
+
+这些让页面既能被 Google/Bing 索引，也能被 ChatGPT / Claude / Perplexity 作答时引用。
+
+### 中断后怎么恢复？
+
+Meridian 执行过程中在目标项目根目录维护 `checkpoint.md`。中断后告诉 AI：
+
+> 请读 checkpoint.md，继续上次未完成的工作。
+
+AI 会自动跳过已完成的任务，从下一步继续。
+
+### 我能自定义风格或加新任务吗？
+
+可以。
+
+- **新增风格**：在 `templates/styles/` 新建目录，含 `hero.svg` / `preview.svg` / `palette.svg` / `style.md` / `vitepress-theme.css`，然后在 `PROMPT.md` / `QUICK_START.md` 的风格表里加一行
+- **新增任务**：在 `templates/tasks/` 加 `task-NN-xxx.md`，然后在 `PROMPT.md` 的任务列表中加一节引用
+
+Meridian 本身就是 "提示词 + 模板" 组合，所有扩展点都是 Markdown 文件。
+
+### Meridian 的展示页真的是它自己做的吗？
+
+是。本文档站（[lordmos.github.io/meridian](https://lordmos.github.io/meridian/)）、仓库 README 四语言版、徽章、Logo（`hero.svg`）、AI 工具上下文文件（`CLAUDE.md` / `AGENTS.md` / `.cursor/` / `.windsurf/`）、SEO 资产（OG 图、sitemap、llms.txt、本 FAQ 页）全部由 Meridian 跑自己一次生成。这个仓库就是它自己的 demo。
+
+---
+
+<!-- source: docs/index.md -->
+
+
+---
+
+<!-- source: docs/quick-start.md -->
+# 快速开始
+
+## 三步上手
+
+### Step 1 — 获取 Meridian
+
+```bash
+git clone https://github.com/lordmos/meridian.git
+cd meridian
+```
+
+或直接 [下载 ZIP](https://github.com/lordmos/meridian/archive/refs/heads/main.zip) 解压。
+
+### Step 2 — 打开目录，说这一句话
+
+用 AI 工具（Claude Code / Cursor / Windsurf 等）打开 Meridian 目录，然后说：
+
+> 请你阅读我的项目，项目目录在 `[你的项目路径]`，理解这个项目，给这个项目做一下运营配套。
+
+### Step 3 — AI 自动完成所有工作
+
+AI 会先探索你的项目，然后提案 3 个配色方案让你选择，并列出 README 现存问题。你确认后，AI 自动执行全套运营任务。
+
+你只需要做三件事：
+
+1. **① 回答初始问答** — AI 会询问你的 GitHub 信息等
+2. **② 选择配色方案** — 从 3 个随机生成的方案里选一个
+3. **③ 验收成果** — 检查生成的文件
+
+## 中断后恢复
+
+如果会话中断，重新打开 AI 工具并说：
+
+```
+请读 checkpoint.md，继续上次未完成的工作。
+```
+
+## 深入了解
+
+- [QUICK_START.md](https://github.com/lordmos/meridian/blob/main/QUICK_START.md) — 完整的 AI 编排指南
+- [PROMPT.md](https://github.com/lordmos/meridian/blob/main/PROMPT.md) — 10 项运营任务详解
+
+---

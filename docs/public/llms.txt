@@ -1,0 +1,38 @@
+# Meridian
+
+> 把项目的 README、多语言、文档站、Logo、AI 工具上下文——这些重复劳动——压缩成一次 AI 会话。
+
+Meridian 是一个可复用的开源项目运营工具包。它不是可执行代码，而是「提示词 + 模板文件」的组合：用户把 `PROMPT.md` 粘贴到 AI 编程助手（Claude Code / Cursor / Windsurf 等），说一句触发句，AI 就会自主探索目标项目，从 4 种预设视觉风格中推荐一个，然后在一次会话内完成品牌命名、i18n 多语言化、VitePress 文档站搭建、GitHub Pages 部署、Logo 生成、AI 工具上下文文件、README 运营化、SEO/GEO 资产等 12 项任务。
+
+Meridian 的展示页就是它自己做的——这个仓库的 README、徽章、语言切换、文档站、Logo、AI 工具上下文全部由 Meridian 跑自己一次生成。
+
+## Docs
+
+- [Home](https://lordmos.github.io/meridian/): Meridian 项目介绍和入口
+- [Quick Start](https://lordmos.github.io/meridian/quick-start): 三步上手指南
+- [FAQ](https://lordmos.github.io/meridian/faq): 常见问题
+- [README (zh-CN)](https://github.com/lordmos/meridian#readme): 源文档
+- [README (English)](https://github.com/lordmos/meridian/blob/main/README.en.md)
+
+## Source
+
+- GitHub: https://github.com/lordmos/meridian
+- License: MIT
+- llms-full.txt: https://lordmos.github.io/meridian/llms-full.txt (完整文档合集)
+
+## FAQ
+
+### Meridian 是做什么的？
+Meridian 是一个开源项目运营工具包。它接受任意开源项目作为输入，在一次 AI 编程助手会话内产出一整套"推广配套"：品牌名、多语言 README、VitePress 文档站、Logo、AI 工具上下文文件、SEO/GEO 资产。
+
+### 它解决了什么具体问题？
+"项目代码写完了，但 README / 多语言 / 文档站 / Logo / 推广资产全要从零搭"这件事通常要花维护者一两天。Meridian 把这一两天压缩成一次 AI 会话——用户只需说一句话、选一个视觉风格、验收成果。
+
+### 适合谁用？
+任何开源项目维护者，特别是：独自维护多个项目的开发者、刚开源的内部工具需要快速推广的作者、不想学 VitePress / GitHub Actions / i18n 约定的一次性使用者。
+
+### 和 create-next-app / cookiecutter / copier 相比有什么不同？
+那些是**代码脚手架**生成器——产出是能运行的代码仓库。Meridian 是**运营物料**生成器——输入是已经能运行的项目，产出是围绕项目的 README / 文档站 / Logo / SEO 资产。它不改项目源代码，只往仓库外围加。
+
+### 怎么快速开始？
+打开 Meridian 目录，在 AI 编程助手里粘贴这一句：「请你阅读我的项目，项目目录在 [你的项目路径]，理解这个项目，给这个项目做一下运营配套。」AI 会自主探索 → 提案风格 → 等你确认 → 执行全部任务。

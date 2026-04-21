@@ -273,10 +273,30 @@ QUICK_START.md 内容结构：
 
 ---
 
+### 任务 12：Discoverability（SEO + GEO）
+
+让站点被 Google / Bing 检索（SEO）且被 ChatGPT / Claude / Perplexity 引用（GEO）。
+
+→ **详细说明见** `templates/tasks/task-12-discoverability.md`
+
+操作概览：
+1. `cp templates/seo/robots.txt 目标项目/docs/public/robots.txt`（替换 `{{SITE_URL}}`）
+2. `docs/.vitepress/config.mts` 注入 OG / Twitter Card / Canonical / JSON-LD（参照 `templates/seo/vitepress-head.snippet.mts`）+ `sitemap.hostname` 配置
+3. 复制用户选定风格的 `templates/styles/{id}/og.png` 到 `docs/public/og.png`（1200×630 社交卡片）
+4. 生成 `llms.txt`（根目录 + `docs/public/`）：用 `templates/llms-txt/llms.txt.template`，AI 起草 5 条 FAQ（基于项目实际能力，不要模板化）
+5. 复制 `templates/llms-txt/generate-llms-full.py` 到目标项目 `scripts/`，运行生成 `llms-full.txt`（根目录 + `docs/public/`）
+6. 新建 `docs/faq.md` + 四语言版本（LLM 引用最友好的结构：H3 问题 + 自包含答案）
+7. 构建 + 校验 meta 注入：`cd docs && npm run docs:build` → 抓取 `dist/index.html` grep `og:title | twitter:card | application/ld+json`
+
+**GEO 写作规约**：每个 doc 的**第一段必须自包含**，LLM 摘录时能独立引用。避免"见上文 / 如前所述"。
+
+---
+
 ### 收尾
 
 1. 全部 commit & push
 2. 提醒用户：GitHub Settings → Pages → Source 选 **"GitHub Actions"**
+3. 提醒用户：（可选）Submit sitemap 到 Google Search Console / Bing Webmaster Tools（首次部署成功后）
 
 ---
 
@@ -320,9 +340,10 @@ QUICK_START.md 内容结构：
 12. README 运营化（任务 9）
 13. 收尾一致性检查 + 构建验证（任务 10）
 14. Emoji → SVG 替换 + 最终构建（任务 11）
-15. commit & push
-16. 提醒用户开启 GitHub Pages
+15. Discoverability：SEO + GEO（任务 12）
+16. commit & push
+17. 提醒用户开启 GitHub Pages + 提交 sitemap
 
 ---
 
-*提示词版本：Meridian v3.2 · 2026-04-21*
+*提示词版本：Meridian v3.3 · 2026-04-21*
