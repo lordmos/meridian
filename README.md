@@ -95,6 +95,6 @@ Meridian 提供 4 种预设视觉风格。AI 会根据你的项目类型推荐�
 
 ---
 
-**这个项目就是 Meridian，它的展示页是用自己做的。** README、徽章、语言切换、[文档站](https://lordmos.github.io/meridian/)、Logo、AI 工具上下文——你看到的一切都是 Meridian 跑过自身一次后的产出。
+**Meridian 自己给自己做的 Meridian。** README、徽章、语言切换、[文档站](https://lordmos.github.io/meridian/)、Logo、AI 工具上下文——你看到的一切都是它自己生成的。
 
 <sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit</sub>

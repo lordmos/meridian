@@ -103,6 +103,6 @@ Meridian は 4 種類のプリセットビジュアルスタイルを用意し�
 
 ---
 
-**このプロジェクトが Meridian 本体であり、そのショーケースページは自分自身で作ったものです。** README、バッジ、言語切替、[ドキュメントサイト](https://lordmos.github.io/meridian/)、ロゴ、AI ツールのコンテキスト——ここに見えるすべてが、Meridian が自身を 1 回走らせて生成したものです。
+**Meridian が自分で作った Meridian。** README、バッジ、言語切替、[ドキュメントサイト](https://lordmos.github.io/meridian/)、ロゴ、AI ツールのコンテキスト——ここに見えるすべてが、Meridian 自身の手で生成されたものです。
 
 <sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit</sub>
