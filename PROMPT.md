@@ -292,6 +292,7 @@ QUICK_START.md 内容结构：
 5. 复制 `templates/llms-txt/generate-llms-full.py` 到目标项目 `scripts/`，运行生成 `llms-full.txt`（根目录 + `docs/public/`）
 6. 新建 `docs/faq.md` + 四语言版本（LLM 引用最友好的结构：H3 问题 + 自包含答案）
 7. 构建 + 校验 meta 注入：`cd docs && npm run docs:build` → 抓取 `dist/index.html` grep `og:title | twitter:card | application/ld+json`
+8. **Search Console 验证 + Sitemap 提交（引导用户手动）**——打印 GSC / Bing 验证步骤让用户去拿 meta content token，收到 token 后 AI 自动写入 `docs/.vitepress/verification-meta.mts`（从 `templates/seo/verification-meta.snippet.mts` 复制），commit + push 等部署完再让用户点 Verify + Submit sitemap。**不跳过**——这一步决定了产出的站能否被搜索引擎收录后台追踪。
 
 **GEO 写作规约**：每个 doc 的**第一段必须自包含**，LLM 摘录时能独立引用。避免"见上文 / 如前所述"。
 
@@ -301,7 +302,7 @@ QUICK_START.md 内容结构：
 
 1. 全部 commit & push
 2. 提醒用户：GitHub Settings → Pages → Source 选 **"GitHub Actions"**
-3. 提醒用户：（可选）Submit sitemap 到 Google Search Console / Bing Webmaster Tools（首次部署成功后）
+3. 确认任务 12 Step 8 引导用户完成 Search Console 验证 + Sitemap 提交（见 `templates/tasks/task-12-discoverability.md`）
 
 ---
 
