@@ -153,65 +153,89 @@
 
 
 /* ════════════════════════════════════════════════════════════
-   INLINE SVG ICONS (task 11: .md-icon)
+   ICON PALETTE — drives inline-SVG colors per mode
+   ────────────────────────────────────────────────────────────
+   `<img>`-loaded SVG can't inherit CSS. `theme/inline-svg.ts`
+   replaces each icon <img> with its inline <svg> source at
+   mount — CSS below then targets stroke/fill directly.
+
+   Two tones per mode:
+     --icon-stroke : main shape (primary path of each Lucide SVG)
+     --icon-accent : decorative paths (twinkles, flashes, secondary
+                     strokes) — tagged `class="accent"` by inline-svg.ts
+   Light: violet primary + cyan accent — matches the hero gradient
+   Dark:  light-violet primary + bright cyan accent — more luminous
    ════════════════════════════════════════════════════════════ */
-.md-icon {
+:root {
+  --icon-stroke: var(--vp-c-brand-1);
+  --icon-accent: #0891b2;
+  --icon-glow:   rgba(124, 58, 237, 0.28);
+}
+.dark {
+  --icon-stroke: #c4b5fd;
+  --icon-accent: #67e8f9;
+  --icon-glow:   rgba(124, 58, 237, 0.55);
+}
+
+/* ════════════════════════════════════════════════════════════
+   INLINE SVG ICONS (task 11: .md-icon in body text)
+   ════════════════════════════════════════════════════════════ */
+.md-icon,
+svg.md-icon {
   display: inline-block;
   width: 1.1em;
   height: 1.1em;
   vertical-align: -0.18em;
-  color: var(--vp-c-brand-1);
-  stroke: currentColor;
+  fill: none;
+  stroke: var(--icon-stroke);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
+svg.md-icon .accent { stroke: var(--icon-accent); }
 h1 .md-icon, h2 .md-icon, h3 .md-icon {
   width: 0.95em;
   height: 0.95em;
   vertical-align: -0.12em;
   margin-right: 0.15em;
 }
-.md-icon.is-success { color: var(--vp-c-success-1, #10b981); }
-.md-icon.is-danger  { color: var(--vp-c-danger-1,  #ef4444); }
-.md-icon.is-warning { color: var(--vp-c-warning-1, #f59e0b); }
+svg.md-icon.is-success { stroke: var(--vp-c-success-1, #10b981); }
+svg.md-icon.is-danger  { stroke: var(--vp-c-danger-1,  #ef4444); }
+svg.md-icon.is-warning { stroke: var(--vp-c-warning-1, #f59e0b); }
 
 
 /* ════════════════════════════════════════════════════════════
-   FEATURE ICONS — Lucide SVGs rendered via CSS mask
+   FEATURE ICONS — inline Lucide SVG (two-tone, mode-aware)
    ────────────────────────────────────────────────────────────
-   Lucide ships `stroke="currentColor"`, but when loaded as <img>
-   the CSS cascade doesn't reach the SVG — `currentColor` falls
-   through to raw black.
-
-   Instead of a filter hack, we load the SVG as a CSS `mask-image`
-   and fill it with `currentColor`. The icon color now follows the
-   `color` property, which inherits from `--vp-c-brand-1`. Swap
-   the brand variable and every icon retints automatically — no
-   per-mode rules, no hue-rotate chains.
-
-   SELECTOR: VitePress `features.icon: { src }` renders as
-   `<img class="VPImage">` directly inside `.VPFeature > .box`
-   (no `.icon` wrapper — that exists only for the emoji string
-   form). The src attribute is consumed by `attr(src url)` to
-   feed the mask.
+   The <img class="VPImage"> placed by VitePress is swapped to
+   inline <svg class="VPImage"> by inline-svg.ts. Primary shape
+   follows --icon-stroke; decorative paths get --icon-accent.
+   Dark mode shifts to the brighter palette above + stronger
+   glow drop-shadow.
    ════════════════════════════════════════════════════════════ */
-.VPFeature img.VPImage {
+.VPFeature img.VPImage,
+.VPFeature svg.VPImage {
   width: 48px;
   height: 48px;
-  background-color: var(--vp-c-brand-1);
-  -webkit-mask: var(--_icon-src) center / contain no-repeat;
-          mask: var(--_icon-src) center / contain no-repeat;
-  filter: drop-shadow(0 0 6px rgba(124, 58, 237, 0.28));
+  fill: none;
+  stroke: var(--icon-stroke);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px var(--icon-glow));
+  transition: filter .2s, stroke .2s;
 }
-.dark .VPFeature img.VPImage {
+.VPFeature svg.VPImage .accent {
+  stroke: var(--icon-accent);
+}
+.dark .VPFeature svg.VPImage {
   filter:
-    drop-shadow(0 0 12px var(--vp-c-brand-1))
-    drop-shadow(0 0 4px  var(--vp-c-brand-1));
+    drop-shadow(0 0 12px var(--icon-glow))
+    drop-shadow(0 0 4px  var(--icon-glow));
 }
-/* Per-icon mask source — kept in sync with `features.icon.src`
-   values in docs/{,en,ja,zh-TW}/index.md. Using [src$=] lets us
-   scope the mask URL without JS or CSS4 `attr(url)`. */
-.VPFeature img.VPImage[src$="sparkles.svg"]   { --_icon-src: url('/meridian/icons/sparkles.svg'); }
-.VPFeature img.VPImage[src$="globe.svg"]      { --_icon-src: url('/meridian/icons/globe.svg'); }
-.VPFeature img.VPImage[src$="book-open.svg"]  { --_icon-src: url('/meridian/icons/book-open.svg'); }
-.VPFeature img.VPImage[src$="palette.svg"]    { --_icon-src: url('/meridian/icons/palette.svg'); }
-.VPFeature img.VPImage[src$="bot.svg"]        { --_icon-src: url('/meridian/icons/bot.svg'); }
-.VPFeature img.VPImage[src$="bolt.svg"]       { --_icon-src: url('/meridian/icons/bolt.svg'); }
+.VPFeature:hover svg.VPImage {
+  stroke: var(--icon-accent);
+}
+.VPFeature:hover svg.VPImage .accent {
+  stroke: var(--icon-stroke);
+}
