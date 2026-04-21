@@ -13,7 +13,9 @@
 
 # Meridian
 
-把项目的 README、多语言、文档站、Logo、AI 工具上下文——这些重复劳动——压缩成一次 AI 会话。
+把项目的 README、多语言、文档站、Logo、AI 工具上下文、SEO / GEO 资产——所有推广配套——压缩成一次 AI 会话。
+
+[快速开始](#quick-start) · [文档站](https://lordmos.github.io/meridian/) · [FAQ](https://lordmos.github.io/meridian/faq) · [GitHub](https://github.com/lordmos/meridian)
 
 ---
 
@@ -83,6 +85,33 @@ Meridian 提供 4 种预设视觉风格。AI 会根据你的项目类型推荐�
 **AI 适配**
 - 上下文文件：CLAUDE.md / AGENTS.md / .cursor/rules / .windsurf/rules
 - 编排入口：QUICK_START.md（一句话启动，AI 自主跑全程）
+
+**推广（SEO + GEO）**
+- SEO：Open Graph / Twitter Card / JSON-LD SoftwareApplication / sitemap.xml（含 hreflang）/ robots.txt — Google / Bing 检索友好
+- GEO：[llms.txt](https://llmstxt.org) + llms-full.txt + 结构化 FAQ 页 — ChatGPT / Claude / Perplexity 答案引用友好
+- 每风格一张 1200×630 OG 社交卡片（Facebook / Twitter / LinkedIn 链接预览）
+
+<details>
+<summary>完整 12 项任务清单</summary>
+
+| # | 任务 | 主要产出 |
+|---|------|---------|
+| 1 | 品牌命名 | 项目英文名 + 命名说明 |
+| 2 | i18n 多语言化 | `i18n/glossary.md` + `i18n/{en,ja,zh-TW}/` + `README.*.md` |
+| 3 | VitePress 文档站 | `docs/`（主题变量来自用户选定风格）|
+| 4 | GitHub Pages 部署 | `.github/workflows/docs.yml` |
+| 5 | 项目 Logo | `docs/public/hero.svg` + `.github/assets/hero.svg` |
+| 6 | AI 工具上下文 | `CLAUDE.md` / `AGENTS.md` / `.cursor/` / `.windsurf/` |
+| 7 | QUICK_START.md | 根目录 `QUICK_START.md` |
+| 8 | Quick Start Guide | `docs/quick-start.md`（四语言）|
+| 9 | README 运营化 | 所有语言 README |
+| 10 | 收尾一致性检查 | `.gitignore` + 构建验证 + i18n drift 检测 |
+| 11 | Emoji → SVG 替换 | `docs/public/icons/` + 全部 md 替换 |
+| 12 | Discoverability (SEO + GEO) | `robots.txt` + `og.png` + `llms.txt` + `llms-full.txt` + FAQ |
+
+每项任务的详细操作在 [`PROMPT.md`](PROMPT.md)，分片说明在 [`templates/tasks/`](templates/tasks/)。
+
+</details>
 
 ---
 
