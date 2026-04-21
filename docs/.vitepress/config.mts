@@ -64,6 +64,8 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', href: '/meridian/hero.svg', type: 'image/svg+xml' }],
     ...seoHead,
+    // Google Search Console verification (applied via task-12 Step 8b workflow)
+    ['meta', { name: 'google-site-verification', content: 'JDAD7_0Djk8ErI3P93dZ2nq5ZKrVGxEi6c7eM7xt-IM' }],
   ],
 
   // 转义 {{变量名}} 避免 Vue 模板编译报错
