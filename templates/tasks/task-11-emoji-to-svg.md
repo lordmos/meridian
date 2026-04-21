@@ -1,8 +1,20 @@
 # 任务 11：Emoji → SVG 替换（收尾后执行）
 
-所有产出物完成、VitePress 构建通过、`{{ }}` 占位符已校验之后，统一把产出物中的 emoji 替换为 Lucide outline 风格的 inline SVG，风格适配当前主题色（通过 `currentColor` 跟随 `--vp-c-brand-1` / `--vp-c-text-1`）。
+所有产出物完成、VitePress 构建通过、`{{ }}` 占位符已校验之后，统一把产出物中的 emoji 替换为 Lucide outline 风格的 inline SVG。图标**双色**上色（主形状 + 装饰线），颜色由 `--icon-stroke` / `--icon-accent` 两个 CSS 变量驱动，每种视觉风格 × 明暗两种模式各自定义一对——Glow 紫+青、Minimalist 墨+石、Enterprise 海军+金、Dev-native 青+玫瑰。
 
 **⚠️ 只处理 Meridian 本任务流程产出的文件，不要改目标项目原有源代码或注释。**
+
+---
+
+## ⚠️ 关键原理：`<img>` 加载的 SVG 不继承 CSS
+
+VitePress `features.icon: { src }` 渲染为 `<img class="VPImage">`，正文里的 `.md-icon` 也是 `<img>`。CSS `color` / `stroke` 不会穿透到 `<img>` 内的 SVG——`stroke="currentColor"` 退回到默认黑色。
+
+过去这里走过两条错路：
+1. **CSS `filter` 链**（brightness+invert+sepia+hue-rotate）——硬编码色值，换主题色需重算滤镜
+2. **CSS `mask-image`**——支持单色但限死一种颜色，做不出双色区分
+
+**正路**：运行时把 `<img>` 替换成 inline `<svg>`。CSS 能直接 target `svg` 里的 `path`，`stroke: var(--icon-stroke)` 真正生效。
 
 ---
 
@@ -18,34 +30,67 @@ cp -r templates/icons 目标项目/docs/public/icons
 
 ---
 
-## Step 2 — 在 style.css 注入 `.md-icon` 规则
+## Step 2 — 接入 inline-SVG 运行时
 
-在 `docs/.vitepress/theme/style.css` 末尾追加：
+把 `templates/vitepress-inline-svg.ts` 复制为目标项目的 `docs/.vitepress/theme/inline-svg.ts`：
+
+```bash
+cp templates/vitepress-inline-svg.ts 目标项目/docs/.vitepress/theme/inline-svg.ts
+```
+
+这个模块做两件事：
+1. 把每个 `<img class="VPImage">` 或 `<img class="md-icon">` 替换成 inline `<svg>`（保留 class、width、height）
+2. 给 SVG 内第一个 `<path>` 之外的图形元素打上 `class="accent"`，让 CSS 能给主形状 + 装饰线分别上色
+
+然后修改 `docs/.vitepress/theme/index.ts` 启用它：
+
+```ts
+import DefaultTheme from 'vitepress/theme'
+import type { EnhanceAppContext } from 'vitepress'
+import { startInlineIconsWatcher } from './inline-svg'
+import './style.css'
+
+export default {
+  extends: DefaultTheme,
+  enhanceApp({ router }: EnhanceAppContext) {
+    if (typeof window === 'undefined') return
+    const boot = () => startInlineIconsWatcher()
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot)
+    } else {
+      boot()
+    }
+    router.onAfterRouteChange = () => startInlineIconsWatcher()
+  },
+}
+```
+
+---
+
+## Step 3 — 验证 CSS 已定义图标变量
+
+每种视觉风格的 `templates/styles/<style>/vitepress-theme.css` 里已经定义了：
 
 ```css
-/* Inline SVG icons (replaces emoji in markdown) */
-.md-icon {
-  display: inline-block;
-  width: 1.1em;
-  height: 1.1em;
-  vertical-align: -0.18em;
-  color: var(--vp-c-brand-1);
-  stroke: currentColor;
+:root {
+  --icon-stroke: var(--vp-c-brand-1);   /* 主形状 */
+  --icon-accent: <每风格自选>;           /* 装饰线 */
+  --icon-glow:   <每风格自选>;
+}
+.dark {
+  --icon-stroke: <明亮变体>;
+  --icon-accent: <明亮变体>;
+  --icon-glow:   <明亮变体>;
 }
 
-/* Heading 场景略大 */
-h1 .md-icon, h2 .md-icon, h3 .md-icon {
-  width: 0.95em;
-  height: 0.95em;
-  vertical-align: -0.12em;
-  margin-right: 0.15em;
-}
+.md-icon, svg.md-icon { ... stroke: var(--icon-stroke); ... }
+svg.md-icon .accent   { stroke: var(--icon-accent); }
 
-/* 状态类图标语义色 */
-.md-icon.is-success { color: var(--vp-c-success-1, #10b981); }
-.md-icon.is-danger  { color: var(--vp-c-danger-1,  #ef4444); }
-.md-icon.is-warning { color: var(--vp-c-warning-1, #f59e0b); }
+.VPFeature svg.VPImage       { stroke: var(--icon-stroke); ... }
+.VPFeature svg.VPImage .accent { stroke: var(--icon-accent); }
 ```
+
+**不要自己写 `color: var(--vp-c-brand-1); stroke: currentColor`**——那是旧方案，对 `<img>` 加载的 SVG 无效。选定风格的 `vitepress-theme.css` 已经包含正确规则，直接使用。
 
 ---
 
@@ -54,13 +99,34 @@ h1 .md-icon, h2 .md-icon, h3 .md-icon {
 扫描以下文件中的 emoji 并替换：
 
 **处理范围**：
+- `docs/**/*.md`（VitePress 渲染，`.md-icon` CSS 生效）——含 `index.md` features 块的 `icon:` 字段、`quick-start.md`、`faq.md`、四语言页面
+- VitePress 渲染的其它自定义页面
+
+**不处理**（GitHub 原生渲染，不加载 CSS，`<img class="md-icon">` 会失去样式）：
 - `README.md` + `README.{en,ja,zh-TW}.md`
-- `docs/**/*.md`（含 `index.md` / `quick-start.md` 四语言）
 - `CLAUDE.md` / `AGENTS.md`
 - `QUICK_START.md`
 - `.cursor/rules/project.mdc` / `.windsurf/rules/project.md`
+- `checkpoint.md`、`templates/`、目标项目原有源代码、徽章 URL 内的 emoji
 
-**不处理**：`checkpoint.md`、`templates/`、目标项目原有源代码、徽章 URL 内的 emoji。
+**理由**：GitHub 把 Markdown 渲染为 HTML 但不加载站点 CSS——`class="md-icon"` 失效，SVG 会显示但无主题色跟随；emoji 在 GitHub 下原生渲染良好。两侧各取所长。
+
+**VitePress `home` layout features 替换**（注意两个陷阱）：
+
+1. `icon:` 必须用**对象形式** `icon: { src: ... }`；string 形式会被当作字面文本渲染出 URL 字符串
+2. `src:` 路径**不要带 `/{{REPO_NAME}}/` 前缀**——VitePress 会自动 prepend `base`，手写前缀会造成 `/repo/repo/icons/x.svg` 双重路径
+
+正确写法：
+
+```yaml
+features:
+  - icon:
+      src: /icons/bolt.svg    # VitePress 自动 prepend base，最终 /{{REPO_NAME}}/icons/bolt.svg
+    title: 一句话启动
+    details: ...
+```
+
+对比 body Markdown 内的普通 `<img>`：这里 `src` **必须**带 `/{{REPO_NAME}}/` 前缀，因为 VitePress 不对原生 HTML 做 base 注入。两种 src 写法不同，别弄混。
 
 所有替换写法的统一模板（下表省略 `<img>` 前缀与 `alt=""` 后缀，只列文件名与可选 class）：
 
@@ -107,6 +173,7 @@ h1 .md-icon, h2 .md-icon, h3 .md-icon {
 | 💻 🖥️ | `terminal.svg` | 命令行 / 代码 / 开发 |
 | 🤝 | `handshake.svg` | 贡献 / 合作 / Contributing |
 | 📊 📈 | `bar-chart.svg` | 数据 / 统计 / 指标 |
+| 🧭 | `sparkles.svg` *(best-fit)* | 品牌命名 / 指南 / 方向（未来若新增 `compass.svg` 可切过去）|
 
 ### 未覆盖的 emoji
 
@@ -163,12 +230,21 @@ cd docs && npm run docs:build
 
 # 3. 本地起服务目测 light/dark 切换时图标跟随主题色
 npm run docs:dev
+
+# 4. 如果复制了 scripts/verify-visual.py，跑自动回归
+python3 scripts/verify-visual.py
 ```
 
 预期：
 - 第 1 条命令无输出（或只在徽章 URL 内命中）
 - 第 2 条构建成功
-- 第 3 条切换主题，图标颜色跟随 `--vp-c-brand-1` 变化
+- 第 3 条切换主题，图标**两种颜色**都跟随 CSS 变量变化（主形状 + 装饰线都响应明暗切换）
+- 第 4 条（可选）断言 `<img>` 全部 swap 为 inline `<svg>`、primary stroke ≠ 黑色、多 path 图标有 `.accent` 标签
+
+**常见坑**：
+- 如果 icon 仍然是黑色——`theme/inline-svg.ts` 没被 `enhanceApp` 激活，检查 Step 2 的 `index.ts` 改动
+- 如果 icon 单色无装饰——`inline-svg.ts` 的 `decorate()` 没有给非首 path 打 `.accent`，检查运行时报错
+- 如果只有 light 或只有 dark 正确——检查 `style.css` 或 `vitepress-theme.css` 里的 `.dark { --icon-stroke: ... }` 覆盖
 
 ---
 

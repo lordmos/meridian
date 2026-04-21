@@ -3,8 +3,8 @@ layout: home
 titleTemplate: ':title'
 hero:
   name: "Meridian"
-  text: "Agent Project Operations Toolkit"
-  tagline: "One AI session to build a complete operations infrastructure"
+  text: "A promotion toolkit your AI assistant runs for you"
+  tagline: "Say \"set up promotion for my project\" — your AI assistant generates the README, i18n, docs site, logo, and SEO + GEO assets"
   image:
     src: /hero.svg
     alt: Meridian
@@ -13,33 +13,42 @@ hero:
       text: Quick Start →
       link: /en/quick-start
     - theme: alt
+      text: FAQ
+      link: /en/faq
+    - theme: alt
       text: GitHub
       link: https://github.com/lordmos/meridian
 features:
-  - icon: 🧭
-    title: Brand Naming
-    details: Give your project a culturally-rich English name with etymological notes
-  - icon: 🌐
-    title: i18n Multilingual
-    details: Four-language docs (zh-CN/EN/JA/zh-TW) with translation status tracking
-  - icon: 📖
-    title: VitePress Docs Site
-    details: Multilingual docs + GitHub Pages auto-deploy, ready out of the box
-  - icon: 🎨
-    title: Project Logo
-    details: Compass-style SVG logo with purple-blue gradient, adapted for VitePress theme
-  - icon: 🤖
-    title: AI Tool Integration
-    details: CLAUDE.md / AGENTS.md / Cursor / Windsurf cross-platform context
-  - icon: ⚡
-    title: One-Line Launch
-    details: QUICK_START.md lets AI autonomously complete all operations work
+  - icon:
+      src: /icons/sparkles.svg
+    title: Brand naming
+    details: Propose an English name with historical / cultural resonance, with rationale
+  - icon:
+      src: /icons/globe.svg
+    title: i18n localization
+    details: zh-CN / en / ja / zh-TW four languages + translation-status tracking
+  - icon:
+      src: /icons/book-open.svg
+    title: VitePress docs site
+    details: Multilingual docs + GitHub Pages auto-deployment, zero config
+  - icon:
+      src: /icons/palette.svg
+    title: 4 preset visual styles
+    details: Glow / Minimalist / Dev-native / Enterprise — full visual system in one pick
+  - icon:
+      src: /icons/bot.svg
+    title: AI-tool integration
+    details: CLAUDE.md / AGENTS.md / Cursor / Windsurf context across all platforms
+  - icon:
+      src: /icons/bolt.svg
+    title: SEO + GEO
+    details: OG / Twitter Card / JSON-LD / sitemap / llms.txt / FAQ — discoverable in search AND LLM answers
 ---
 
 <!--
   Translation status:
   Source file : docs/index.md
-  Source commit: 34750fd
-  Translated  : 2026-04-04
+  Source commit: a72c384
+  Translated  : 2026-04-21
   Status      : up-to-date
 -->

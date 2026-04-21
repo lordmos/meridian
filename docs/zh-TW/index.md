@@ -3,8 +3,8 @@ layout: home
 titleTemplate: ':title'
 hero:
   name: "Meridian"
-  text: "開源 Agent 專案運營工具包"
-  tagline: "一次 AI 對話，搭建完整運營基礎設施"
+  text: "給 AI 助手用的開源專案推廣工具包"
+  tagline: "說一句「給我的專案做推廣配套」，AI 自動產生 README、多語言、文件站、Logo、SEO + GEO 資產"
   image:
     src: /hero.svg
     alt: Meridian
@@ -13,33 +13,42 @@ hero:
       text: 快速開始 →
       link: /zh-TW/quick-start
     - theme: alt
+      text: FAQ
+      link: /zh-TW/faq
+    - theme: alt
       text: GitHub
       link: https://github.com/lordmos/meridian
 features:
-  - icon: 🧭
+  - icon:
+      src: /icons/sparkles.svg
     title: 品牌命名
     details: 為專案取有文化內涵的英文名，附典故說明
-  - icon: 🌐
+  - icon:
+      src: /icons/globe.svg
     title: i18n 多語言化
     details: 簡中/英/日/繁中 四語言文件，含翻譯狀態追蹤
-  - icon: 📖
+  - icon:
+      src: /icons/book-open.svg
     title: VitePress 文件站
     details: 多語言文件站 + GitHub Pages 自動部署，開箱即用
-  - icon: 🎨
-    title: 專案 Logo
-    details: 指南針風格 SVG logo，紫藍漸層，適配 VitePress 主題
-  - icon: 🤖
+  - icon:
+      src: /icons/palette.svg
+    title: 4 預設視覺風格
+    details: Glow / Minimalist / Dev-native / Enterprise，一鍵選定完整視覺語言
+  - icon:
+      src: /icons/bot.svg
     title: AI 工具適配
     details: CLAUDE.md / AGENTS.md / Cursor / Windsurf 全平台上下文
-  - icon: ⚡
-    title: 一句話啟動
-    details: QUICK_START.md 讓 AI 自主完成所有運營工作
+  - icon:
+      src: /icons/bolt.svg
+    title: SEO + GEO
+    details: OG / Twitter Card / JSON-LD / sitemap / llms.txt / FAQ——搜尋引擎 + AI 答案都能引用
 ---
 
 <!--
   Translation status:
   Source file : docs/index.md
-  Source commit: 34750fd
-  Translated  : 2026-04-04
+  Source commit: a72c384
+  Translated  : 2026-04-21
   Status      : up-to-date
 -->
