@@ -3,8 +3,8 @@ layout: home
 titleTemplate: ':title'
 hero:
   name: "Meridian"
-  text: "One AI session, full promotion kit"
-  tagline: "README, i18n, docs site, logo, AI-tool context, SEO / GEO assets — compressed into a single session"
+  text: "A promotion toolkit your AI assistant runs for you"
+  tagline: "Say \"set up promotion for my project\" — your AI assistant generates the README, i18n, docs site, logo, and SEO + GEO assets"
   image:
     src: /hero.svg
     alt: Meridian

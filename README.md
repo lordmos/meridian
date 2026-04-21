@@ -12,7 +12,7 @@
 
 # Meridian
 
-把项目的 README、多语言、文档站、Logo、AI 工具上下文、SEO / GEO 资产——所有推广配套——压缩成一次 AI 会话。
+给 AI 助手用的开源项目推广工具包。在 Claude Code / Cursor / Windsurf 里对着它说一句「给我的项目做推广配套」，AI 自动生成 README、多语言、文档站、Logo、AI 工具上下文、SEO + GEO 资产。
 
 [快速开始](#quick-start) · [文档站](https://lordmos.github.io/meridian/) · [FAQ](https://lordmos.github.io/meridian/faq) · [GitHub](https://github.com/lordmos/meridian)
 

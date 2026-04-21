@@ -20,7 +20,7 @@
 
 # Meridian
 
-プロジェクトの README、多言語化、ドキュメントサイト、ロゴ、AI ツールのコンテキスト、SEO / GEO 資産——プロモーションキット全部——を 1 回の AI セッションに圧縮します。
+AI アシスタントに任せる OSS プロモーション ツールキット。Claude Code / Cursor / Windsurf にプロジェクトを示して「プロモーション一式を整えて」と一言伝えるだけ——AI が README・多言語化・ドキュメントサイト・ロゴ・AI ツールのコンテキスト・SEO + GEO 資産を自動生成します。
 
 [クイックスタート](#quick-start) · [ドキュメント](https://lordmos.github.io/meridian/ja/) · [FAQ](https://lordmos.github.io/meridian/ja/faq) · [GitHub](https://github.com/lordmos/meridian)
 

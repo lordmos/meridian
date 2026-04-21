@@ -20,7 +20,7 @@
 
 # Meridian
 
-Compress your project's README, i18n, docs site, logo, AI tool context, SEO / GEO assets — the whole promotion kit — into a single AI session.
+A promotion toolkit your AI assistant runs for you. Point Claude Code / Cursor / Windsurf at your project, say "set up promotion for it," and the AI generates your README, i18n, docs site, logo, AI-tool context files, and SEO + GEO assets — in one session.
 
 [Quick Start](#quick-start) · [Docs](https://lordmos.github.io/meridian/en/) · [FAQ](https://lordmos.github.io/meridian/en/faq) · [GitHub](https://github.com/lordmos/meridian)
 

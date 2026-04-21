@@ -3,8 +3,8 @@ layout: home
 titleTemplate: ':title'
 hero:
   name: "Meridian"
-  text: "1 回の AI セッションで、プロモーションキット全部"
-  tagline: "README、多言語化、ドキュメントサイト、ロゴ、AI ツールのコンテキスト、SEO / GEO 資産——1 回に圧縮"
+  text: "AI アシスタントに任せる OSS プロモーション ツールキット"
+  tagline: "「プロジェクトのプロモーション一式を整えて」と一言——AI が README・多言語化・ドキュメントサイト・ロゴ・SEO + GEO 資産を自動生成"
   image:
     src: /hero.svg
     alt: Meridian

@@ -3,8 +3,8 @@ layout: home
 titleTemplate: ':title'
 hero:
   name: "Meridian"
-  text: "一次 AI 会话，搞定全套推广配套"
-  tagline: "README、多语言、文档站、Logo、AI 工具上下文、SEO / GEO 资产——压缩成一次会话"
+  text: "给 AI 助手用的开源项目推广工具包"
+  tagline: "说一句「给我的项目做推广配套」，AI 自动生成 README、多语言、文档站、Logo、SEO + GEO 资产"
   image:
     src: /hero.svg
     alt: Meridian
