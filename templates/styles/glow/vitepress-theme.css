@@ -175,33 +175,38 @@ h1 .md-icon, h2 .md-icon, h3 .md-icon {
 
 
 /* ════════════════════════════════════════════════════════════
-   FEATURE ICONS — Lucide SVGs loaded via <img>
+   FEATURE ICONS — Lucide SVGs rendered via CSS mask
    ────────────────────────────────────────────────────────────
-   Lucide ships `stroke="currentColor"` which renders raw black
-   when loaded as <img> (no CSS cascade into SVG). We use CSS
-   `filter` to recolor per mode.
+   `<img>`-loaded SVG can't inherit CSS (`currentColor` falls
+   through to black). So we load the SVG as a mask and fill it
+   with `background-color: var(--vp-c-brand-1)`. Icon color now
+   follows the brand variable — swap the variable, every icon
+   retints. No per-mode filter chains.
 
-   SELECTOR NOTE: VitePress `features.icon: { src }` renders as
-   `<img class="VPImage">` directly inside `.VPFeature > .box`
-   (NOT in a `.icon` wrapper — that only exists for the string
-   emoji form). Target the VPImage class to be selector-safe.
-
-   Light: invert to brand violet (chained filter: brightness 0 →
-          black, then sepia+saturate+hue-rotate shifts to brand)
-          + subtle halo
-   Dark:  brightness 0 → invert to white + strong brand glow
+   SELECTOR: VitePress `features.icon: { src }` renders as
+   `<img class="VPImage">` directly inside `.VPFeature > .box`.
+   Per-icon src is mapped to a --_icon-src custom property via
+   [src$=] attribute selectors.
    ════════════════════════════════════════════════════════════ */
 .VPFeature img.VPImage {
-  /* Light: tint to brand violet + soft halo */
-  filter:
-    brightness(0)
-    invert(24%) sepia(80%) saturate(2900%) hue-rotate(258deg) brightness(95%) contrast(98%)
-    drop-shadow(0 0 6px rgba(124, 58, 237, 0.35));
+  width: 48px;
+  height: 48px;
+  background-color: var(--vp-c-brand-1);
+  -webkit-mask: var(--_icon-src) center / contain no-repeat;
+          mask: var(--_icon-src) center / contain no-repeat;
+  filter: drop-shadow(0 0 6px rgba(124, 58, 237, 0.28));
 }
 .dark .VPFeature img.VPImage {
-  /* Dark: white strokes + stronger brand glow */
   filter:
-    brightness(0) invert(1)
     drop-shadow(0 0 12px var(--vp-c-brand-1))
-    drop-shadow(0 0 4px var(--vp-c-brand-1));
+    drop-shadow(0 0 4px  var(--vp-c-brand-1));
 }
+/* Per-icon mask source — replace {{BASE}} with your VitePress
+   base (e.g. '/my-project'), and keep this list in sync with
+   `features.icon.src` values in docs/{,en,ja,zh-TW}/index.md. */
+.VPFeature img.VPImage[src$="sparkles.svg"]   { --_icon-src: url('{{BASE}}/icons/sparkles.svg'); }
+.VPFeature img.VPImage[src$="globe.svg"]      { --_icon-src: url('{{BASE}}/icons/globe.svg'); }
+.VPFeature img.VPImage[src$="book-open.svg"]  { --_icon-src: url('{{BASE}}/icons/book-open.svg'); }
+.VPFeature img.VPImage[src$="palette.svg"]    { --_icon-src: url('{{BASE}}/icons/palette.svg'); }
+.VPFeature img.VPImage[src$="bot.svg"]        { --_icon-src: url('{{BASE}}/icons/bot.svg'); }
+.VPFeature img.VPImage[src$="bolt.svg"]       { --_icon-src: url('{{BASE}}/icons/bolt.svg'); }

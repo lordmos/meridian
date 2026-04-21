@@ -107,24 +107,39 @@ def check_home(page: Any, url: str, fail: Fail, out_dir: Path, mode: str = "dark
             "likely rendering icon as text URL (use `icon: {{ src: ... }}` object form)"
         )
 
-    # 2) every feature icon <img> must load (no broken image) + per-mode tint
+    # 2) every feature icon <img> must load, and its color must track the
+    # brand variable. SVGs loaded as <img> don't honor currentColor — we
+    # render them as CSS masks filled with background-color: var(--vp-c-brand-1).
+    # Assert: mask-image is set AND background-color resolves to the brand color.
+    brand = page.evaluate(
+        "getComputedStyle(document.documentElement).getPropertyValue('--vp-c-brand-1').trim()"
+    )
     imgs = page.locator(".VPFeature img").all()
     for i, img in enumerate(imgs):
-        natural = img.evaluate("el => el.naturalWidth")
-        src = img.get_attribute("src")
-        filt = img.evaluate("el => getComputedStyle(el).filter")
-        if natural == 0:
-            fail.add(f"feature icon #{i} src={src!r} failed to load (404 or broken)")
-        if src and src.count("meridian/") > 1:
-            fail.add(f"feature icon #{i} has double base prefix: {src!r}")
-        # SVG stroke="currentColor" renders black when loaded as <img>. We rely
-        # on a CSS `filter` to tint per mode. If filter is `none`, icons fall
-        # through to raw black — invisible against the dark-mode background.
-        if filt == "none":
+        info = img.evaluate("""el => {
+            const s = getComputedStyle(el);
+            return {
+                natural: el.naturalWidth,
+                src:     el.getAttribute('src'),
+                mask:    s.maskImage || s.webkitMaskImage || 'none',
+                bg:      s.backgroundColor,
+            };
+        }""")
+        if info["natural"] == 0:
+            fail.add(f"feature icon #{i} src={info['src']!r} failed to load (404 or broken)")
+        if info["src"] and info["src"].count("meridian/") > 1:
+            fail.add(f"feature icon #{i} has double base prefix: {info['src']!r}")
+        if info["mask"] == "none":
             fail.add(
-                f"feature icon #{i} [{mode}] has no CSS filter applied — "
-                f"SVG will render as raw black stroke. Check selector in style.css "
-                f"(VitePress renders <img class='VPImage'> directly in .box, not .icon)."
+                f"feature icon #{i} [{mode}] has no mask-image — SVG will render "
+                f"as raw black stroke. Check .VPFeature img.VPImage[src$=...] rules."
+            )
+        # background-color must be a visible color, not transparent/black fallback
+        bg = info["bg"]
+        if bg in ("rgba(0, 0, 0, 0)", "transparent", "rgb(0, 0, 0)"):
+            fail.add(
+                f"feature icon #{i} [{mode}] background-color={bg} — icon would "
+                f"render invisible through the mask. Expected brand color."
             )
 
     # 3) hero text should not contain stale v3.1 scope-lock copy
