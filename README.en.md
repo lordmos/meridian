@@ -38,6 +38,49 @@ You only need to do three things: ① Answer initial questions → ② Choose a 
 
 ---
 
+## Style Library
+
+Meridian ships 5 preset visual styles. The AI recommends one based on your project type; you can pick any:
+
+<table>
+<tr>
+<td align="center" width="20%">
+<img src="templates/styles/glow/preview.svg" width="96" alt="Glow"/><br/>
+<strong>Glow</strong><br/>
+<sub>Gradient aura · deep space</sub><br/>
+<sub>AI / Agent / generative</sub>
+</td>
+<td align="center" width="20%">
+<img src="templates/styles/minimalist/preview.svg" width="96" alt="Minimalist"/><br/>
+<strong>Minimalist</strong><br/>
+<sub>Monochrome ink · geometry</sub><br/>
+<sub>CLI / libraries / docs-first</sub>
+</td>
+<td align="center" width="20%">
+<img src="templates/styles/dev-native/preview.svg" width="96" alt="Dev-native"/><br/>
+<strong>Dev-native</strong><br/>
+<sub>Terminal · neon cyan</sub><br/>
+<sub>shells / SDKs / infra</sub>
+</td>
+<td align="center" width="20%">
+<img src="templates/styles/retro-terminal/preview.svg" width="96" alt="Retro-Terminal"/><br/>
+<strong>Retro-Terminal</strong><br/>
+<sub>Amber CRT · dashed frame</sub><br/>
+<sub>games / emulators / retro</sub>
+</td>
+<td align="center" width="20%">
+<img src="templates/styles/enterprise/preview.svg" width="96" alt="Enterprise"/><br/>
+<strong>Enterprise</strong><br/>
+<sub>Navy medallion · rigid geometry</sub><br/>
+<sub>B2B / platforms / compliance</sub>
+</td>
+</tr>
+</table>
+
+Each style defines a full visual system — palette, logo, type stack, VitePress theme vars, icon style — not just colors. See [`templates/styles/`](templates/styles/).
+
+---
+
 ## What Meridian Does
 
 | Task | Output |

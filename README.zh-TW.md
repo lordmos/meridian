@@ -38,6 +38,49 @@ AI 會先自主探索你的專案，再提案 3 個配色方案供你選擇，�
 
 ---
 
+## 風格庫
+
+Meridian 提供 5 種預設視覺風格。AI 會根據你的專案類型推薦一種，你也可以自己挑：
+
+<table>
+<tr>
+<td align="center" width="20%">
+<img src="templates/styles/glow/preview.svg" width="96" alt="Glow"/><br/>
+<strong>Glow</strong><br/>
+<sub>漸層光暈 · 深空背景</sub><br/>
+<sub>AI / Agent / 生成式</sub>
+</td>
+<td align="center" width="20%">
+<img src="templates/styles/minimalist/preview.svg" width="96" alt="Minimalist"/><br/>
+<strong>Minimalist</strong><br/>
+<sub>墨色 · 幾何 outline</sub><br/>
+<sub>CLI / 函式庫 / docs-first</sub>
+</td>
+<td align="center" width="20%">
+<img src="templates/styles/dev-native/preview.svg" width="96" alt="Dev-native"/><br/>
+<strong>Dev-native</strong><br/>
+<sub>終端美學 · 霓虹青</sub><br/>
+<sub>shell / SDK / 基建</sub>
+</td>
+<td align="center" width="20%">
+<img src="templates/styles/retro-terminal/preview.svg" width="96" alt="Retro-Terminal"/><br/>
+<strong>Retro-Terminal</strong><br/>
+<sub>琥珀 CRT · 虛線框</sub><br/>
+<sub>遊戲 / 模擬器 / 復古</sub>
+</td>
+<td align="center" width="20%">
+<img src="templates/styles/enterprise/preview.svg" width="96" alt="Enterprise"/><br/>
+<strong>Enterprise</strong><br/>
+<sub>海軍藍醫章 · 幾何剛硬</sub><br/>
+<sub>B2B / 平台 / 合規</sub>
+</td>
+</tr>
+</table>
+
+每種風格定義一整套視覺語言——配色、logo、字型棧、VitePress 主題變數、圖示風格，不只是顏色。詳見 [`templates/styles/`](templates/styles/)。
+
+---
+
 ## Meridian 能做什麼
 
 | 工作項 | 產出物 |

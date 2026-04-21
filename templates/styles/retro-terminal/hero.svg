@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Retro-Terminal style · Meridian
+       1980s CRT phosphor aesthetic: amber on black, dashed frame, tick markers, mono letter -->
+
+  <defs>
+    <!-- Soft amber phosphor glow backdrop -->
+    <radialGradient id="crt-glow" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#ff9500" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#ff9500" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Subtle blur on letter for CRT bloom -->
+    <filter id="crt-bloom" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- CRT dark background -->
+  <rect x="0" y="0" width="200" height="200" fill="#0a0604"/>
+
+  <!-- Phosphor glow -->
+  <rect x="0" y="0" width="200" height="200" fill="url(#crt-glow)"/>
+
+  <!-- Dashed amber frame -->
+  <rect x="18" y="18" width="164" height="164" fill="none"
+        stroke="#ff9500" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.7"/>
+
+  <!-- 4 cardinal tick markers (outside the dashed frame) -->
+  <g stroke="#ff9500" stroke-width="2" stroke-linecap="square">
+    <line x1="100" y1="4"   x2="100" y2="14"/>
+    <line x1="100" y1="186" x2="100" y2="196"/>
+    <line x1="4"   y1="100" x2="14"  y2="100"/>
+    <line x1="186" y1="100" x2="196" y2="100"/>
+  </g>
+
+  <!-- Letter in amber mono with subtle CRT bloom -->
+  <text x="100" y="100" text-anchor="middle" dominant-baseline="central"
+        font-family="'VT323', 'Courier New', 'Courier', 'DejaVu Sans Mono', monospace"
+        font-size="100" font-weight="400" fill="#ff9500"
+        filter="url(#crt-bloom)">{{PROJECT_INITIAL}}</text>
+</svg>

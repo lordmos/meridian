@@ -38,6 +38,49 @@ AI がプロジェクトを自律的に探索した後、3 つのカラースキ
 
 ---
 
+## スタイルライブラリ
+
+Meridian は 5 種類のプリセットビジュアルスタイルを用意しています。AI がプロジェクトタイプに応じて 1 つ推薦し、ユーザーは自由に選べます：
+
+<table>
+<tr>
+<td align="center" width="20%">
+<img src="templates/styles/glow/preview.svg" width="96" alt="Glow"/><br/>
+<strong>Glow</strong><br/>
+<sub>グラデーションオーラ · 深宇宙</sub><br/>
+<sub>AI / Agent / 生成系</sub>
+</td>
+<td align="center" width="20%">
+<img src="templates/styles/minimalist/preview.svg" width="96" alt="Minimalist"/><br/>
+<strong>Minimalist</strong><br/>
+<sub>モノクロ · 幾何 outline</sub><br/>
+<sub>CLI / ライブラリ / docs-first</sub>
+</td>
+<td align="center" width="20%">
+<img src="templates/styles/dev-native/preview.svg" width="96" alt="Dev-native"/><br/>
+<strong>Dev-native</strong><br/>
+<sub>ターミナル美学 · ネオンシアン</sub><br/>
+<sub>shell / SDK / インフラ</sub>
+</td>
+<td align="center" width="20%">
+<img src="templates/styles/retro-terminal/preview.svg" width="96" alt="Retro-Terminal"/><br/>
+<strong>Retro-Terminal</strong><br/>
+<sub>アンバー CRT · 破線フレーム</sub><br/>
+<sub>ゲーム / エミュレータ / レトロ</sub>
+</td>
+<td align="center" width="20%">
+<img src="templates/styles/enterprise/preview.svg" width="96" alt="Enterprise"/><br/>
+<strong>Enterprise</strong><br/>
+<sub>ネイビーメダル · 剛性幾何</sub><br/>
+<sub>B2B / プラットフォーム / コンプライアンス</sub>
+</td>
+</tr>
+</table>
+
+各スタイルは視覚言語一式——パレット、ロゴ、タイプスタック、VitePress テーマ変数、アイコンスタイル——を定義します（色だけではありません）。詳細は [`templates/styles/`](templates/styles/) 参照。
+
+---
+
 ## Meridian でできること
 
 | 作業項目 | 成果物 |

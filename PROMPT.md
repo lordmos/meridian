@@ -37,33 +37,49 @@
 
 展示以下三项内容，等用户回复后继续：
 
-#### 2a. 配色方案（随机生成 3 个）
+#### 2a. 风格选择（5 选 1，含推荐）
 
-每个方案包含：方案名（一词）+ 氛围描述 + 三个主色 hex + 色块预览：
+Meridian 提供 5 种预设风格，每种风格包含**完整视觉语言**：配色、logo 变体、字体栈、VitePress 主题变量、图标风格。
 
-```
-方案 A「[名称]」— [氛围描述，适合的项目类型]
-■ #[brand-1]  ■ #[brand-2]  ■ #[brand-3]
+根据阶段 1 探索到的项目类型，**推荐 1 个默认风格**，同时列出其余 4 个作为备选：
 
-方案 B「[名称]」— [氛围描述]
-■ #[brand-1]  ■ #[brand-2]  ■ #[brand-3]
+| id | 名称 | 一句话 | 默认适用 |
+|----|------|-------|----------|
+| `glow` | **Glow** | 渐变光晕 + 深空背景 | AI / Agent / 生成式 |
+| `minimalist` | **Minimalist** | 墨色 + 几何 outline | CLI / 库 / docs-first |
+| `dev-native` | **Dev-native** | 终端美学，霓虹青 | shell / SDK / 基建 |
+| `retro-terminal` | **Retro-Terminal** | 琥珀 CRT，虚线框 | 游戏 / 模拟器 / 复古 |
+| `enterprise` | **Enterprise** | 深海军蓝医章，几何刚硬 | B2B / 平台 / 合规 |
 
-方案 C「[名称]」— [氛围描述]
-■ #[brand-1]  ■ #[brand-2]  ■ #[brand-3]
-```
+每种风格的完整定义见 `templates/styles/{id}/style.md`（palette / typography / vitepress theme vars），hero 预览见 `templates/styles/{id}/hero.svg`。
 
-生成规则：
-- 三个方案风格差异明显（建议：冷调 / 暖调 / 中性）
-- 颜色满足 WCAG AA 对比度要求
-- 颜色对应 VitePress 的 `--vp-c-brand-1/2/3` 变量体系
+默认映射：
 
-#### 2b. Logo 设计建议
+| 项目信号 | 推荐风格 |
+|---------|---------|
+| AI / LLM / Agent / 生成式 | `glow` |
+| CLI / 库 / 开发者工具 | `minimalist` |
+| shell / 终端 / SDK / 构建系统 | `dev-native` |
+| 复古计算 / 游戏 / 模拟器 | `retro-terminal` |
+| B2B / 平台 / 合规 / 企业 SaaS | `enterprise` |
 
-根据项目类型推荐：
-- 中心字母（默认取项目名首字母，大写）
-- 说明将使用 `templates/hero.svg` 的渐变光效风格（深色背景 + 发光晕 + 渐变字母）
+用户可接受推荐、选其他风格、或说「随机」让 Meridian 自选。
 
-#### 2c. README 现存问题
+#### 2b. 配色（从风格派生，可替换 accent）
+
+选定风格后，配色自动从 `templates/styles/{id}/style.md` 的 `palette` 块派生。用户可以**替换 accent 色**（如 Minimalist 默认 `#6366f1`，用户可改为任意 brand 色），但 bg / text / surface 等底色保持风格一致。
+
+不想替换就用默认。不要生成额外的"冷调/暖调/中性"三方案——风格已经承担了该差异化角色。
+
+#### 2c. Logo
+
+Logo 从 `templates/styles/{id}/hero.svg` 复制。只需：
+- 把 `{{PROJECT_INITIAL}}` 替换为项目名首字母大写
+- 若用户替换了 accent 色，同步到 SVG 中（每种风格的 color bindings 详见其 `style.md`）
+
+**不要自作主张重设计 logo**——5 种预设覆盖了主要美学轴；需要新风格的话新增 preset，而不是在当前项目里一次性造新 logo。
+
+#### 2d. README 现存问题
 
 列出阶段 1 发现的问题（用 ❌ 缺失 / ✅ 已有良好 标注）
 
@@ -72,9 +88,10 @@
 ### 阶段 3：确认（等用户回复后继续）
 
 等用户：
-1. 选择一个配色方案（或说「随机」/「重新生成」）
-2. 确认或修改 Logo 字母
-3. 对 README 问题给出处理意见
+1. 选择风格（接受推荐、换一个、或"随机"）
+2. 可选：替换 accent 色（给一个 hex，或说"默认"）
+3. 确认或修改 Logo 字母
+4. 对 README 问题给出处理意见
 
 获得确认后，立即开始执行以下任务。
 
@@ -130,9 +147,11 @@
 
 ### 任务 5：项目 Logo（SVG）
 
-创建 `docs/public/hero.svg` 和 `.github/assets/hero.svg`（内容相同）。
+复制**阶段 2 用户选定风格**对应的 `templates/styles/{id}/hero.svg` 到 `docs/public/hero.svg` 和 `.github/assets/hero.svg`（内容相同）。把 `{{PROJECT_INITIAL}}` 替换为项目名首字母大写。
 
-设计风格（以 `templates/hero.svg` 为基础）：
+若用户在阶段 3 替换了 accent 色，同步修改 SVG 中的相应 hex（风格的颜色绑定详见 `templates/styles/{id}/style.md`）。
+
+设计风格说明（仅当用户选 `glow` 时沿用以下描述；其他风格直接看对应 `style.md`）：
 - **渐变光效**风格 — 现代 SaaS 美学，深色背景 + 发光核心 + 渐变字母
 - 深色圆形背景（暗紫→近黑径向渐变）
 - 中心发光晕（模糊径向渐变，营造 glow 效果）
