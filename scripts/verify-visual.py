@@ -267,7 +267,7 @@ def run() -> int:
 
     print(f"\nscreenshots saved to: {out_dir}")
     if args.open:
-        subprocess.run(["open", str(out_dir / "home.png")], check=False)
+        subprocess.run(["open", str(out_dir)], check=False)
     return fail.report()
 
 

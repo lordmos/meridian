@@ -4,7 +4,7 @@
    Dark (.dark on <html>)    : deep-space gradient, glowing effects
 
    All structural rules scope their dark-only values under `.dark`.
-   Feature icons use CSS filter to adapt stroke to each mode. */
+   Feature icons use inline-SVG injection (inline-svg.ts) for theme-aware stroke. */
 
 
 /* ════════════════════════════════════════════════════════════
@@ -150,28 +150,6 @@
   background: rgba(124, 58, 237, 0.35) !important;
   border-color: rgba(124, 58, 237, 0.75) !important;
 }
-
-
-/* ════════════════════════════════════════════════════════════
-   INLINE SVG ICONS (task 11: .md-icon)
-   ════════════════════════════════════════════════════════════ */
-.md-icon {
-  display: inline-block;
-  width: 1.1em;
-  height: 1.1em;
-  vertical-align: -0.18em;
-  color: var(--vp-c-brand-1);
-  stroke: currentColor;
-}
-h1 .md-icon, h2 .md-icon, h3 .md-icon {
-  width: 0.95em;
-  height: 0.95em;
-  vertical-align: -0.12em;
-  margin-right: 0.15em;
-}
-.md-icon.is-success { color: var(--vp-c-success-1, #10b981); }
-.md-icon.is-danger  { color: var(--vp-c-danger-1,  #ef4444); }
-.md-icon.is-warning { color: var(--vp-c-warning-1, #f59e0b); }
 
 
 /* ════════════════════════════════════════════════════════════

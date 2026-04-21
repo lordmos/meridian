@@ -4,7 +4,7 @@
    Dark (.dark on <html>)    : deep-space gradient, glowing effects
 
    All structural rules scope their dark-only values under `.dark`.
-   Feature icons use CSS filter to adapt stroke to each mode. */
+   Feature icons use inline-SVG injection (inline-svg.ts) for theme-aware stroke. */
 
 
 /* ════════════════════════════════════════════════════════════
