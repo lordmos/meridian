@@ -97,15 +97,18 @@
 | 9 | README 运营化 | 所有语言 README |
 | 10 | 收尾一致性检查 | `.gitignore` + 构建验证 |
 | 11 | Emoji → SVG 替换 | `docs/public/icons/` + `.md-icon` 样式 + 全部 md 替换 |
+| 12 | Discoverability (SEO + GEO) | `robots.txt` + `og.png` + `llms.txt` + `llms-full.txt` + `docs/faq.md` + VitePress head 注入 |
 
 **使用 `templates/` 中的模板文件**（详见 `PROMPT.md` 各任务说明）：
-- `templates/styles/{id}/` → 阶段 2 风格选定后读取 `style.md` + `hero.svg`
+- `templates/styles/{id}/` → 阶段 2 风格选定后读取 `style.md` + `hero.svg` + `og.png`
 - `templates/glossary.md` → 任务 2 Step 0 先建 i18n/glossary.md
 - `templates/vitepress-config.mts` → 任务 3 config.mts 基础
 - `templates/docs-workflow.yml` → 任务 4 直接复制
 - `templates/CLAUDE.md` → 任务 6 基础
 - `templates/icons/` → 任务 11 Lucide outline SVG 图标库
 - `templates/scripts/check-i18n-drift.py` → 任务 10 多语言漂移检测(复制到目标项目 `scripts/`)
+- `templates/seo/` → 任务 12 robots.txt + VitePress head 片段 + sitemap 文档
+- `templates/llms-txt/` → 任务 12 llms.txt 模板 + llms-full.txt 生成器
 
 ---
 
