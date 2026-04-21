@@ -20,7 +20,9 @@
 
 # Meridian
 
-プロジェクトの README、多言語化、ドキュメントサイト、ロゴ、AI ツールのコンテキストファイル——これらの繰り返し作業を、1 回の AI セッションに圧縮します。
+プロジェクトの README、多言語化、ドキュメントサイト、ロゴ、AI ツールのコンテキスト、SEO / GEO 資産——プロモーションキット全部——を 1 回の AI セッションに圧縮します。
+
+[クイックスタート](#quick-start) · [ドキュメント](https://lordmos.github.io/meridian/ja/) · [FAQ](https://lordmos.github.io/meridian/ja/faq) · [GitHub](https://github.com/lordmos/meridian)
 
 ---
 
@@ -90,6 +92,33 @@ Meridian は 4 種類のプリセットビジュアルスタイルを用意し�
 **AI 連携**
 - コンテキストファイル：CLAUDE.md / AGENTS.md / .cursor/rules / .windsurf/rules
 - オーケストレーションエントリ：QUICK_START.md（1 行で起動、AI が全プロセスを自律実行）
+
+**プロモーション (SEO + GEO)**
+- SEO：Open Graph / Twitter Card / JSON-LD SoftwareApplication / hreflang 付き sitemap.xml / robots.txt — Google / Bing にインデックス
+- GEO：[llms.txt](https://llmstxt.org) + llms-full.txt + 構造化 FAQ ページ — ChatGPT / Claude / Perplexity の回答で引用可能
+- スタイルごとに 1 枚 1200×630 の OG ソーシャルカード（Facebook / Twitter / LinkedIn のリンクプレビュー対応）
+
+<details>
+<summary>完全な 12 項目タスクリスト</summary>
+
+| # | タスク | 主な成果物 |
+|---|------|-----------|
+| 1 | ブランド命名 | プロジェクト英語名 + 命名理由 |
+| 2 | i18n 多言語化 | `i18n/glossary.md` + `i18n/{en,ja,zh-TW}/` + `README.*.md` |
+| 3 | VitePress ドキュメントサイト | `docs/`（選定スタイルからテーマ変数を派生）|
+| 4 | GitHub Pages デプロイ | `.github/workflows/docs.yml` |
+| 5 | プロジェクトロゴ | `docs/public/hero.svg` + `.github/assets/hero.svg` |
+| 6 | AI ツールのコンテキスト | `CLAUDE.md` / `AGENTS.md` / `.cursor/` / `.windsurf/` |
+| 7 | QUICK_START.md | ルートの `QUICK_START.md` |
+| 8 | Quick Start Guide | `docs/quick-start.md`（4 言語）|
+| 9 | README 運営化 | 全言語の README |
+| 10 | 整合性チェック | `.gitignore` + ビルド検証 + i18n ドリフトチェック |
+| 11 | Emoji → SVG 置換 | `docs/public/icons/` + 全 md ファイル置換 |
+| 12 | Discoverability (SEO + GEO) | `robots.txt` + `og.png` + `llms.txt` + `llms-full.txt` + FAQ |
+
+各タスクの操作詳細は [`PROMPT.md`](PROMPT.md)、分割説明は [`templates/tasks/`](templates/tasks/)。
+
+</details>
 
 ---
 
