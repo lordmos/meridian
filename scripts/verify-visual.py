@@ -94,25 +94,38 @@ def check_home(page: Any, url: str, fail: Fail, out_dir: Path, mode: str = "dark
     page.screenshot(path=str(out_dir / f"home-{mode}.png"),
                     clip={"x": 0, "y": 0, "width": 1440, "height": 900})
 
-    # 1) features icon must resolve to <img> not a text URL
-    feature_text = page.locator(".VPFeature .icon").all_inner_texts()
-    for t in feature_text:
-        if t.strip().startswith("/"):
-            fail.add(
-                f"feature icon rendered as literal text URL: {t.strip()!r} "
-                "(use `icon: {{ src: ... }}` object form, not string)"
-            )
+    # 1) features must render as <img>, not literal text URL.
+    # VitePress with `icon: { src }` renders `<img class="VPImage">` directly
+    # inside `.VPFeature > .box` — NOT in a `.icon` wrapper. Be selector-safe.
+    feat_cards = page.locator(".VPFeature").count()
+    feat_imgs = page.locator(".VPFeature img").count()
+    if feat_cards == 0:
+        fail.add("no .VPFeature cards found — features block did not render")
+    elif feat_imgs != feat_cards:
+        fail.add(
+            f"feature icon count mismatch: {feat_cards} cards but {feat_imgs} <img> — "
+            "likely rendering icon as text URL (use `icon: {{ src: ... }}` object form)"
+        )
 
-    # 2) every feature icon <img> must load (no broken image)
-    imgs = page.locator(".VPFeature .icon img").all()
+    # 2) every feature icon <img> must load (no broken image) + per-mode tint
+    imgs = page.locator(".VPFeature img").all()
     for i, img in enumerate(imgs):
         natural = img.evaluate("el => el.naturalWidth")
         src = img.get_attribute("src")
+        filt = img.evaluate("el => getComputedStyle(el).filter")
         if natural == 0:
             fail.add(f"feature icon #{i} src={src!r} failed to load (404 or broken)")
-        # Check no double base prefix
         if src and src.count("meridian/") > 1:
             fail.add(f"feature icon #{i} has double base prefix: {src!r}")
+        # SVG stroke="currentColor" renders black when loaded as <img>. We rely
+        # on a CSS `filter` to tint per mode. If filter is `none`, icons fall
+        # through to raw black — invisible against the dark-mode background.
+        if filt == "none":
+            fail.add(
+                f"feature icon #{i} [{mode}] has no CSS filter applied — "
+                f"SVG will render as raw black stroke. Check selector in style.css "
+                f"(VitePress renders <img class='VPImage'> directly in .box, not .icon)."
+            )
 
     # 3) hero text should not contain stale v3.1 scope-lock copy
     hero_text = page.locator(".VPHero .text").inner_text()

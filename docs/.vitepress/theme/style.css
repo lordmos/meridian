@@ -179,21 +179,26 @@ h1 .md-icon, h2 .md-icon, h3 .md-icon {
    ────────────────────────────────────────────────────────────
    Lucide ships `stroke="currentColor"` which renders raw black
    when loaded as <img> (no CSS cascade into SVG). We use CSS
-   `filter` to recolor per mode:
+   `filter` to recolor per mode.
 
-   Light: invert to brand violet (using chained filter hack:
-          brightness 0 → black, then sepia+saturate+hue-rotate
-          shifts to brand hue) + subtle halo
+   SELECTOR NOTE: VitePress `features.icon: { src }` renders as
+   `<img class="VPImage">` directly inside `.VPFeature > .box`
+   (NOT in a `.icon` wrapper — that only exists for the string
+   emoji form). Target the VPImage class to be selector-safe.
+
+   Light: invert to brand violet (chained filter: brightness 0 →
+          black, then sepia+saturate+hue-rotate shifts to brand)
+          + subtle halo
    Dark:  brightness 0 → invert to white + strong brand glow
    ════════════════════════════════════════════════════════════ */
-.VPFeature .icon img {
+.VPFeature img.VPImage {
   /* Light: tint to brand violet + soft halo */
   filter:
     brightness(0)
     invert(24%) sepia(80%) saturate(2900%) hue-rotate(258deg) brightness(95%) contrast(98%)
     drop-shadow(0 0 6px rgba(124, 58, 237, 0.35));
 }
-.dark .VPFeature .icon img {
+.dark .VPFeature img.VPImage {
   /* Dark: white strokes + stronger brand glow */
   filter:
     brightness(0) invert(1)
