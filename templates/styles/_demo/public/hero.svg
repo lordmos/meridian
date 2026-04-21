@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Minimalist style · Meridian
+       Motif: outer circle (compass rim) + 4 cardinal ticks (meridian) + center letter
+       Stroke-only, single brand color follows currentColor (defaults to ink #1a1a1a) -->
+
+  <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" color="#1a1a1a">
+    <!-- Outer compass rim -->
+    <circle cx="100" cy="100" r="88"/>
+
+    <!-- Cardinal ticks: N / S / E / W -->
+    <line x1="100" y1="14" x2="100" y2="34"/>
+    <line x1="100" y1="166" x2="100" y2="186"/>
+    <line x1="14"  y1="100" x2="34"  y2="100"/>
+    <line x1="166" y1="100" x2="186" y2="100"/>
+  </g>
+
+  <!-- Center letter · solid ink, geometric weight -->
+  <text x="100" y="100" text-anchor="middle" dominant-baseline="central"
+        font-family="'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif"
+        font-size="72" font-weight="600" fill="#1a1a1a"
+        letter-spacing="-2">M</text>
+</svg>
