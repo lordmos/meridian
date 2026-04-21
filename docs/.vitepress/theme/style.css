@@ -1,14 +1,241 @@
-/* Meridian brand colors — violet palette (matches logo glow) */
+/* Glow · VitePress theme override — dual-mode (light + dark)
+   ─────────────────────────────────────────────────────────
+   Light (default, :root)    : soft violet wash on white, indigo accents
+   Dark (.dark on <html>)    : deep-space gradient, glowing effects
+
+   All structural rules scope their dark-only values under `.dark`.
+   Feature icons use CSS filter to adapt stroke to each mode. */
+
+
+/* ════════════════════════════════════════════════════════════
+   PALETTE — light (default)
+   ════════════════════════════════════════════════════════════ */
 :root {
-  --vp-c-brand-1: #8b5cf6;
-  --vp-c-brand-2: #7c3aed;
-  --vp-c-brand-3: #6d28d9;
-  --vp-c-brand-soft: rgba(139, 92, 246, 0.14);
+  --vp-c-brand-1: #7c3aed;          /* primary violet (visible on white) */
+  --vp-c-brand-2: #6d28d9;
+  --vp-c-brand-3: #5b21b6;
+  --vp-c-brand-soft: rgba(124, 58, 237, 0.12);
+
+  --vp-c-bg: #fdfaff;               /* near-white, hint of violet */
+  --vp-c-bg-alt: #f7f2ff;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-bg-soft: #f0e9fa;
+
+  --vp-c-text-1: #1a0f2e;
+  --vp-c-text-2: #4a3a6b;
+  --vp-c-text-3: #6b5a8a;
+
+  --vp-c-divider: #e4d8f5;
+  --vp-c-border: #d6c5ee;
+
+  --vp-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
 }
 
+/* ════════════════════════════════════════════════════════════
+   PALETTE — dark override (Glow deep space)
+   ════════════════════════════════════════════════════════════ */
 .dark {
-  --vp-c-brand-1: #a78bfa;
-  --vp-c-brand-2: #8b5cf6;
-  --vp-c-brand-3: #7c3aed;
-  --vp-c-brand-soft: rgba(167, 139, 250, 0.16);
+  --vp-c-bg: #080412;
+  --vp-c-bg-alt: #0f0820;
+  --vp-c-bg-elv: #16102a;
+  --vp-c-bg-soft: #1a1236;
+
+  --vp-c-text-1: #f5f3ff;
+  --vp-c-text-2: #c4b5fd;
+  --vp-c-text-3: #a78bfa;
+
+  --vp-c-divider: #2d1b69;
+  --vp-c-border: #3b2a78;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   HERO — radial gradient backdrop (both modes, tuned per-mode)
+   ════════════════════════════════════════════════════════════ */
+.VPHero {
+  position: relative;
+  /* Light: soft violet wash */
+  background:
+    radial-gradient(ellipse 60% 50% at 30% 20%, rgba(124, 58, 237, 0.12), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 75% 65%, rgba(103, 232, 249, 0.08), transparent 65%);
+}
+.dark .VPHero {
+  /* Dark: more saturated glow */
+  background:
+    radial-gradient(ellipse 60% 50% at 30% 20%, rgba(124, 58, 237, 0.35), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 75% 65%, rgba(103, 232, 249, 0.18), transparent 65%);
+}
+
+/* Hero name — gradient text */
+.VPHero .name {
+  background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 45%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+}
+.dark .VPHero .name {
+  background: linear-gradient(135deg, #f5f3ff 0%, #c4b5fd 45%, #67e8f9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   FEATURE CARDS — subtle on light, glowing on dark
+   ════════════════════════════════════════════════════════════ */
+.VPFeature {
+  background: linear-gradient(180deg, rgba(124, 58, 237, 0.04), rgba(103, 232, 249, 0.01)) !important;
+  border: 1px solid rgba(124, 58, 237, 0.18) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 1px 3px rgba(124, 58, 237, 0.06), 0 4px 12px rgba(91, 33, 182, 0.04) !important;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.VPFeature:hover {
+  border-color: rgba(124, 58, 237, 0.4) !important;
+  box-shadow: 0 0 16px rgba(124, 58, 237, 0.15), 0 4px 16px rgba(91, 33, 182, 0.1) !important;
+}
+.dark .VPFeature {
+  background: linear-gradient(180deg, rgba(124, 58, 237, 0.08), rgba(103, 232, 249, 0.02)) !important;
+  border: 1px solid rgba(124, 58, 237, 0.25) !important;
+  box-shadow: 0 0 0 rgba(124, 58, 237, 0), 0 8px 32px rgba(8, 4, 18, 0.4) !important;
+}
+.dark .VPFeature:hover {
+  border-color: rgba(124, 58, 237, 0.5) !important;
+  box-shadow: 0 0 24px rgba(124, 58, 237, 0.2), 0 8px 32px rgba(8, 4, 18, 0.4) !important;
+}
+.VPFeature .title {
+  color: var(--vp-c-text-1) !important;
+  font-weight: 600;
+}
+.VPFeature .details {
+  color: var(--vp-c-text-2);
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   BUTTONS — brand (filled) + alt (outline/translucent)
+   ════════════════════════════════════════════════════════════ */
+.VPButton.brand {
+  border-radius: 8px !important;
+  background: var(--vp-c-brand-1) !important;
+  border: 1px solid var(--vp-c-brand-1) !important;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25) !important;
+  font-weight: 500;
+}
+.dark .VPButton.brand {
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.5), 0 4px 12px rgba(124, 58, 237, 0.25) !important;
+}
+
+.VPButton.alt {
+  border-radius: 8px !important;
+  /* Light: clear border + light violet fill */
+  background: rgba(124, 58, 237, 0.08) !important;
+  border: 1px solid rgba(124, 58, 237, 0.4) !important;
+  color: var(--vp-c-brand-1) !important;
+  font-weight: 500;
+}
+.VPButton.alt:hover {
+  background: rgba(124, 58, 237, 0.15) !important;
+  border-color: rgba(124, 58, 237, 0.6) !important;
+}
+.dark .VPButton.alt {
+  background: rgba(124, 58, 237, 0.22) !important;
+  border: 1px solid rgba(124, 58, 237, 0.55) !important;
+  color: var(--vp-c-text-1) !important;
+}
+.dark .VPButton.alt:hover {
+  background: rgba(124, 58, 237, 0.35) !important;
+  border-color: rgba(124, 58, 237, 0.75) !important;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   ICON PALETTE — drives inline-SVG colors per mode
+   ────────────────────────────────────────────────────────────
+   `<img>`-loaded SVG can't inherit CSS. `theme/inline-svg.ts`
+   replaces each icon <img> with its inline <svg> source at
+   mount — CSS below then targets stroke/fill directly.
+
+   Two tones per mode:
+     --icon-stroke : main shape (primary path of each Lucide SVG)
+     --icon-accent : decorative paths (twinkles, flashes, secondary
+                     strokes) — tagged `class="accent"` by inline-svg.ts
+   Light: violet primary + cyan accent — matches the hero gradient
+   Dark:  light-violet primary + bright cyan accent — more luminous
+   ════════════════════════════════════════════════════════════ */
+:root {
+  --icon-stroke: var(--vp-c-brand-1);
+  --icon-accent: #0891b2;
+  --icon-glow:   rgba(124, 58, 237, 0.28);
+}
+.dark {
+  --icon-stroke: #c4b5fd;
+  --icon-accent: #67e8f9;
+  --icon-glow:   rgba(124, 58, 237, 0.55);
+}
+
+/* ════════════════════════════════════════════════════════════
+   INLINE SVG ICONS (task 11: .md-icon in body text)
+   ════════════════════════════════════════════════════════════ */
+.md-icon,
+svg.md-icon {
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.18em;
+  fill: none;
+  stroke: var(--icon-stroke);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+svg.md-icon .accent { stroke: var(--icon-accent); }
+h1 .md-icon, h2 .md-icon, h3 .md-icon {
+  width: 0.95em;
+  height: 0.95em;
+  vertical-align: -0.12em;
+  margin-right: 0.15em;
+}
+svg.md-icon.is-success { stroke: var(--vp-c-success-1, #10b981); }
+svg.md-icon.is-danger  { stroke: var(--vp-c-danger-1,  #ef4444); }
+svg.md-icon.is-warning { stroke: var(--vp-c-warning-1, #f59e0b); }
+
+
+/* ════════════════════════════════════════════════════════════
+   FEATURE ICONS — inline Lucide SVG (two-tone, mode-aware)
+   ────────────────────────────────────────────────────────────
+   The <img class="VPImage"> placed by VitePress is swapped to
+   inline <svg class="VPImage"> by inline-svg.ts. Primary shape
+   follows --icon-stroke; decorative paths get --icon-accent.
+   Dark mode shifts to the brighter palette above + stronger
+   glow drop-shadow.
+   ════════════════════════════════════════════════════════════ */
+.VPFeature img.VPImage,
+.VPFeature svg.VPImage {
+  width: 48px;
+  height: 48px;
+  fill: none;
+  stroke: var(--icon-stroke);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px var(--icon-glow));
+  transition: filter .2s, stroke .2s;
+}
+.VPFeature svg.VPImage .accent {
+  stroke: var(--icon-accent);
+}
+.dark .VPFeature svg.VPImage {
+  filter:
+    drop-shadow(0 0 12px var(--icon-glow))
+    drop-shadow(0 0 4px  var(--icon-glow));
+}
+.VPFeature:hover svg.VPImage {
+  stroke: var(--icon-accent);
+}
+.VPFeature:hover svg.VPImage .accent {
+  stroke: var(--icon-stroke);
 }
