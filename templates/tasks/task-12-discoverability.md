@@ -124,7 +124,57 @@ curl -s {{SITE_URL}}/og.png -o /tmp/og.png && file /tmp/og.png   # should be PNG
 
 ---
 
-## Step 8 — 更新 checkpoint.md
+## Step 8 — Search Console 验证 + Sitemap 提交（引导用户手动完成）
+
+**这一步无法自动化**——需要用户登录搜索引擎的站长后台生成验证 token。AI 的职责是**把操作流程打印出来，收到 token 后帮用户写入 config、commit、push**。
+
+### 8a. 打印给用户的指引（AI 照念）
+
+```
+✅ 站点已部署到 {{SITE_URL}}。
+搜索引擎现在可以自动爬取（robots.txt 已声明 sitemap），但要看到索引状态 /
+手动提交 sitemap / 请求优先索引，需要验证站点所有权。请按下面操作：
+
+【Google Search Console（最重要）】
+1. 打开 https://search.google.com/search-console
+2. 左上角 Add Property → 选 "URL prefix" → 输入：{{SITE_URL}}/
+3. 验证方法选 "HTML tag"
+4. 复制给你的 <meta name="google-site-verification" content="..."> 里面的 content 字符串
+5. **把那串字符发给我**
+
+【Bing Webmaster（可选但建议）】
+1. 打开 https://www.bing.com/webmasters
+2. Add a site → 输入 {{SITE_URL}}/
+3. 选 "HTML Meta Tag" → 复制 content 字符串发给我
+4. 或者用 "Import from Google Search Console"（更快）
+
+【Baidu 站长（国内用户）】
+⚠️ GH Pages IP 在国内索引率极低，建议自建 CN 域名后再做。跳过或留后续。
+```
+
+### 8b. 收到 token 后 — AI 直接操作
+
+用户返回 content 串后，AI：
+
+1. 把 `templates/seo/verification-meta.snippet.mts` 复制到 `docs/.vitepress/verification-meta.mts`
+2. 按 token 对应**取消注释**一行或多行，填入 content 值
+3. 在 `docs/.vitepress/config.mts` 顶部 `import { verificationHead } from './verification-meta'`
+4. `head` 数组里 spread 进去：`head: [...seoHead, ...verificationHead]`
+5. commit、push、等待 CI 重新部署
+6. 通知用户："已部署，现在回 Search Console 点 **Verify**"
+7. 验证成功后，继续引导：
+   ```
+   左侧菜单 Sitemaps → 输入 "sitemap.xml" → Submit
+   URL Inspection → 输入 {{SITE_URL}}/ → Request indexing（首页优先）
+   ```
+
+### 8c. 不验证行不行？
+
+行——Google 依然会通过 `robots.txt` 的 `Sitemap:` 指令发现你的 sitemap 并爬取。验证只是**额外**打开站长后台的数据面板（索引覆盖率、URL inspection、手动 request indexing）。若用户说"暂时不搞"就跳过此步，记录到 checkpoint.md 备注。
+
+---
+
+## Step 9 — 更新 checkpoint.md
 
 ```markdown
 ## [任务 12] 完成
@@ -133,8 +183,13 @@ curl -s {{SITE_URL}}/og.png -o /tmp/og.png && file /tmp/og.png   # should be PNG
   - docs/public/{robots.txt, og.png, llms.txt, llms-full.txt}
   - llms.txt, llms-full.txt（仓库根）
   - docs/.vitepress/config.mts（OG/Twitter/JSON-LD/sitemap 注入）
+  - docs/.vitepress/verification-meta.mts（Search Console 验证 meta，若已填充）
   - docs/faq.md + 四语言版
   - scripts/generate-llms-full.py
+- Search Console 验证状态：
+  - [ ] Google Search Console: 已验证 / 用户暂缓 / token 待返回
+  - [ ] Bing Webmaster: 已验证 / 用户暂缓 / token 待返回
+  - [ ] Sitemap 提交: Google / Bing
 - 状态：✅
 ```
 
