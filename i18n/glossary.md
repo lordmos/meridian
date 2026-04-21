@@ -2,6 +2,7 @@
   Glossary status:
   Project     : Meridian
   Maintained  : 2026-04-21
+  Changelog   : 2026-04-21 added "风格库 / Style Library / スタイルライブラリ / 風格庫" to C section
   Scope       : Meridian 自身的 README.{md,en.md,ja.md,zh-TW.md} 及 docs/
 -->
 
@@ -64,6 +65,7 @@
 | 三步上手 | Three Steps | 3ステップで始める | 三步上手 |
 | 深入了解 | Learn More | さらに詳しく | 深入了解 |
 | Meridian 能做什么 | What Meridian Does | Meridian でできること | Meridian 能做什麼 |
+| 风格库 | Style Library | スタイルライブラリ | 風格庫 |
 | 背景 | Background | 背景 | 背景 |
 | 文件说明 | File Reference | ファイル一覧 | 檔案說明 |
 | 中断后恢复 | Resume After Interruption | 中断後の再開 | 中斷後恢復 |

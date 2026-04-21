@@ -1,7 +1,7 @@
 <!--
   Translation status:
   Source file : README.md
-  Source commit: 13c198b
+  Source commit: 549fc91
   Translated  : 2026-04-21
   Status      : up-to-date
 -->
@@ -93,13 +93,13 @@ Meridian 提供 4 種預設視覺風格。AI 會根據你的專案類型推薦�
 
 ---
 
-## 文件說明
+## 檔案說明
 
-| 文件 | 說明 |
+| 檔案 | 說明 |
 |------|------|
 | `PROMPT.md` | 可複用的運營提示詞（核心產出物，包含 10 項任務） |
 | `QUICK_START.md` | AI 編排入口，寫給 AI 助手讀 |
-| `templates/` | 提示詞引用的模板文件（VitePress 設定、GitHub Actions、Logo SVG、AI 工具文件等） |
+| `templates/` | 提示詞引用的範本檔（VitePress 設定、GitHub Actions、Logo SVG、AI 工具檔案等） |
 
 ---
 
