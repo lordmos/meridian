@@ -86,3 +86,56 @@
 .VPNavBar .divider-line {
   background: var(--vp-c-divider) !important;
 }
+
+
+/* ════════════════════════════════════════════════════════════
+   ICON PALETTE — inline-SVG two-tone (minimalist: ink + slate)
+   ────────────────────────────────────────────────────────────
+   REQUIRES: templates/vitepress-inline-svg.ts copied into
+   `docs/.vitepress/theme/inline-svg.ts` + wired via
+   `theme/index.ts` enhanceApp (see task-11 Step 2).
+   ════════════════════════════════════════════════════════════ */
+:root {
+  --icon-stroke: var(--vp-c-brand-1);   /* indigo ink — primary */
+  --icon-accent: #64748b;               /* slate — subtle secondary */
+  --icon-glow:   transparent;           /* minimalist = no glow */
+}
+.dark {
+  --icon-stroke: #a5b4fc;               /* indigo-300 */
+  --icon-accent: #cbd5e1;               /* slate-300 */
+  --icon-glow:   transparent;
+}
+
+.md-icon, svg.md-icon {
+  display: inline-block;
+  width: 1.1em; height: 1.1em;
+  vertical-align: -0.18em;
+  fill: none;
+  stroke: var(--icon-stroke);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+svg.md-icon .accent { stroke: var(--icon-accent); }
+h1 .md-icon, h2 .md-icon, h3 .md-icon {
+  width: 0.95em; height: 0.95em;
+  vertical-align: -0.12em;
+  margin-right: 0.15em;
+}
+svg.md-icon.is-success { stroke: var(--vp-c-success-1, #10b981); }
+svg.md-icon.is-danger  { stroke: var(--vp-c-danger-1,  #ef4444); }
+svg.md-icon.is-warning { stroke: var(--vp-c-warning-1, #f59e0b); }
+
+.VPFeature img.VPImage,
+.VPFeature svg.VPImage {
+  width: 48px; height: 48px;
+  fill: none;
+  stroke: var(--icon-stroke);
+  stroke-width: 1.6;                    /* thinner for minimal aesthetic */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke .2s;
+}
+.VPFeature svg.VPImage .accent { stroke: var(--icon-accent); }
+.VPFeature:hover svg.VPImage        { stroke: var(--icon-accent); }
+.VPFeature:hover svg.VPImage .accent { stroke: var(--icon-stroke); }

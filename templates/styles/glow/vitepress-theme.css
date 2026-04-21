@@ -175,38 +175,76 @@ h1 .md-icon, h2 .md-icon, h3 .md-icon {
 
 
 /* ════════════════════════════════════════════════════════════
-   FEATURE ICONS — Lucide SVGs rendered via CSS mask
+   ICON PALETTE — drives inline-SVG colors per mode
    ────────────────────────────────────────────────────────────
-   `<img>`-loaded SVG can't inherit CSS (`currentColor` falls
-   through to black). So we load the SVG as a mask and fill it
-   with `background-color: var(--vp-c-brand-1)`. Icon color now
-   follows the brand variable — swap the variable, every icon
-   retints. No per-mode filter chains.
+   REQUIRES: templates/vitepress-inline-svg.ts copied into
+   `docs/.vitepress/theme/inline-svg.ts` + wired via
+   `theme/index.ts` enhanceApp (see task-11 Step 2).
 
-   SELECTOR: VitePress `features.icon: { src }` renders as
-   `<img class="VPImage">` directly inside `.VPFeature > .box`.
-   Per-icon src is mapped to a --_icon-src custom property via
-   [src$=] attribute selectors.
+   The runtime replaces each `<img class="VPImage">` with its
+   inline <svg> and tags decorative paths `class="accent"`.
+   Below we color primary stroke + accent independently per
+   mode. Glow uses violet primary + cyan accent — the same
+   gradient pair as the hero.
    ════════════════════════════════════════════════════════════ */
-.VPFeature img.VPImage {
-  width: 48px;
-  height: 48px;
-  background-color: var(--vp-c-brand-1);
-  -webkit-mask: var(--_icon-src) center / contain no-repeat;
-          mask: var(--_icon-src) center / contain no-repeat;
-  filter: drop-shadow(0 0 6px rgba(124, 58, 237, 0.28));
+:root {
+  --icon-stroke: var(--vp-c-brand-1);   /* primary violet */
+  --icon-accent: #0891b2;               /* deep cyan — readable on white */
+  --icon-glow:   rgba(124, 58, 237, 0.28);
 }
-.dark .VPFeature img.VPImage {
+.dark {
+  --icon-stroke: #c4b5fd;               /* soft violet, more luminous */
+  --icon-accent: #67e8f9;               /* bright cyan — glows against deep space */
+  --icon-glow:   rgba(124, 58, 237, 0.55);
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   INLINE SVG ICONS (body text — `.md-icon`)
+   ════════════════════════════════════════════════════════════ */
+.md-icon,
+svg.md-icon {
+  display: inline-block;
+  width: 1.1em; height: 1.1em;
+  vertical-align: -0.18em;
+  fill: none;
+  stroke: var(--icon-stroke);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+svg.md-icon .accent { stroke: var(--icon-accent); }
+h1 .md-icon, h2 .md-icon, h3 .md-icon {
+  width: 0.95em; height: 0.95em;
+  vertical-align: -0.12em;
+  margin-right: 0.15em;
+}
+svg.md-icon.is-success { stroke: var(--vp-c-success-1, #10b981); }
+svg.md-icon.is-danger  { stroke: var(--vp-c-danger-1,  #ef4444); }
+svg.md-icon.is-warning { stroke: var(--vp-c-warning-1, #f59e0b); }
+
+
+/* ════════════════════════════════════════════════════════════
+   FEATURE ICONS — inline Lucide SVG (two-tone, mode-aware)
+   ════════════════════════════════════════════════════════════ */
+.VPFeature img.VPImage,
+.VPFeature svg.VPImage {
+  width: 48px; height: 48px;
+  fill: none;
+  stroke: var(--icon-stroke);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px var(--icon-glow));
+  transition: filter .2s, stroke .2s;
+}
+.VPFeature svg.VPImage .accent {
+  stroke: var(--icon-accent);
+}
+.dark .VPFeature svg.VPImage {
   filter:
-    drop-shadow(0 0 12px var(--vp-c-brand-1))
-    drop-shadow(0 0 4px  var(--vp-c-brand-1));
+    drop-shadow(0 0 12px var(--icon-glow))
+    drop-shadow(0 0 4px  var(--icon-glow));
 }
-/* Per-icon mask source — replace {{BASE}} with your VitePress
-   base (e.g. '/my-project'), and keep this list in sync with
-   `features.icon.src` values in docs/{,en,ja,zh-TW}/index.md. */
-.VPFeature img.VPImage[src$="sparkles.svg"]   { --_icon-src: url('{{BASE}}/icons/sparkles.svg'); }
-.VPFeature img.VPImage[src$="globe.svg"]      { --_icon-src: url('{{BASE}}/icons/globe.svg'); }
-.VPFeature img.VPImage[src$="book-open.svg"]  { --_icon-src: url('{{BASE}}/icons/book-open.svg'); }
-.VPFeature img.VPImage[src$="palette.svg"]    { --_icon-src: url('{{BASE}}/icons/palette.svg'); }
-.VPFeature img.VPImage[src$="bot.svg"]        { --_icon-src: url('{{BASE}}/icons/bot.svg'); }
-.VPFeature img.VPImage[src$="bolt.svg"]       { --_icon-src: url('{{BASE}}/icons/bolt.svg'); }
+.VPFeature:hover svg.VPImage        { stroke: var(--icon-accent); }
+.VPFeature:hover svg.VPImage .accent { stroke: var(--icon-stroke); }

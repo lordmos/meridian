@@ -96,3 +96,56 @@
   color: var(--vp-c-brand-1) !important;
   font-weight: 600 !important;
 }
+
+
+/* ════════════════════════════════════════════════════════════
+   ICON PALETTE — inline-SVG two-tone (enterprise: navy + gold)
+   ────────────────────────────────────────────────────────────
+   REQUIRES: templates/vitepress-inline-svg.ts copied into
+   `docs/.vitepress/theme/inline-svg.ts` + wired via
+   `theme/index.ts` enhanceApp (see task-11 Step 2).
+   ════════════════════════════════════════════════════════════ */
+:root {
+  --icon-stroke: var(--vp-c-brand-1);   /* navy — primary medallion color */
+  --icon-accent: #d4af37;               /* regal gold — heraldic accent */
+  --icon-glow:   transparent;
+}
+.dark {
+  --icon-stroke: #93c5fd;               /* blue-300, navy reads white-ish */
+  --icon-accent: #fbbf24;               /* amber-400, retains warmth at night */
+  --icon-glow:   transparent;
+}
+
+.md-icon, svg.md-icon {
+  display: inline-block;
+  width: 1.1em; height: 1.1em;
+  vertical-align: -0.18em;
+  fill: none;
+  stroke: var(--icon-stroke);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+svg.md-icon .accent { stroke: var(--icon-accent); }
+h1 .md-icon, h2 .md-icon, h3 .md-icon {
+  width: 0.95em; height: 0.95em;
+  vertical-align: -0.12em;
+  margin-right: 0.15em;
+}
+svg.md-icon.is-success { stroke: var(--vp-c-success-1, #10b981); }
+svg.md-icon.is-danger  { stroke: var(--vp-c-danger-1,  #ef4444); }
+svg.md-icon.is-warning { stroke: var(--vp-c-warning-1, #f59e0b); }
+
+.VPFeature img.VPImage,
+.VPFeature svg.VPImage {
+  width: 48px; height: 48px;
+  fill: none;
+  stroke: var(--icon-stroke);
+  stroke-width: 2;                      /* solid, institutional */
+  stroke-linecap: square;               /* square caps = enterprise feel */
+  stroke-linejoin: miter;
+  transition: stroke .2s;
+}
+.VPFeature svg.VPImage .accent { stroke: var(--icon-accent); }
+.VPFeature:hover svg.VPImage        { stroke: var(--icon-accent); }
+.VPFeature:hover svg.VPImage .accent { stroke: var(--icon-stroke); }

@@ -263,18 +263,25 @@ QUICK_START.md 内容结构：
 
 ### 任务 11：Emoji → SVG 替换（最终视觉统一）
 
-所有产出物的 emoji 替换为 Lucide outline 风格的 inline SVG，图标颜色通过 `currentColor` 跟随主题色自动切换。
+所有产出物的 emoji 替换为 Lucide outline 风格的 inline SVG。图标**双色**上色（主形状 + 装饰线），由 `--icon-stroke` / `--icon-accent` 两个 CSS 变量驱动，每种视觉风格 × light/dark 各自定义一对。
 
 → **详细说明见** `templates/tasks/task-11-emoji-to-svg.md`
 
 操作概览：
 1. `cp -r templates/icons 目标项目/docs/public/icons`
-2. 在 `docs/.vitepress/theme/style.css` 追加 `.md-icon` 样式
-3. 按映射表替换 README / docs / CLAUDE.md / AGENTS.md / QUICK_START.md / .cursor / .windsurf 中的 emoji
-4. 校验：`grep -rP '[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}]'` 无残留 + 构建再次通过
-5. 更新 `checkpoint.md`
+2. `cp templates/vitepress-inline-svg.ts 目标项目/docs/.vitepress/theme/inline-svg.ts` 并在 `theme/index.ts` 的 `enhanceApp` 里调用 `startInlineIconsWatcher()`（运行时把 `<img>` swap 为 inline `<svg>`——`<img>` 加载的 SVG 不继承 CSS）
+3. 确认用户选定风格的 `vitepress-theme.css` 已包含 `--icon-stroke` / `--icon-accent` 变量及 `.VPFeature svg.VPImage` / `svg.md-icon` 规则（4 种风格模板都已预置）
+4. 按映射表替换 README / docs / CLAUDE.md / AGENTS.md / QUICK_START.md / .cursor / .windsurf 中的 emoji
+5. 校验：`rg '[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}]'` 无残留 + 构建通过 + 目测 light/dark 切换时图标双色均跟随主题
+6. 更新 `checkpoint.md`
 
 **不替换**：徽章 URL 内的 emoji、代码块内的 emoji、`hero.svg` 本身、`checkpoint.md`。
+
+**绝对不要**走过的两条错路：
+- CSS `filter` 链（brightness+invert+sepia+hue-rotate）——硬编码色值，无法随主题变量切换
+- CSS `mask-image`——只支持单色，做不出双色区分
+
+两者共同问题：回避了 "`<img>` 加载的 SVG 不继承 CSS" 的根因，而不是解决它。正路是 inline SVG 注入。
 
 ---
 
