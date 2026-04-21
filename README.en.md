@@ -20,9 +20,7 @@
 
 # Meridian
 
-Compress your project's README, i18n, docs site, logo, AI tool context, SEO / GEO assets — the whole promotion kit — into a single AI session.
-
-[Quick Start](#quick-start) · [Docs](https://lordmos.github.io/meridian/en/) · [FAQ](https://lordmos.github.io/meridian/en/faq) · [GitHub](https://github.com/lordmos/meridian)
+Compress your project's README, i18n, docs site, logo, and AI tool context — all that repetitive ops work — into a single AI session.
 
 ---
 
@@ -92,33 +90,6 @@ Each style defines a full visual system — palette, logo, type stack, VitePress
 **AI Integration**
 - Context files: CLAUDE.md / AGENTS.md / .cursor/rules / .windsurf/rules
 - Orchestration entry: QUICK_START.md (one-line launch, AI runs the full workflow autonomously)
-
-**Promotion (SEO + GEO)**
-- SEO: Open Graph / Twitter Card / JSON-LD SoftwareApplication / sitemap.xml with hreflang / robots.txt — discoverable on Google / Bing
-- GEO: [llms.txt](https://llmstxt.org) + llms-full.txt + structured FAQ page — quotable by ChatGPT / Claude / Perplexity in answer mode
-- One 1200×630 OG social card per style (rich Facebook / Twitter / LinkedIn link previews)
-
-<details>
-<summary>Full 12-task checklist</summary>
-
-| # | Task | Main output |
-|---|------|-------------|
-| 1 | Brand naming | English project name + naming rationale |
-| 2 | i18n localization | `i18n/glossary.md` + `i18n/{en,ja,zh-TW}/` + `README.*.md` |
-| 3 | VitePress docs site | `docs/` (theme vars derived from chosen style) |
-| 4 | GitHub Pages deploy | `.github/workflows/docs.yml` |
-| 5 | Project logo | `docs/public/hero.svg` + `.github/assets/hero.svg` |
-| 6 | AI-tool context | `CLAUDE.md` / `AGENTS.md` / `.cursor/` / `.windsurf/` |
-| 7 | QUICK_START.md | root `QUICK_START.md` |
-| 8 | Quick Start Guide | `docs/quick-start.md` (four languages) |
-| 9 | README operationalization | All language READMEs |
-| 10 | Consistency check | `.gitignore` + build verification + i18n drift check |
-| 11 | Emoji → SVG replacement | `docs/public/icons/` + all md files updated |
-| 12 | Discoverability (SEO + GEO) | `robots.txt` + `og.png` + `llms.txt` + `llms-full.txt` + FAQ |
-
-Per-task operational details in [`PROMPT.md`](PROMPT.md); sharded notes in [`templates/tasks/`](templates/tasks/).
-
-</details>
 
 ---
 
