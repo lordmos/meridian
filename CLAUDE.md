@@ -41,6 +41,11 @@ Meridian 是一个"提示词 + 模板文件"工具包，不包含可执行代码
 | `templates/CLAUDE.md` | AI 工具上下文文件模板 |
 | `templates/cursor-rules.mdc` | Cursor rules 模板 |
 | `templates/windsurf-rules.md` | Windsurf rules 模板 |
+| `templates/glossary.md` | 术语表模板（任务 2 i18n 统一术语用） |
+| `templates/icons/` | Lucide outline SVG 图标库（任务 11 emoji → SVG 替换用） |
+| `templates/scripts/check-i18n-drift.py` | 多语言漂移检测脚本（任务 10 收尾校验用） |
+| `templates/tasks/` | 分片任务说明（task-2/3/9/11） |
+| `scripts/check-i18n-drift.py` | Meridian 自身的 i18n 漂移检测（与 template 同步维护） |
 
 ---
 
