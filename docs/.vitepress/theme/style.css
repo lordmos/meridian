@@ -74,3 +74,27 @@
   border: 1px solid rgba(124, 58, 237, 0.3) !important;
   color: var(--vp-c-text-1) !important;
 }
+
+/* --- Inline SVG icons (task 11: replaces emoji in markdown + VitePress features) --- */
+.md-icon {
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.18em;
+  color: var(--vp-c-brand-1);
+  stroke: currentColor;
+}
+h1 .md-icon, h2 .md-icon, h3 .md-icon {
+  width: 0.95em;
+  height: 0.95em;
+  vertical-align: -0.12em;
+  margin-right: 0.15em;
+}
+.md-icon.is-success { color: var(--vp-c-success-1, #10b981); }
+.md-icon.is-danger  { color: var(--vp-c-danger-1,  #ef4444); }
+.md-icon.is-warning { color: var(--vp-c-warning-1, #f59e0b); }
+
+/* VitePress home features: tint icons to brand color */
+.VPFeature .icon img {
+  filter: drop-shadow(0 0 8px var(--vp-c-brand-1));
+}

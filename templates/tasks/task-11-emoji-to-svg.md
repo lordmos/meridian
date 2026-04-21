@@ -54,13 +54,19 @@ h1 .md-icon, h2 .md-icon, h3 .md-icon {
 扫描以下文件中的 emoji 并替换：
 
 **处理范围**：
+- `docs/**/*.md`（VitePress 渲染，`.md-icon` CSS 生效）——含 `index.md` features 块的 `icon:` 字段、`quick-start.md`、`faq.md`、四语言页面
+- VitePress 渲染的其它自定义页面
+
+**不处理**（GitHub 原生渲染，不加载 CSS，`<img class="md-icon">` 会失去样式）：
 - `README.md` + `README.{en,ja,zh-TW}.md`
-- `docs/**/*.md`（含 `index.md` / `quick-start.md` 四语言）
 - `CLAUDE.md` / `AGENTS.md`
 - `QUICK_START.md`
 - `.cursor/rules/project.mdc` / `.windsurf/rules/project.md`
+- `checkpoint.md`、`templates/`、目标项目原有源代码、徽章 URL 内的 emoji
 
-**不处理**：`checkpoint.md`、`templates/`、目标项目原有源代码、徽章 URL 内的 emoji。
+**理由**：GitHub 把 Markdown 渲染为 HTML 但不加载站点 CSS——`class="md-icon"` 失效，SVG 会显示但无主题色跟随；emoji 在 GitHub 下原生渲染良好。两侧各取所长。
+
+**VitePress `home` layout features 替换**：`features: - icon: ⚡` 改成 `features: - icon: /{{REPO_NAME}}/icons/bolt.svg`（VitePress 原生支持 icon 字段为图片 URL）。
 
 所有替换写法的统一模板（下表省略 `<img>` 前缀与 `alt=""` 后缀，只列文件名与可选 class）：
 
@@ -107,6 +113,7 @@ h1 .md-icon, h2 .md-icon, h3 .md-icon {
 | 💻 🖥️ | `terminal.svg` | 命令行 / 代码 / 开发 |
 | 🤝 | `handshake.svg` | 贡献 / 合作 / Contributing |
 | 📊 📈 | `bar-chart.svg` | 数据 / 统计 / 指标 |
+| 🧭 | `sparkles.svg` *(best-fit)* | 品牌命名 / 指南 / 方向（未来若新增 `compass.svg` 可切过去）|
 
 ### 未覆盖的 emoji
 
