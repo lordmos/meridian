@@ -103,6 +103,6 @@ Meridian 提供 4 種預設視覺風格。AI 會根據你的專案類型推薦�
 
 ---
 
-Meridian 最初是 [Scriptorium](https://github.com/lordmos/tech-editorial) 運營工作的副產品，後抽離為獨立工具包。本 README、徽章、語言切換、[文件站](https://lordmos.github.io/meridian/)、Logo、AI 工具上下文均由 Meridian 自身跑一次生成——這個倉庫就是它自己的 demo。
+**這個專案就是 Meridian，它的展示頁是用自己做的。** README、徽章、語言切換、[文件站](https://lordmos.github.io/meridian/)、Logo、AI 工具上下文——你看到的一切都是 Meridian 跑過自身一次後的產出。
 
 <sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit</sub>

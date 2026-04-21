@@ -103,6 +103,6 @@ Meridian は 4 種類のプリセットビジュアルスタイルを用意し�
 
 ---
 
-Meridian は当初 [Scriptorium](https://github.com/lordmos/tech-editorial) の運営作業の副産物として生まれ、その後独立したツールキットとして切り出されました。今ご覧になっている README、バッジ、言語切替、[ドキュメントサイト](https://lordmos.github.io/meridian/)、ロゴ、AI ツールのコンテキストファイル——これらはすべて Meridian 自身を 1 回走らせて生成されたものです。このリポジトリは、それ自体がデモです。
+**このプロジェクトが Meridian 本体であり、そのショーケースページは自分自身で作ったものです。** README、バッジ、言語切替、[ドキュメントサイト](https://lordmos.github.io/meridian/)、ロゴ、AI ツールのコンテキスト——ここに見えるすべてが、Meridian が自身を 1 回走らせて生成したものです。
 
 <sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit</sub>
