@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" width="240" height="48">
+  <!-- Glow palette: deep purple / violet / cyan -->
+  <rect x="0"   y="0" width="80" height="48" fill="#2d1b69"/>
+  <rect x="80"  y="0" width="80" height="48" fill="#7c3aed"/>
+  <rect x="160" y="0" width="80" height="48" fill="#67e8f9"/>
+</svg>
