@@ -36,14 +36,13 @@
 
 ### 2a. 风格选择 — 5 选 1（含推荐）
 
-5 种预设风格（每种 = 完整视觉语言，定义在 `templates/styles/{id}/style.md`）：
+4 种预设风格（每种 = 完整视觉语言，定义在 `templates/styles/{id}/style.md`）：
 
 | id | 名称 | 默认适用 |
 |----|------|---------|
 | `glow` | Glow — 渐变光晕 | AI / Agent / 生成式 |
 | `minimalist` | Minimalist — 墨色几何 | CLI / 库 / docs-first |
 | `dev-native` | Dev-native — 终端霓虹 | shell / SDK / 基建 |
-| `retro-terminal` | Retro-Terminal — 琥珀 CRT | 游戏 / 模拟器 / 复古 |
 | `enterprise` | Enterprise — 海军蓝医章 | B2B / 平台 / 合规 |
 
 基于阶段 1 探索结果**推荐 1 个默认风格**，用户可接受 / 换一个 / 说「随机」。

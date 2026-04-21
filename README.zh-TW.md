@@ -1,8 +1,8 @@
 <!--
   Translation status:
   Source file : README.md
-  Source commit: 34750fd
-  Translated  : 2026-04-04
+  Source commit: 13c198b
+  Translated  : 2026-04-21
   Status      : up-to-date
 -->
 
@@ -20,7 +20,7 @@
 
 # Meridian
 
-可複用的開源 Agent 專案運營工具包。給定任何一個開源 Agent 專案，在一次 AI 會話裡完成全套運營基礎設施搭建。
+把專案的 README、多語言、文件站、Logo、AI 工具上下文——這些重複勞動——壓縮成一次 AI 對話。
 
 ---
 
@@ -40,39 +40,31 @@ AI 會先自主探索你的專案，再提案 3 個配色方案供你選擇，�
 
 ## 風格庫
 
-Meridian 提供 5 種預設視覺風格。AI 會根據你的專案類型推薦一種，你也可以自己挑：
+Meridian 提供 4 種預設視覺風格。AI 會根據你的專案類型推薦一種，你也可以自己挑。下面每張圖是真實 VitePress 首頁在該風格下的渲染：
 
 <table>
 <tr>
-<td align="center" width="20%">
-<img src="templates/styles/glow/preview.svg" width="96" alt="Glow"/><br/>
-<strong>Glow</strong><br/>
-<sub>漸層光暈 · 深空背景</sub><br/>
-<sub>AI / Agent / 生成式</sub>
-</td>
-<td align="center" width="20%">
-<img src="templates/styles/minimalist/preview.svg" width="96" alt="Minimalist"/><br/>
-<strong>Minimalist</strong><br/>
-<sub>墨色 · 幾何 outline</sub><br/>
+<td align="center" width="50%">
+<a href="templates/styles/minimalist/"><img src="templates/styles/minimalist/screenshot.png" alt="Minimalist VitePress 首頁截圖"/></a><br/>
+<strong>Minimalist</strong> — 墨色 · 幾何 outline<br/>
 <sub>CLI / 函式庫 / docs-first</sub>
 </td>
-<td align="center" width="20%">
-<img src="templates/styles/dev-native/preview.svg" width="96" alt="Dev-native"/><br/>
-<strong>Dev-native</strong><br/>
-<sub>終端美學 · 霓虹青</sub><br/>
-<sub>shell / SDK / 基建</sub>
-</td>
-<td align="center" width="20%">
-<img src="templates/styles/retro-terminal/preview.svg" width="96" alt="Retro-Terminal"/><br/>
-<strong>Retro-Terminal</strong><br/>
-<sub>琥珀 CRT · 虛線框</sub><br/>
-<sub>遊戲 / 模擬器 / 復古</sub>
-</td>
-<td align="center" width="20%">
-<img src="templates/styles/enterprise/preview.svg" width="96" alt="Enterprise"/><br/>
-<strong>Enterprise</strong><br/>
-<sub>海軍藍醫章 · 幾何剛硬</sub><br/>
+<td align="center" width="50%">
+<a href="templates/styles/enterprise/"><img src="templates/styles/enterprise/screenshot.png" alt="Enterprise VitePress 首頁截圖"/></a><br/>
+<strong>Enterprise</strong> — 海軍藍醫章 · 幾何剛硬<br/>
 <sub>B2B / 平台 / 合規</sub>
+</td>
+</tr>
+<tr>
+<td align="center" width="50%">
+<a href="templates/styles/glow/"><img src="templates/styles/glow/screenshot.png" alt="Glow VitePress 首頁截圖"/></a><br/>
+<strong>Glow</strong> — 漸層光暈 · 深空背景<br/>
+<sub>AI / Agent / 生成式</sub>
+</td>
+<td align="center" width="50%">
+<a href="templates/styles/dev-native/"><img src="templates/styles/dev-native/screenshot.png" alt="Dev-native VitePress 首頁截圖"/></a><br/>
+<strong>Dev-native</strong> — 終端美學 · 霓虹青<br/>
+<sub>shell / SDK / 基建</sub>
 </td>
 </tr>
 </table>
@@ -83,41 +75,34 @@ Meridian 提供 5 種預設視覺風格。AI 會根據你的專案類型推薦�
 
 ## Meridian 能做什麼
 
-| 工作項 | 產出物 |
-|--------|--------|
-| **品牌命名** | 有歷史/文化內涵的英文專案名，附命名說明 |
-| **i18n 多語言化** | 简中/英/日/繁中 四語言文件，含翻譯狀態注釋頭 |
-| **VitePress 文件站** | 多語言 docs/ 站點 + GitHub Pages 自動部署 |
-| **專案 Logo** | SVG 漸層光效 logo，配色與用戶選擇的方案一致 |
-| **AI 工具適配** | CLAUDE.md / AGENTS.md / .cursor/rules / .windsurf/rules |
-| **QUICK_START.md** | AI 編排入口：一句話啟動，AI 自主運行全程 |
-| **Quick Start Guide** | 四語言人類可讀文件，三步上手 |
-| **README 運營化** | 徽章組 + 語言切換 + Quick Start 前置 + 文件站連結 |
+**視覺**
+- 專案 Logo：SVG 漸層光效，配色跟隨用戶選定方案
+- 統一主題：logo / 文件站 / 圖示共用一套配色
+
+**內容**
+- 品牌命名：有歷史/文化內涵的英文名 + 命名說明
+- i18n 多語言化：简中/英/日/繁中 四語言 + 翻譯狀態追蹤
+- README 運營化：徽章組 + 語言切換 + Quick Start 前置 + 文件站連結
+
+**文件站**
+- VitePress 多語言站 + GitHub Pages 自動部署
+
+**AI 適配**
+- 上下文文件：CLAUDE.md / AGENTS.md / .cursor/rules / .windsurf/rules
+- 編排入口：QUICK_START.md（一句話啟動，AI 自主跑全程）
 
 ---
 
-## 背景
+## 文件說明
 
-Meridian 從 [Scriptorium](https://github.com/lordmos/tech-editorial) 的運營工作中提煉而來。Scriptorium 是一個多 Agent 技術書籍編寫框架，其運營工作涵蓋：
-
-1. 給專案取名（Scriptorium）
-2. 翻譯全部文件為 4 種語言（25 個 Markdown 文件 × 4 語言）
-3. 搭建 VitePress 文件站 + GitHub Pages 自動部署
-4. 設計漸層光效 SVG Logo
-5. 為 Claude Code / OpenCode / Amp / Cursor / Windsurf 建立 AI 工具上下文文件
-6. 建立 `QUICK_START.md`：AI 編排入口，實現「說一句話，AI 跑全程」的 UX
-7. 完善 README（徽章、語言切換、Quick Start 前置、文件站入口）
-
----
-
-## 檔案說明
-
-| 檔案 | 說明 |
+| 文件 | 說明 |
 |------|------|
 | `PROMPT.md` | 可複用的運營提示詞（核心產出物，包含 10 項任務） |
 | `QUICK_START.md` | AI 編排入口，寫給 AI 助手讀 |
-| `templates/` | 提示詞引用的範本檔（VitePress 設定、GitHub Actions、Logo SVG、AI 工具檔案等） |
+| `templates/` | 提示詞引用的模板文件（VitePress 設定、GitHub Actions、Logo SVG、AI 工具文件等） |
 
 ---
 
-<sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit for Agent projects</sub>
+Meridian 最初是 [Scriptorium](https://github.com/lordmos/tech-editorial) 運營工作的副產品，後抽離為獨立工具包。本 README、徽章、語言切換、[文件站](https://lordmos.github.io/meridian/)、Logo、AI 工具上下文均由 Meridian 自身跑一次生成——這個倉庫就是它自己的 demo。
+
+<sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit</sub>

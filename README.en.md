@@ -1,8 +1,8 @@
 <!--
   Translation status:
   Source file : README.md
-  Source commit: 34750fd
-  Translated  : 2026-04-04
+  Source commit: 13c198b
+  Translated  : 2026-04-21
   Status      : up-to-date
 -->
 
@@ -20,7 +20,7 @@
 
 # Meridian
 
-A reusable open-source Agent project operations toolkit. Given any open-source Agent project, build a complete operations infrastructure in a single AI session.
+Compress your project's README, i18n, docs site, logo, and AI tool context — all that repetitive ops work — into a single AI session.
 
 ---
 
@@ -40,39 +40,31 @@ You only need to do three things: ① Answer initial questions → ② Choose a 
 
 ## Style Library
 
-Meridian ships 5 preset visual styles. The AI recommends one based on your project type; you can pick any:
+Meridian ships 4 preset visual styles. The AI recommends one based on your project type; you can pick any. Each image below is a real VitePress home page rendered in that style:
 
 <table>
 <tr>
-<td align="center" width="20%">
-<img src="templates/styles/glow/preview.svg" width="96" alt="Glow"/><br/>
-<strong>Glow</strong><br/>
-<sub>Gradient aura · deep space</sub><br/>
-<sub>AI / Agent / generative</sub>
-</td>
-<td align="center" width="20%">
-<img src="templates/styles/minimalist/preview.svg" width="96" alt="Minimalist"/><br/>
-<strong>Minimalist</strong><br/>
-<sub>Monochrome ink · geometry</sub><br/>
+<td align="center" width="50%">
+<a href="templates/styles/minimalist/"><img src="templates/styles/minimalist/screenshot.png" alt="Minimalist VitePress home"/></a><br/>
+<strong>Minimalist</strong> — Monochrome ink · geometry<br/>
 <sub>CLI / libraries / docs-first</sub>
 </td>
-<td align="center" width="20%">
-<img src="templates/styles/dev-native/preview.svg" width="96" alt="Dev-native"/><br/>
-<strong>Dev-native</strong><br/>
-<sub>Terminal · neon cyan</sub><br/>
-<sub>shells / SDKs / infra</sub>
-</td>
-<td align="center" width="20%">
-<img src="templates/styles/retro-terminal/preview.svg" width="96" alt="Retro-Terminal"/><br/>
-<strong>Retro-Terminal</strong><br/>
-<sub>Amber CRT · dashed frame</sub><br/>
-<sub>games / emulators / retro</sub>
-</td>
-<td align="center" width="20%">
-<img src="templates/styles/enterprise/preview.svg" width="96" alt="Enterprise"/><br/>
-<strong>Enterprise</strong><br/>
-<sub>Navy medallion · rigid geometry</sub><br/>
+<td align="center" width="50%">
+<a href="templates/styles/enterprise/"><img src="templates/styles/enterprise/screenshot.png" alt="Enterprise VitePress home"/></a><br/>
+<strong>Enterprise</strong> — Navy medallion · rigid geometry<br/>
 <sub>B2B / platforms / compliance</sub>
+</td>
+</tr>
+<tr>
+<td align="center" width="50%">
+<a href="templates/styles/glow/"><img src="templates/styles/glow/screenshot.png" alt="Glow VitePress home"/></a><br/>
+<strong>Glow</strong> — Gradient aura · deep space<br/>
+<sub>AI / Agent / generative</sub>
+</td>
+<td align="center" width="50%">
+<a href="templates/styles/dev-native/"><img src="templates/styles/dev-native/screenshot.png" alt="Dev-native VitePress home"/></a><br/>
+<strong>Dev-native</strong> — Terminal · neon cyan<br/>
+<sub>shells / SDKs / infra</sub>
 </td>
 </tr>
 </table>
@@ -83,30 +75,21 @@ Each style defines a full visual system — palette, logo, type stack, VitePress
 
 ## What Meridian Does
 
-| Task | Output |
-|------|--------|
-| **Brand Naming** | English project name with historical/cultural significance, with naming rationale |
-| **i18n Localization** | Simplified Chinese / English / Japanese / Traditional Chinese docs with translation status headers |
-| **VitePress Docs Site** | Multilingual docs/ site + GitHub Pages auto-deployment |
-| **Project Logo** | SVG gradient-glow logo matching the user's chosen color scheme |
-| **AI Tool Integration** | CLAUDE.md / AGENTS.md / .cursor/rules / .windsurf/rules |
-| **QUICK_START.md** | AI orchestration entry: one-liner launch, AI runs the full workflow autonomously |
-| **Quick Start Guide** | Four-language human-readable docs, three-step setup |
-| **README Operationalization** | Badge group + language switcher + Quick Start first + docs site link |
+**Visual**
+- Project Logo: SVG gradient-glow, color follows the user's chosen palette
+- Unified theme: logo / docs site / icons share one color system
 
----
+**Content**
+- Brand Naming: English project name with historical/cultural significance + naming rationale
+- i18n Localization: zh-CN / en / ja / zh-TW — four languages + translation-status tracking
+- README Operationalization: badges + language switcher + Quick Start first + docs site link
 
-## Background
+**Docs Site**
+- VitePress multilingual site + GitHub Pages auto-deployment
 
-Meridian was distilled from the operations work done for [Scriptorium](https://github.com/lordmos/tech-editorial), a multi-Agent technical book writing framework. That work covered:
-
-1. Naming the project (Scriptorium)
-2. Translating all docs into 4 languages (25 Markdown files × 4 languages)
-3. Setting up VitePress docs site + GitHub Pages auto-deployment
-4. Designing a gradient-glow SVG Logo
-5. Creating AI tool context files for Claude Code / OpenCode / Amp / Cursor / Windsurf
-6. Creating `QUICK_START.md`: AI orchestration entry for "say one sentence, AI runs everything"
-7. Polishing README (badges, language switcher, Quick Start first, docs site link)
+**AI Integration**
+- Context files: CLAUDE.md / AGENTS.md / .cursor/rules / .windsurf/rules
+- Orchestration entry: QUICK_START.md (one-line launch, AI runs the full workflow autonomously)
 
 ---
 
@@ -120,4 +103,6 @@ Meridian was distilled from the operations work done for [Scriptorium](https://g
 
 ---
 
-<sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit for Agent projects</sub>
+Meridian started as a by-product of the operations work done for [Scriptorium](https://github.com/lordmos/tech-editorial), later extracted into a standalone toolkit. The README you're reading, the badges, the language switcher, the [docs site](https://lordmos.github.io/meridian/), the logo, the AI-tool context files — all were generated by Meridian running against itself. This repo is its own demo.
+
+<sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit</sub>

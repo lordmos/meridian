@@ -39,19 +39,18 @@
 
 #### 2a. 风格选择（5 选 1，含推荐）
 
-Meridian 提供 5 种预设风格，每种风格包含**完整视觉语言**：配色、logo 变体、字体栈、VitePress 主题变量、图标风格。
+Meridian 提供 4 种预设风格，每种风格包含**完整视觉语言**：配色、logo 变体、字体栈、VitePress 主题变量、图标风格。
 
-根据阶段 1 探索到的项目类型，**推荐 1 个默认风格**，同时列出其余 4 个作为备选：
+根据阶段 1 探索到的项目类型，**推荐 1 个默认风格**，同时列出其余 3 个作为备选：
 
 | id | 名称 | 一句话 | 默认适用 |
 |----|------|-------|----------|
 | `glow` | **Glow** | 渐变光晕 + 深空背景 | AI / Agent / 生成式 |
 | `minimalist` | **Minimalist** | 墨色 + 几何 outline | CLI / 库 / docs-first |
 | `dev-native` | **Dev-native** | 终端美学，霓虹青 | shell / SDK / 基建 |
-| `retro-terminal` | **Retro-Terminal** | 琥珀 CRT，虚线框 | 游戏 / 模拟器 / 复古 |
 | `enterprise` | **Enterprise** | 深海军蓝医章，几何刚硬 | B2B / 平台 / 合规 |
 
-每种风格的完整定义见 `templates/styles/{id}/style.md`（palette / typography / vitepress theme vars），hero 预览见 `templates/styles/{id}/hero.svg`。
+每种风格的完整定义见 `templates/styles/{id}/style.md`（palette / typography / vitepress theme vars），hero 预览见 `templates/styles/{id}/hero.svg`，真实 VitePress 渲染见 `templates/styles/{id}/screenshot.png`。
 
 默认映射：
 
@@ -60,7 +59,6 @@ Meridian 提供 5 种预设风格，每种风格包含**完整视觉语言**：�
 | AI / LLM / Agent / 生成式 | `glow` |
 | CLI / 库 / 开发者工具 | `minimalist` |
 | shell / 终端 / SDK / 构建系统 | `dev-native` |
-| 复古计算 / 游戏 / 模拟器 | `retro-terminal` |
 | B2B / 平台 / 合规 / 企业 SaaS | `enterprise` |
 
 用户可接受推荐、选其他风格、或说「随机」让 Meridian 自选。
@@ -77,7 +75,7 @@ Logo 从 `templates/styles/{id}/hero.svg` 复制。只需：
 - 把 `{{PROJECT_INITIAL}}` 替换为项目名首字母大写
 - 若用户替换了 accent 色，同步到 SVG 中（每种风格的 color bindings 详见其 `style.md`）
 
-**不要自作主张重设计 logo**——5 种预设覆盖了主要美学轴；需要新风格的话新增 preset，而不是在当前项目里一次性造新 logo。
+**不要自作主张重设计 logo**——4 种预设覆盖了主要美学轴；需要新风格的话新增 preset，而不是在当前项目里一次性造新 logo。
 
 #### 2d. README 现存问题
 
