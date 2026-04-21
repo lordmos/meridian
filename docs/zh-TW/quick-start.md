@@ -1,3 +1,11 @@
+<!--
+  Translation status:
+  Source file : docs/quick-start.md
+  Source commit: 34750fd
+  Translated  : 2026-04-04
+  Status      : up-to-date
+-->
+
 # 快速開始
 
 ## 三步上手
