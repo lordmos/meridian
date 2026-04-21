@@ -60,6 +60,6 @@ AI 会先自主探索你的项目，再提案 3 个配色方案供你选择，�
 
 ---
 
-Meridian 最初是 [Scriptorium](https://github.com/lordmos/tech-editorial) 运营工作的副产品，后抽离为独立工具包。本 README、徽章、语言切换、[文档站](https://lordmos.github.io/meridian/)、Logo、AI 工具上下文均由 Meridian 自身跑一次生成——这个仓库就是它自己的 demo。
+**这个项目就是 Meridian，它的展示页是用自己做的。** README、徽章、语言切换、[文档站](https://lordmos.github.io/meridian/)、Logo、AI 工具上下文——你看到的一切都是 Meridian 跑过自身一次后的产出。
 
 <sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit</sub>
