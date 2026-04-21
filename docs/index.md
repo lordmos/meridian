@@ -16,22 +16,22 @@ hero:
       text: GitHub
       link: https://github.com/lordmos/meridian
 features:
-  - icon: 🧭
+  - icon: /meridian/icons/sparkles.svg
     title: 品牌命名
     details: 为项目取有文化内涵的英文名，附典故说明
-  - icon: 🌐
+  - icon: /meridian/icons/globe.svg
     title: i18n 多语言化
     details: 简中/英/日/繁中 四语言文档，含翻译状态追踪
-  - icon: 📖
+  - icon: /meridian/icons/book-open.svg
     title: VitePress 文档站
     details: 多语言文档站 + GitHub Pages 自动部署，开箱即用
-  - icon: 🎨
+  - icon: /meridian/icons/palette.svg
     title: 项目 Logo
     details: 指南针风格 SVG logo，紫蓝渐变，适配 VitePress 主题
-  - icon: 🤖
+  - icon: /meridian/icons/bot.svg
     title: AI 工具适配
     details: CLAUDE.md / AGENTS.md / Cursor / Windsurf 全平台上下文
-  - icon: ⚡
+  - icon: /meridian/icons/bolt.svg
     title: 一句话启动
     details: QUICK_START.md 让 AI 自主完成所有运营工作
 ---
