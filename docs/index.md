@@ -3,8 +3,8 @@ layout: home
 titleTemplate: ':title'
 hero:
   name: "Meridian"
-  text: "开源 Agent 项目运营工具包"
-  tagline: "一次 AI 会话，搭建完整运营基础设施"
+  text: "一次 AI 会话，搞定全套推广配套"
+  tagline: "README、多语言、文档站、Logo、AI 工具上下文、SEO / GEO 资产——压缩成一次会话"
   image:
     src: /hero.svg
     alt: Meridian
@@ -13,25 +13,34 @@ hero:
       text: 快速开始 →
       link: /quick-start
     - theme: alt
+      text: FAQ
+      link: /faq
+    - theme: alt
       text: GitHub
       link: https://github.com/lordmos/meridian
 features:
-  - icon: /meridian/icons/sparkles.svg
+  - icon:
+      src: /icons/sparkles.svg
     title: 品牌命名
     details: 为项目取有文化内涵的英文名，附典故说明
-  - icon: /meridian/icons/globe.svg
+  - icon:
+      src: /icons/globe.svg
     title: i18n 多语言化
     details: 简中/英/日/繁中 四语言文档，含翻译状态追踪
-  - icon: /meridian/icons/book-open.svg
+  - icon:
+      src: /icons/book-open.svg
     title: VitePress 文档站
     details: 多语言文档站 + GitHub Pages 自动部署，开箱即用
-  - icon: /meridian/icons/palette.svg
-    title: 项目 Logo
-    details: 指南针风格 SVG logo，紫蓝渐变，适配 VitePress 主题
-  - icon: /meridian/icons/bot.svg
+  - icon:
+      src: /icons/palette.svg
+    title: 4 预设视觉风格
+    details: Glow / Minimalist / Dev-native / Enterprise，一键选定完整视觉语言
+  - icon:
+      src: /icons/bot.svg
     title: AI 工具适配
     details: CLAUDE.md / AGENTS.md / Cursor / Windsurf 全平台上下文
-  - icon: /meridian/icons/bolt.svg
-    title: 一句话启动
-    details: QUICK_START.md 让 AI 自主完成所有运营工作
+  - icon:
+      src: /icons/bolt.svg
+    title: SEO + GEO
+    details: OG / Twitter Card / JSON-LD / sitemap / llms.txt / FAQ——搜索引擎 + AI 答案都能引用
 ---

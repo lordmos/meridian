@@ -66,7 +66,22 @@ h1 .md-icon, h2 .md-icon, h3 .md-icon {
 
 **理由**：GitHub 把 Markdown 渲染为 HTML 但不加载站点 CSS——`class="md-icon"` 失效，SVG 会显示但无主题色跟随；emoji 在 GitHub 下原生渲染良好。两侧各取所长。
 
-**VitePress `home` layout features 替换**：`features: - icon: ⚡` 改成 `features: - icon: /{{REPO_NAME}}/icons/bolt.svg`（VitePress 原生支持 icon 字段为图片 URL）。
+**VitePress `home` layout features 替换**（注意两个陷阱）：
+
+1. `icon:` 必须用**对象形式** `icon: { src: ... }`；string 形式会被当作字面文本渲染出 URL 字符串
+2. `src:` 路径**不要带 `/{{REPO_NAME}}/` 前缀**——VitePress 会自动 prepend `base`，手写前缀会造成 `/repo/repo/icons/x.svg` 双重路径
+
+正确写法：
+
+```yaml
+features:
+  - icon:
+      src: /icons/bolt.svg    # VitePress 自动 prepend base，最终 /{{REPO_NAME}}/icons/bolt.svg
+    title: 一句话启动
+    details: ...
+```
+
+对比 body Markdown 内的普通 `<img>`：这里 `src` **必须**带 `/{{REPO_NAME}}/` 前缀，因为 VitePress 不对原生 HTML 做 base 注入。两种 src 写法不同，别弄混。
 
 所有替换写法的统一模板（下表省略 `<img>` 前缀与 `alt=""` 后缀，只列文件名与可选 class）：
 
