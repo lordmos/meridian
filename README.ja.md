@@ -1,8 +1,8 @@
 <!--
   Translation status:
   Source file : README.md
-  Source commit: (uncommitted)
-  Translated  : 2026-04-04
+  Source commit: 13c198b
+  Translated  : 2026-04-21
   Status      : up-to-date
 -->
 
@@ -20,7 +20,7 @@
 
 # Meridian
 
-再利用可能なオープンソース Agent プロジェクト運営ツールキット。任意のオープンソース Agent プロジェクトに対して、1 回の AI セッションで完全な運営基盤を構築できます。
+プロジェクトの README、多言語化、ドキュメントサイト、ロゴ、AI ツールのコンテキストファイル——これらの繰り返し作業を、1 回の AI セッションに圧縮します。
 
 ---
 
@@ -40,30 +40,21 @@ AI がプロジェクトを自律的に探索した後、3 つのカラースキ
 
 ## Meridian でできること
 
-| 作業項目 | 成果物 |
-|----------|--------|
-| **ブランド命名** | 歴史・文化的背景を持つ英語プロジェクト名（命名理由付き） |
-| **i18n 多言語化** | 简体中文 / English / 日本語 / 繁體中文 の4言語ドキュメント |
-| **VitePress ドキュメントサイト** | 多言語 docs/ サイト + GitHub Pages 自動デプロイ |
-| **プロジェクトロゴ** | SVG グラデーション発光ロゴ（選択したカラースキームに対応） |
-| **AI ツール連携** | CLAUDE.md / AGENTS.md / .cursor/rules / .windsurf/rules |
-| **QUICK_START.md** | AI オーケストレーションエントリポイント：1文で起動、AI が全プロセスを自律実行 |
-| **クイックスタートガイド** | 4言語の人間向けドキュメント、3ステップでセットアップ |
-| **README 運営化** | バッジ + 言語切替 + Quick Start 優先配置 + ドキュメントサイトリンク |
+**ビジュアル**
+- プロジェクトロゴ：SVG グラデーショングロー、配色はユーザーが選んだパレットに追従
+- 統一テーマ：ロゴ / ドキュメントサイト / アイコンが 1 つの配色体系を共有
 
----
+**コンテンツ**
+- ブランド命名：歴史・文化的背景のある英語プロジェクト名 + 命名理由
+- i18n 多言語化：简中 / en / ja / 繁中 の 4 言語 + 翻訳状況の追跡
+- README の運営化：バッジ + 言語切替 + Quick Start 優先配置 + ドキュメントサイトリンク
 
-## 背景
+**ドキュメントサイト**
+- VitePress 多言語サイト + GitHub Pages 自動デプロイ
 
-Meridian は [Scriptorium](https://github.com/lordmos/tech-editorial)（マルチ Agent 技術書執筆フレームワーク）の運営作業から抽出されました。その作業には以下が含まれます：
-
-1. プロジェクト名の命名（Scriptorium）
-2. 全ドキュメントの4言語翻訳（25個の Markdown ファイル × 4言語）
-3. VitePress ドキュメントサイト + GitHub Pages 自動デプロイの構築
-4. グラデーション発光 SVG ロゴの制作
-5. Claude Code / OpenCode / Amp / Cursor / Windsurf 向け AI ツールコンテキストファイルの作成
-6. `QUICK_START.md` の作成：「1文で起動、AI が全プロセスを実行」の AI オーケストレーション基盤
-7. README の整備（バッジ、言語切替、Quick Start 優先配置、ドキュメントサイトリンク）
+**AI 連携**
+- コンテキストファイル：CLAUDE.md / AGENTS.md / .cursor/rules / .windsurf/rules
+- オーケストレーションエントリ：QUICK_START.md（1 行で起動、AI が全プロセスを自律実行）
 
 ---
 
@@ -77,4 +68,6 @@ Meridian は [Scriptorium](https://github.com/lordmos/tech-editorial)（マル�
 
 ---
 
-<sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit for Agent projects</sub>
+Meridian は当初 [Scriptorium](https://github.com/lordmos/tech-editorial) の運営作業の副産物として生まれ、その後独立したツールキットとして切り出されました。今ご覧になっている README、バッジ、言語切替、[ドキュメントサイト](https://lordmos.github.io/meridian/)、ロゴ、AI ツールのコンテキストファイル——これらはすべて Meridian 自身を 1 回走らせて生成されたものです。このリポジトリは、それ自体がデモです。
+
+<sub>Built with [Meridian](https://github.com/lordmos/meridian) · open-source ops toolkit</sub>
