@@ -100,7 +100,13 @@
 
 → **详细说明见** `templates/tasks/task-2-i18n.md`
 
-产出：`i18n/` 目录结构 + `README.en.md` / `README.ja.md` / `README.zh-TW.md`，每个译文文件头部含翻译状态注释和语言切换行。
+**先建 glossary**（Step 0）：以 `templates/glossary.md` 为基础生成 `i18n/glossary.md`，作为翻译的唯一权威。所有译者先查表再翻，遇到未收录术语立即回写。
+
+产出：
+- `i18n/glossary.md`（五节：品牌名 / 技术术语 / 章节标题 / 惯用语 / 繁简转换）
+- `i18n/{en,ja,zh-TW}/` 目录结构
+- `README.en.md` / `README.ja.md` / `README.zh-TW.md`
+- 每个译文文件头部含翻译状态注释和语言切换行
 
 ---
 
@@ -225,9 +231,35 @@ QUICK_START.md 内容结构：
 
 3. 执行最终构建验证：`cd docs && npm run docs:build`
 
-4. 全部 commit & push
+4. **多语言漂移检测**：复制 `templates/scripts/check-i18n-drift.py` 到目标项目 `scripts/`，运行：
+   ```bash
+   python3 scripts/check-i18n-drift.py
+   ```
+   六项检查覆盖结构对齐 / 翻译头 / 切换行 / 源文件新鲜度 / glossary 术语一致性 / 占位符残留。**有 error 必须修复再继续**；warning 可根据项目情况容忍。
 
-5. 提醒用户：GitHub Settings → Pages → Source 选 **"GitHub Actions"**
+---
+
+### 任务 11：Emoji → SVG 替换（最终视觉统一）
+
+所有产出物的 emoji 替换为 Lucide outline 风格的 inline SVG，图标颜色通过 `currentColor` 跟随主题色自动切换。
+
+→ **详细说明见** `templates/tasks/task-11-emoji-to-svg.md`
+
+操作概览：
+1. `cp -r templates/icons 目标项目/docs/public/icons`
+2. 在 `docs/.vitepress/theme/style.css` 追加 `.md-icon` 样式
+3. 按映射表替换 README / docs / CLAUDE.md / AGENTS.md / QUICK_START.md / .cursor / .windsurf 中的 emoji
+4. 校验：`grep -rP '[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}]'` 无残留 + 构建再次通过
+5. 更新 `checkpoint.md`
+
+**不替换**：徽章 URL 内的 emoji、代码块内的 emoji、`hero.svg` 本身、`checkpoint.md`。
+
+---
+
+### 收尾
+
+1. 全部 commit & push
+2. 提醒用户：GitHub Settings → Pages → Source 选 **"GitHub Actions"**
 
 ---
 
@@ -269,9 +301,11 @@ QUICK_START.md 内容结构：
 10. QUICK_START.md（任务 7）
 11. Quick Start Guide（任务 8）
 12. README 运营化（任务 9）
-13. 收尾（任务 10）
-14. 提醒用户开启 GitHub Pages
+13. 收尾一致性检查 + 构建验证（任务 10）
+14. Emoji → SVG 替换 + 最终构建（任务 11）
+15. commit & push
+16. 提醒用户开启 GitHub Pages
 
 ---
 
-*提示词版本：Meridian v3.1 · 2026-04-04*
+*提示词版本：Meridian v3.2 · 2026-04-21*

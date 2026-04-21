@@ -87,7 +87,7 @@
 | # | 任务 | 主要产出 |
 |---|------|---------|
 | 1 | 品牌命名 | 项目英文名 + 命名说明 |
-| 2 | i18n 多语言化 | `i18n/` + `README.*.md` |
+| 2 | i18n 多语言化 | `i18n/glossary.md` + `i18n/{en,ja,zh-TW}/` + `README.*.md` |
 | 3 | VitePress 文档站 | `docs/`（含用户选定配色的 theme/style.css） |
 | 4 | GitHub Pages 部署 | `.github/workflows/docs.yml` |
 | 5 | 项目 Logo | `docs/public/hero.svg` + `.github/assets/hero.svg` |
@@ -95,13 +95,17 @@
 | 7 | QUICK_START.md | 根目录 `QUICK_START.md` |
 | 8 | Quick Start Guide | `docs/quick-start.md`（四语言） |
 | 9 | README 运营化 | 所有语言 README |
-| 10 | 收尾 | `.gitignore` + 最终构建验证 + commit & push |
+| 10 | 收尾一致性检查 | `.gitignore` + 构建验证 |
+| 11 | Emoji → SVG 替换 | `docs/public/icons/` + `.md-icon` 样式 + 全部 md 替换 |
 
 **使用 `templates/` 中的模板文件**（详见 `PROMPT.md` 各任务说明）：
+- `templates/glossary.md` → 任务 2 Step 0 先建 i18n/glossary.md
 - `templates/vitepress-config.mts` → 任务 3 config.mts 基础
 - `templates/docs-workflow.yml` → 任务 4 直接复制
 - `templates/hero.svg` → 任务 5 替换字母后复制
 - `templates/CLAUDE.md` → 任务 6 基础
+- `templates/icons/` → 任务 11 Lucide outline SVG 图标库
+- `templates/scripts/check-i18n-drift.py` → 任务 10 多语言漂移检测(复制到目标项目 `scripts/`)
 
 ---
 
