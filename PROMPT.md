@@ -27,6 +27,9 @@
 - **目录结构**：识别 docs/、agents/、src/、framework/ 等核心目录
 - **GitHub 信息**：package.json homepage / git remote origin URL
 - **项目类型**：Agent 框架 / 工具库 / CLI / 文档项目 / 其他
+- **目标用户与场景**：谁会用、在什么工作流里用、解决什么痛点
+- **用户收益**：用户完成后得到什么结果（省时间 / 降风险 / 提升协作 / 更容易部署等）
+- **业务与应用价值**：面向非作者读者时，最该先理解的卖点、场景和使用方式
 - **README 质量问题**：对比运营标准，列出缺失项和不足
 
 探索完成后，进入阶段 2。
@@ -131,6 +134,13 @@ Logo 从 `templates/styles/{id}/hero.svg` 复制。只需：
 
 → **详细说明见** `templates/tasks/task-3-vitepress.md`
 
+**首页写作硬规则**：
+- 首页第一屏必须先回答：谁会用这个项目、解决什么真实场景的问题、用户得到什么结果。
+- Hero `text` 写业务/应用定位，不写技术架构名词堆叠；`tagline` 用一两句解释日常使用场景和收益。
+- `features` 必须是 4-6 个“场景/收益卡片”，不要直接写模块名、协议名、runtime 名或内部目录名。
+- 技术架构、集成方式、实现细节可以放到后续文档、FAQ 或 README 的 Architecture 节，不作为首页主卖点。
+- 对 CLI / SDK / Agent 工具，要把能力翻译成应用场景，例如“写入前先确认”“把本地私有状态和公开仓库分开”“让 agent 有一个可执行入口”，而不是只说“支持 MCP / SQLite / overlay”。
+
 **关键复制步骤**：
 - `templates/vitepress-config.mts` → `docs/.vitepress/config.mts`（作为基础）
 - `templates/styles/{id}/vitepress-theme.css` → `docs/.vitepress/theme/style.css`（选定风格的主题变量 + 深度 CSS override；**不要只复制 palette 块**，要完整复制，包括 feature card / button / hero 等规则，否则风格看起来只换了配色）
@@ -232,6 +242,11 @@ QUICK_START.md 内容结构：
 更新所有语言的 README（`.md` + `README.en.md` + `README.ja.md` + `README.zh-TW.md`）。
 
 → **详细说明见** `templates/tasks/task-9-readme.md`
+
+**README 写作硬规则**：
+- 标题后第一段必须用普通读者能理解的话说明：这个项目适合谁、在什么场景下使用、为什么值得用。
+- Quick Start 之后的 `能做什么 / Features` 应优先写用户收益和应用场景；技术细节保留，但下沉到 Architecture / File Reference / FAQ。
+- 不要因为项目是开发者工具，就默认只讲技术栈。开发者也需要先知道它帮自己完成什么工作、避免什么麻烦。
 
 产出：遵循 README 编排模板，含语言切换行 + 徽章（含 Powered by Meridian 徽章）+ Quick Start 前置 + footer 归因行。
 

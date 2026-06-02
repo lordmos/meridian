@@ -26,6 +26,9 @@
 | 技术栈 | package.json / requirements.txt / go.mod |
 | 核心目录结构 | 根目录 ls，识别 docs/ agents/ src/ 等 |
 | GitHub 信息 | package.json homepage / git remote origin |
+| 目标用户与场景 | README、docs、issue、示例、命令帮助；判断谁会用、何时用、解决什么痛点 |
+| 用户收益 | 从功能描述反推省时间、降风险、提升协作、自动化、可部署等结果 |
+| 业务/应用卖点 | 把技术能力翻译成读者能理解的应用场景和价值主张 |
 | README 质量问题 | 对比运营标准，列出缺失/不足项 |
 
 探索完成后，进入阶段 2。
@@ -88,13 +91,13 @@
 |---|------|---------|
 | 1 | 品牌命名 | 项目英文名 + 命名说明 |
 | 2 | i18n 多语言化 | `i18n/glossary.md` + `i18n/{en,ja,zh-TW}/` + `README.*.md` |
-| 3 | VitePress 文档站 | `docs/`（主题变量来自用户选定风格的 `templates/styles/{id}/style.md`）|
+| 3 | VitePress 文档站 | `docs/`（首页先讲用户场景/业务价值，再讲技术；主题变量来自用户选定风格）|
 | 4 | GitHub Pages 部署 | `.github/workflows/docs.yml` |
 | 5 | 项目 Logo | `docs/public/hero.svg` + `.github/assets/hero.svg` |
 | 6 | AI 工具上下文文件 | `CLAUDE.md` `AGENTS.md` `.cursor/` `.windsurf/` |
 | 7 | QUICK_START.md | 根目录 `QUICK_START.md` |
 | 8 | Quick Start Guide | `docs/quick-start.md`（四语言） |
-| 9 | README 运营化 | 所有语言 README |
+| 9 | README 运营化 | 所有语言 README（Quick Start 前置，Features 写成场景/收益而非模块清单） |
 | 10 | 收尾一致性检查 | `.gitignore` + 构建验证 |
 | 11 | Emoji → SVG 替换 | `docs/public/icons/` + `.md-icon` 样式 + 全部 md 替换 |
 | 12 | Discoverability (SEO + GEO) | `robots.txt` + `og.png` + `llms.txt` + `llms-full.txt` + `docs/faq.md` + VitePress head 注入 |
