@@ -249,7 +249,7 @@ def run() -> int:
     ap.add_argument("--output", default=None, help="screenshot output dir (default: /tmp/meridian-viz)")
     ap.add_argument("--open", action="store_true", help="open screenshots when done")
     ap.add_argument("--skip-dev", action="store_true", help="skip dev-server checks (build-only)")
-    ap.add_argument("--base", default=None, help="override VitePress base path, e.g. /nudge/")
+    ap.add_argument("--base", default=None, help="override VitePress base path, e.g. /example-project/")
     args = ap.parse_args()
 
     out_dir = Path(args.output or "/tmp/meridian-viz")

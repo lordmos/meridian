@@ -31,22 +31,22 @@ class VerifyVisualTests(unittest.TestCase):
                 textwrap.dedent(
                     """
                     export default defineConfig({
-                      title: 'Nudge',
-                      base: '/nudge/',
+                      title: 'Example Project',
+                      base: '/example-project/',
                     })
                     """
                 ),
                 encoding="utf-8",
             )
 
-            self.assertEqual(module.read_base_path(docs), "/nudge/")
+            self.assertEqual(module.read_base_path(docs), "/example-project/")
 
     def test_builds_dev_url_with_dynamic_base(self):
         module = load_module()
 
         self.assertEqual(
-            module.build_dev_url(5173, "/nudge/"),
-            "http://127.0.0.1:5173/nudge/",
+            module.build_dev_url(5173, "/example-project/"),
+            "http://127.0.0.1:5173/example-project/",
         )
 
     def test_reports_missing_playwright_before_spawning_dev_server(self):
