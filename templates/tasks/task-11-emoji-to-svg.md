@@ -225,8 +225,8 @@ rg '[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}]' \
 #  if 'node_modules' not in p.parts
 #  for i,l in enumerate(p.read_text(errors='ignore').splitlines()) if pat.search(l)]"
 
-# 2. VitePress 构建再次通过
-cd docs && npm run docs:build
+# 2. VitePress 构建再次通过（括号避免改变当前 shell 目录）
+(cd docs && npm run docs:build)
 
 # 3. 本地起服务目测 light/dark 切换时图标跟随主题色
 npm run docs:dev

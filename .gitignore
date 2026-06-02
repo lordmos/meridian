@@ -1,5 +1,6 @@
 docs/.vitepress/dist
 docs/.vitepress/cache
+docs/.vitepress/.temp
 docs/node_modules
 .DS_Store
 templates/styles/_demo/node_modules

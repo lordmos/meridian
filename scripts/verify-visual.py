@@ -26,6 +26,7 @@ and the `docs/` subproject to have `npm install` completed.
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import os
 import re
 import socket
@@ -37,7 +38,42 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
-BASE_PATH = "/meridian/"  # VitePress base; read from config in a future version
+
+
+def read_base_path(docs: Path = DOCS) -> str:
+    config = docs / ".vitepress" / "config.mts"
+    if not config.exists():
+        return "/"
+    text = config.read_text(encoding="utf-8")
+    match = re.search(r"\bbase\s*:\s*['\"]([^'\"]+)['\"]", text)
+    if not match:
+        return "/"
+    base = match.group(1)
+    if not base.startswith("/"):
+        base = f"/{base}"
+    if not base.endswith("/"):
+        base = f"{base}/"
+    return base
+
+
+def build_dev_url(port: int, base_path: str) -> str:
+    if not base_path.startswith("/"):
+        base_path = f"/{base_path}"
+    if not base_path.endswith("/"):
+        base_path = f"{base_path}/"
+    return f"http://127.0.0.1:{port}{base_path}"
+
+
+def playwright_dependency_error() -> str | None:
+    if importlib.util.find_spec("playwright") is not None:
+        return None
+    return (
+        "missing Python Playwright dependency. Install it before running dev-server "
+        "visual checks:\n"
+        "  python3 -m pip install playwright\n"
+        "  python3 -m playwright install chromium\n"
+        "Or run with --skip-dev for build-only checks."
+    )
 
 
 def find_free_port() -> int:
@@ -213,6 +249,7 @@ def run() -> int:
     ap.add_argument("--output", default=None, help="screenshot output dir (default: /tmp/meridian-viz)")
     ap.add_argument("--open", action="store_true", help="open screenshots when done")
     ap.add_argument("--skip-dev", action="store_true", help="skip dev-server checks (build-only)")
+    ap.add_argument("--base", default=None, help="override VitePress base path, e.g. /nudge/")
     args = ap.parse_args()
 
     out_dir = Path(args.output or "/tmp/meridian-viz")
@@ -234,6 +271,11 @@ def run() -> int:
 
     # Step 2: dev server + playwright checks
     if not args.skip_dev:
+        dep_error = playwright_dependency_error()
+        if dep_error:
+            fail.add(dep_error)
+            return fail.report()
+
         port = find_free_port()
         print(f"→ spawning `vitepress dev --port {port}` …")
         proc = subprocess.Popen(
@@ -244,7 +286,8 @@ def run() -> int:
             stderr=subprocess.DEVNULL,
         )
         try:
-            url = f"http://127.0.0.1:{port}{BASE_PATH}"
+            base_path = args.base or read_base_path(DOCS)
+            url = build_dev_url(port, base_path)
             wait_for_server(url)
             time.sleep(1.5)
             from playwright.sync_api import sync_playwright
