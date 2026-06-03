@@ -137,7 +137,7 @@ Logo 从 `templates/styles/{id}/hero.svg` 复制。只需：
 **首页写作硬规则**：
 - 首页第一屏必须先回答：谁会用这个项目、解决什么真实场景的问题、用户得到什么结果。
 - Hero `text` 写业务/应用定位，不写技术架构名词堆叠；`tagline` 用一两句解释日常使用场景和收益。
-- `features` 必须是 4-6 个“场景/收益卡片”，不要直接写模块名、协议名、runtime 名或内部目录名。
+- `features` 必须固定为 4 个“场景/收益卡片”，不要直接写模块名、协议名、runtime 名或内部目录名；5 个卡片在桌面端容易变成难看的 4+1 两排布局。
 - 技术架构、集成方式、实现细节可以放到后续文档、FAQ 或 README 的 Architecture 节，不作为首页主卖点。
 - 对 CLI / SDK / Agent 工具，要把能力翻译成应用场景，例如“写入前先确认”“把本地私有状态和公开仓库分开”“让 agent 有一个可执行入口”，而不是只说“支持 MCP / SQLite / overlay”。
 
@@ -273,6 +273,12 @@ QUICK_START.md 内容结构：
    python3 scripts/check-i18n-drift.py
    ```
    六项检查覆盖结构对齐 / 翻译头 / 切换行 / 源文件新鲜度 / glossary 术语一致性 / 占位符残留。**有 error 必须修复再继续**；warning 可根据项目情况容忍。
+
+5. **视觉回归检查**：复制 `templates/scripts/verify-visual.py` 到目标项目 `scripts/`，至少运行 build-only 检查：
+   ```bash
+   python3 scripts/verify-visual.py --skip-dev
+   ```
+   该检查会覆盖首页 feature 卡片数量、顶部明暗切换/GitHub 图标样式、SEO/GEO 静态资产等发布层回归。
 
 ---
 

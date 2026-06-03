@@ -58,6 +58,73 @@ class VerifyVisualTests(unittest.TestCase):
         self.assertIn("python3 -m pip install playwright", message)
         self.assertIn("python3 -m playwright install chromium", message)
 
+    def test_static_dist_checks_catch_docs_nav_and_feature_regressions(self):
+        module = load_module()
+        with tempfile.TemporaryDirectory() as tmp:
+            dist = Path(tmp) / "dist"
+            assets = dist / "assets"
+            assets.mkdir(parents=True)
+            for name in ("robots.txt", "sitemap.xml", "og.png", "llms.txt", "llms-full.txt"):
+                (dist / name).write_text("", encoding="utf-8")
+            dist.joinpath("index.html").write_text(
+                textwrap.dedent(
+                    """
+                    <html>
+                      <head>
+                        <meta property="og:title" content="Example">
+                        <meta name="twitter:card" content="summary_large_image">
+                        <link rel="canonical" href="https://example.test/">
+                        <link rel="alternate" title="llms.txt" href="/llms.txt">
+                        <script type="application/ld+json">{}</script>
+                      </head>
+                      <body>
+                        <section class="VPFeature"></section>
+                        <section class="VPFeature"></section>
+                        <section class="VPFeature"></section>
+                        <section class="VPFeature"></section>
+                        <section class="VPFeature"></section>
+                      </body>
+                    </html>
+                    """
+                ),
+                encoding="utf-8",
+            )
+            assets.joinpath("style.css").write_text(
+                ".VPNavBarTranslations{}"
+                ".VPNavBarAppearance .VPSwitchAppearance{}"
+                ".VPNavBarAppearance .VPSwitchAppearance .check{}"
+                ".VPNavBarAppearance .VPSwitchAppearance .icon{}"
+                ".VPNavBarSocialLinks{}"
+                ".VPHomeFeatures{}"
+                ".VPHome .vp-doc.container{}",
+                encoding="utf-8",
+            )
+
+            fail = module.Fail()
+            module.check_sitemap_and_meta(dist, fail)
+
+        self.assertTrue(
+            any("4 feature cards" in error for error in fail.errors),
+            fail.errors,
+        )
+        self.assertTrue(
+            any('VPSwitchAppearance[aria-checked="true"] .check' in error for error in fail.errors),
+            fail.errors,
+        )
+        self.assertTrue(
+            any('[class^="vpi-social-"]' in error for error in fail.errors),
+            fail.errors,
+        )
+
+    def test_enterprise_theme_contains_docs_nav_regression_fixes(self):
+        css = (ROOT / "templates" / "styles" / "enterprise" / "vitepress-theme.css").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn('.VPNavBarAppearance .VPSwitchAppearance[aria-checked="true"] .check', css)
+        self.assertIn('.VPNavBar .VPSocialLink [class^="vpi-social-"]', css)
+        self.assertIn(".VPHomeFeatures", css)
+
 
 if __name__ == "__main__":
     unittest.main()

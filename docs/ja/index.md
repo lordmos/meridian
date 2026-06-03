@@ -30,19 +30,11 @@ features:
   - icon:
       src: /icons/book-open.svg
     title: VitePress ドキュメントサイト
-    details: 多言語サイト + GitHub Pages 自動デプロイ、ゼロ設定
+    details: 多言語サイト + GitHub Pages 自動デプロイに加え、AI ツール用コンテキストも生成
   - icon:
       src: /icons/palette.svg
     title: 4 種類のプリセットスタイル
-    details: Glow / Minimalist / Dev-native / Enterprise——視覚言語一式をワンピックで
-  - icon:
-      src: /icons/bot.svg
-    title: AI ツール連携
-    details: CLAUDE.md / AGENTS.md / Cursor / Windsurf 全プラットフォーム対応
-  - icon:
-      src: /icons/bolt.svg
-    title: SEO + GEO
-    details: OG / Twitter Card / JSON-LD / sitemap / llms.txt / FAQ——検索 + LLM 回答で引用される
+    details: Glow / Minimalist / Dev-native / Enterprise——視覚言語一式と SEO + GEO 資産をワンピックで
 ---
 
 <!--

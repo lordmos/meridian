@@ -243,6 +243,29 @@ def check_sitemap_and_meta(dist: Path, fail: Fail) -> None:
         if not (dist / static).exists():
             fail.add(f"dist missing static asset: {static}")
 
+    feature_count = len(re.findall(r'class="[^"]*\bVPFeature\b', html))
+    if feature_count != 4:
+        fail.add(
+            f"home page should render 4 feature cards, got {feature_count}. "
+            "Five cards fall into a visually awkward 4+1 grid."
+        )
+
+    css = "\n".join(p.read_text(encoding="utf-8") for p in (dist / "assets").glob("*.css"))
+    required_css = [
+        ".VPNavBarTranslations",
+        ".VPNavBarAppearance .VPSwitchAppearance",
+        '.VPNavBarAppearance .VPSwitchAppearance[aria-checked="true"] .check',
+        ".VPNavBarAppearance .VPSwitchAppearance .check",
+        ".VPNavBarAppearance .VPSwitchAppearance .icon",
+        ".VPNavBarSocialLinks",
+        '.VPNavBar .VPSocialLink [class^="vpi-social-"]',
+        ".VPHomeFeatures",
+        ".VPHome .vp-doc.container",
+    ]
+    for selector in required_css:
+        if selector not in css:
+            fail.add(f"dist CSS missing nav/home layout selector: {selector}")
+
 
 def run() -> int:
     ap = argparse.ArgumentParser()

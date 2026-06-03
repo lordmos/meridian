@@ -30,19 +30,11 @@ features:
   - icon:
       src: /icons/book-open.svg
     title: VitePress docs site
-    details: Multilingual docs + GitHub Pages auto-deployment, zero config
+    details: Multilingual docs + GitHub Pages auto-deployment, plus AI-tool context files
   - icon:
       src: /icons/palette.svg
     title: 4 preset visual styles
-    details: Glow / Minimalist / Dev-native / Enterprise — full visual system in one pick
-  - icon:
-      src: /icons/bot.svg
-    title: AI-tool integration
-    details: CLAUDE.md / AGENTS.md / Cursor / Windsurf context across all platforms
-  - icon:
-      src: /icons/bolt.svg
-    title: SEO + GEO
-    details: OG / Twitter Card / JSON-LD / sitemap / llms.txt / FAQ — discoverable in search AND LLM answers
+    details: Glow / Minimalist / Dev-native / Enterprise — full visual system plus SEO + GEO assets
 ---
 
 <!--

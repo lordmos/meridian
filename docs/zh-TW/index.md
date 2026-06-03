@@ -30,19 +30,11 @@ features:
   - icon:
       src: /icons/book-open.svg
     title: VitePress 文件站
-    details: 多語言文件站 + GitHub Pages 自動部署，開箱即用
+    details: 多語言文件站 + GitHub Pages 自動部署，並產生 AI 工具上下文
   - icon:
       src: /icons/palette.svg
     title: 4 預設視覺風格
-    details: Glow / Minimalist / Dev-native / Enterprise，一鍵選定完整視覺語言
-  - icon:
-      src: /icons/bot.svg
-    title: AI 工具適配
-    details: CLAUDE.md / AGENTS.md / Cursor / Windsurf 全平台上下文
-  - icon:
-      src: /icons/bolt.svg
-    title: SEO + GEO
-    details: OG / Twitter Card / JSON-LD / sitemap / llms.txt / FAQ——搜尋引擎 + AI 答案都能引用
+    details: Glow / Minimalist / Dev-native / Enterprise，一鍵選定完整視覺語言，附帶 SEO + GEO 資產
 ---
 
 <!--
