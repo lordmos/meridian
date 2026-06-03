@@ -152,7 +152,17 @@ Logo 从 `templates/styles/{id}/hero.svg` 复制。只需：
 
 ### 任务 4：GitHub Pages 自动部署
 
-创建 `.github/workflows/docs.yml`，内容直接复制 `templates/docs-workflow.yml`，无需修改。
+创建 `.github/workflows/docs.yml`，内容直接复制 `templates/docs-workflow.yml`，无需修改。这个 workflow 包含 `build` → `deploy` → `verify` 三段：部署完成后会读取 GitHub Pages 输出的 `page_url`，再运行线上站点检查。
+
+同时复制 post-deploy 检查脚本：
+
+```bash
+mkdir -p scripts
+cp <MERIDIAN>/templates/scripts/verify-deployed-site.py scripts/verify-deployed-site.py
+chmod +x scripts/verify-deployed-site.py
+```
+
+线上检查覆盖首页、quick-start、FAQ、三种译文入口、robots、sitemap、`llms.txt`、`llms-full.txt`、`og.png`、SEO/GEO metadata 和模板占位符残留。
 
 **⚠️ 提醒用户**：推送后需手动在 GitHub Settings → Pages → Source 选择 **"GitHub Actions"**，首次 CI 才能成功。
 
@@ -280,6 +290,11 @@ QUICK_START.md 内容结构：
    ```
    该检查会覆盖首页 feature 卡片数量、顶部明暗切换/GitHub 图标样式、SEO/GEO 静态资产等发布层回归。
 
+6. **部署后检查脚本就位**：确认 `scripts/verify-deployed-site.py` 存在且可执行。GitHub Pages workflow 的 `verify` job 会在部署后自动运行它；本地也可手动检查：
+   ```bash
+   python3 scripts/verify-deployed-site.py https://OWNER.github.io/REPO/
+   ```
+
 ---
 
 ### 任务 11：Emoji → SVG 替换（最终视觉统一）
@@ -346,6 +361,7 @@ QUICK_START.md 内容结构：
 
 **GitHub Pages**（任务 4）
 - 首次推送后，手动在 GitHub Settings → Pages → Source 选 **GitHub Actions**
+- 部署 workflow 必须包含 `verify` job；如果失败，先看线上 URL 是否可访问，再看 `scripts/verify-deployed-site.py` 报出的具体缺失项。
 - 然后重新触发 CI（推空 commit 或点 Re-run）
 
 **多语言同步**（任务 2/9）

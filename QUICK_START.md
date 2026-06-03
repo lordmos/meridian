@@ -92,7 +92,7 @@
 | 1 | 品牌命名 | 项目英文名 + 命名说明 |
 | 2 | i18n 多语言化 | `i18n/glossary.md` + `i18n/{en,ja,zh-TW}/` + `README.*.md` |
 | 3 | VitePress 文档站 | `docs/`（首页先讲用户场景/业务价值，再讲技术；主题变量来自用户选定风格）|
-| 4 | GitHub Pages 部署 | `.github/workflows/docs.yml` |
+| 4 | GitHub Pages 部署 | `.github/workflows/docs.yml` + 部署后线上检查 |
 | 5 | 项目 Logo | `docs/public/hero.svg` + `.github/assets/hero.svg` |
 | 6 | AI 工具上下文文件 | `CLAUDE.md` `AGENTS.md` `.cursor/` `.windsurf/` |
 | 7 | QUICK_START.md | 根目录 `QUICK_START.md` |
@@ -110,6 +110,7 @@
 - `templates/CLAUDE.md` → 任务 6 基础
 - `templates/icons/` → 任务 11 Lucide outline SVG 图标库
 - `templates/scripts/check-i18n-drift.py` → 任务 10 多语言漂移检测(复制到目标项目 `scripts/`)
+- `templates/scripts/verify-deployed-site.py` → 任务 4/10 部署后线上检查(复制到目标项目 `scripts/`)
 - `templates/seo/` → 任务 12 robots.txt + VitePress head 片段 + sitemap 文档
 - `templates/llms-txt/` → 任务 12 llms.txt 模板 + llms-full.txt 生成器
 
@@ -146,7 +147,7 @@
 | 缺少 git commit hash | 写 `(uncommitted)` |
 | npm install 失败 | 检查 Node.js ≥ 20，清理 node_modules 重试 |
 | 翻译质量存疑 | 日文用自然技术日语，繁中基于简中转换后人工校对 |
-| GitHub Pages CI 失败 | 提醒用户手动开启（Settings → Pages → Source → GitHub Actions） |
+| GitHub Pages CI 失败 | 提醒用户手动开启（Settings → Pages → Source → GitHub Actions）；若 deploy 后 verify 失败，按 `scripts/verify-deployed-site.py` 输出补齐线上资源 |
 
 ---
 
