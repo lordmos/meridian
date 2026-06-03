@@ -123,6 +123,10 @@ class VerifyVisualTests(unittest.TestCase):
 
         self.assertIn('.VPNavBarAppearance .VPSwitchAppearance[aria-checked="true"] .check', css)
         self.assertIn('.VPNavBar .VPSocialLink [class^="vpi-social-"]', css)
+        self.assertIn("--vp-c-bg:", css)
+        self.assertIn(".dark .VPHero", css)
+        self.assertIn(".dark .VPFeature", css)
+        self.assertIn(".dark .VPButton.alt", css)
         self.assertIn(".VPHomeFeatures", css)
 
 

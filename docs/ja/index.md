@@ -40,7 +40,7 @@ features:
 <!--
   Translation status:
   Source file : docs/index.md
-  Source commit: f603973
+  Source commit: d5d4469
   Translated  : 2026-04-21
   Status      : up-to-date
 -->
